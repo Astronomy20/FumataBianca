@@ -31,6 +31,209 @@ class Utility:
         sys.exit()
 
 
+coin = [
+    [
+        " /‾‾‾‾‾\ ",
+        "|       |",
+        "| TESTA |",
+        "|       |",
+        " \_____/ "
+    ],
+    [
+        " /‾‾‾‾‾\ ",
+        "|       |",
+        "| CROCE |",
+        "|       |",
+        " \_____/ "
+    ]
+]
+
+d4_faces = [
+    [
+        "    ▲    ",
+        "  / 1 \  ",
+        " /_____\ "
+    ],
+    [
+        "    ▲    ",
+        "  / 2 \  ",
+        " /_____\ "
+    ],
+    [
+        "    ▲    ",
+        "  / 3 \  ",
+        " /_____\ "
+    ],
+    [
+        "    ▲    ",
+        "  / 4 \  ",
+        " /_____\ "
+    ]
+]
+
+d6_faces = [
+    [
+        "+---------+",
+        "|         |",
+        "|         |",
+        "|    ●    |",
+        "|         |",
+        "|         |",
+        "+---------+"
+    ],
+    [
+        "+---------+",
+        "| ●       |",
+        "|         |",
+        "|         |",
+        "|         |",
+        "|       ● |",
+        "+---------+"
+    ],
+    [
+        "+---------+",
+        "| ●       |",
+        "|         |",
+        "|    ●    |",
+        "|         |",
+        "|       ● |",
+        "+---------+"
+    ],
+    [
+        "+---------+",
+        "| ●     ● |",
+        "|         |",
+        "|         |",
+        "|         |",
+        "| ●     ● |",
+        "+---------+"
+    ],
+    [
+        "+---------+",
+        "| ●     ● |",
+        "|         |",
+        "|    ●    |",
+        "|         |",
+        "| ●     ● |",
+        "+---------+"
+    ],
+    [
+        "+---------+",
+        "| ●     ● |",
+        "|         |",
+        "| ●     ● |",
+        "|         |",
+        "| ●     ● |",
+        "+---------+"
+    ]
+]
+
+
+class Dices:
+    @staticmethod
+    def roll_dice(faces_num):
+        return random.randint(1, faces_num)
+
+    @staticmethod
+    def launch_coin():
+        return random.choice(["Testa", "Croce"])
+
+    @staticmethod
+    def roll_animation(faces):
+        duration = 1.5
+        interval = 0.2
+        end_time = time.time() + duration
+
+        if faces == 2:
+            for _ in range(5):
+                print()
+
+            while time.time() < end_time:
+                for face in coin:
+                    sys.stdout.write("\033[5A")  # Move cursor up 4 lines
+                    for line in face:
+                        sys.stdout.write("\r" + line + " " * 10 + "\n")
+                    sys.stdout.flush()
+                    time.sleep(interval)
+
+        elif faces == 4:
+            for _ in range(3):
+                print()
+
+            while time.time() < end_time:
+                for face in d4_faces:
+                    sys.stdout.write("\033[3A")  # Move cursor up 3 lines
+                    for line in face:
+                        sys.stdout.write("\r" + line + " " * 10 + "\n")
+                    sys.stdout.flush()
+                    time.sleep(interval)
+        elif faces == 6:
+            for _ in range(7):
+                print()
+
+            while time.time() < end_time:
+                for face in d6_faces:
+                    sys.stdout.write("\033[7A")
+                    for line in face:
+                        sys.stdout.write("\r" + line + " " * 10 + "\n")
+                    sys.stdout.flush()
+                    time.sleep(interval)
+        else:
+            Utility.error()
+
+    @staticmethod
+    def print_final_face(ascii_lines, faces):
+        returns = 0
+
+        if faces == 2:
+            returns = 5
+        elif faces == 4:
+            returns = 3
+        elif faces == 6:
+            returns = 7
+        else:
+            Utility.error()
+
+        sys.stdout.write(f"\033[{returns}A")
+        for line in ascii_lines:
+            sys.stdout.write("\r" + line + " " * 10 + "\n")
+        sys.stdout.flush()
+
+    def face_2(self):
+        input("Premi Invio per tirare il dado...")
+
+        self.roll_animation(2)
+        result = self.roll_dice(2)
+
+        self.print_final_face(coin[result - 1], 2)
+
+        coin_result = "Testa" if result == 1 else "Croce"
+        print(f"\nÈ uscita {coin_result}!")
+        sys.exit()
+
+    def face_4(self):
+        input("Premi Invio per tirare il dado...")
+
+        self.roll_animation(4)
+        result = self.roll_dice(4)
+
+        self.print_final_face(d4_faces[result - 1], 4)
+
+        print(f"\nÈ uscito {result}!")
+        sys.exit()
+
+    def face_6(self):
+        input("Premi Invio per tirare il dado...")
+
+        self.roll_animation(6)
+        result = self.roll_dice(6)
+
+        self.print_final_face(d6_faces[result - 1], 6)
+
+        print(f"\nÈ uscito {result}!")
+        sys.exit()
+
+
 class CardinalsValues:
     @staticmethod
     def voc():
