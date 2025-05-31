@@ -2,31 +2,33 @@ import random
 import sys
 import time
 
-families_data = {
-    "Gonzaga": {
-        "multiplier": [1, 1.1, 1.3, 0.8, 1.2],
-        "context": "Milano sotto gli Sforza, Firenze sotto i Medici, la Repubblica di Venezia e la tua Mantova "
-                   "sotto il controllo gonzaghese",
-        "city": "Mantova"
-    },
-    "Orseolo": {
-        "multiplier": [1, 1.4, 1.2, 0.75, 1.5],
-        "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, Firenze e la tua Repubblica di Venezia",
-        "city": "Venezia"
-    },
-    "Scotti": {
-        "multiplier": [1.1, 1, 1.4, 1, 1.1],
-        "context": "Firenze sotto i Medici, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Milano sotto "
-                   "il controllo sforzesco",
-        "city": "Milano"
-    },
-    "Strozzi": {
-        "multiplier": [1, 0.85, 1.3, 1.1, 1],
-        "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Firenze "
-                   "sotto il controllo mediceo",
-        "city": "Firenze"
-    }
-}
+import shutil
+import textwrap
+
+
+class Utility:
+    @staticmethod
+    def error():
+        Utility.fixed_print("Errore. Inserisci una scelta valida.")
+
+    @staticmethod
+    def fixed_print(text):
+        width = shutil.get_terminal_size().columns
+
+        formatted_text = textwrap.fill(text, width=width)
+        print(formatted_text)
+
+    @staticmethod
+    def timeout():
+        time.sleep(5)
+        pass
+
+    def print_points(self):
+        print(self)
+
+    @staticmethod
+    def gameover():
+        sys.exit()
 
 
 class CardinalsValues:
@@ -113,27 +115,31 @@ cardinals = {
                                                   CardinalsValues.dipl_skills()]
 }
 
-
-class PlayerValues:
-    @staticmethod
-    def voc():
-        return random.randint(1, 5)
-
-    @staticmethod
-    def pop_agr():
-        return random.randint(1, 5)
-
-    @staticmethod
-    def pol_infl():
-        return random.randint(1, 5)
-
-    @staticmethod
-    def cur_rel():
-        return random.randint(1, 5)
-
-    @staticmethod
-    def dipl_skills():
-        return random.randint(1, 5)
+families_data = {
+    "Gonzaga": {
+        "multiplier": [1, 1.1, 1.3, 0.8, 1.2],
+        "context": "Milano sotto gli Sforza, Firenze sotto i Medici, la Repubblica di Venezia e la tua Mantova "
+                   "sotto il controllo gonzaghese",
+        "city": "Mantova"
+    },
+    "Orseolo": {
+        "multiplier": [1, 1.4, 1.2, 0.75, 1.5],
+        "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, Firenze e la tua Repubblica di Venezia",
+        "city": "Venezia"
+    },
+    "Scotti": {
+        "multiplier": [1.1, 1, 1.4, 1, 1.1],
+        "context": "Firenze sotto i Medici, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Milano sotto "
+                   "il controllo sforzesco",
+        "city": "Milano"
+    },
+    "Strozzi": {
+        "multiplier": [1, 0.85, 1.3, 1.1, 1],
+        "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Firenze "
+                   "sotto il controllo mediceo",
+        "city": "Firenze"
+    }
+}
 
 
 class Families:
@@ -167,6 +173,28 @@ class Families:
               f'\nAbilità diplomatica: {self.dipl_skills}'
               '\n')
         print(f'Contesto: {self.fam_context}')
+
+
+class PlayerValues:
+    @staticmethod
+    def voc():
+        return random.randint(1, 5)
+
+    @staticmethod
+    def pop_agr():
+        return random.randint(1, 5)
+
+    @staticmethod
+    def pol_infl():
+        return random.randint(1, 5)
+
+    @staticmethod
+    def cur_rel():
+        return random.randint(1, 5)
+
+    @staticmethod
+    def dipl_skills():
+        return random.randint(1, 5)
 
 
 class Player:
@@ -251,24 +279,24 @@ class Game:
         city = self.player.fam_city
         context = self.player.fam_context
 
-        print("Ci troviamo a cavallo tra ‘400 e ‘500, nel cuore del Rinascimento italiano."
-              "Periodo in cui la penisola è ampiamente frammentata in una moltitudine di ducati,"
-              "signorie, regni e repubbliche in costante competizione tra loro. A dominare la scena"
-              f"politica sono le grandi potenze di {context}, senza dimenticare la rilevanza dello Stato "
-              "pontificio in centro Italia, che ha influenza in tutta Europa."
-              "Il Papato pur attraversando momenti di crisi, come lo scisma d’Occidente, è in grado "
-              "di riacquistare e rafforzare il proprio potere temporale, sotto il pontificato di Sisto IV e"
-              "di Alessandro VI; la politica ecclesiastica si fa sempre più attiva e ambiziosa, spesso"
-              "intrecciata con gli interessi delle grandi famiglie italiane."
-              f"È in questo scenario che, nel 1475, nasci tu {player_name} "
-              f"della famiglia {family_name}, "
-              f"tra le più antiche e influenti di {city}. Sei un figlio cadetto: il diritto di eredità è sfumato "
-              "solo per - di scegliere il tuo destino. In un’età in cui ogni decisione può cambiare i destini di"
-              "una famiglia, o addirittura di uno Stato, dovrai ponderare adeguatamente ogni tua mossa. "
-              "Sta a te, quindi, decidere che carriera intraprendere…"
-              "\n")
+        Utility.fixed_print("Ci troviamo a cavallo tra ‘400 e ‘500, nel cuore del Rinascimento italiano."
+                            "Periodo in cui la penisola è ampiamente frammentata in una moltitudine di ducati,"
+                            "signorie, regni e repubbliche in costante competizione tra loro. A dominare la scena"
+                            f"politica sono le grandi potenze di {context}, senza dimenticare la rilevanza dello Stato "
+                            "pontificio in centro Italia, che ha influenza in tutta Europa."
+                            "Il Papato pur attraversando momenti di crisi, come lo scisma d’Occidente, è in grado "
+                            "di riacquistare e rafforzare il proprio potere temporale, sotto il pontificato di Sisto "
+                            "IV e di Alessandro VI; la politica ecclesiastica si fa sempre più attiva e ambiziosa, "
+                            "spesso intrecciata con gli interessi delle grandi famiglie italiane."
+                            f"È in questo scenario che, nel 1475, nasci tu {player_name} della famiglia {family_name}, "
+                            f"tra le più antiche e influenti di {city}. Sei un figlio cadetto: il diritto di eredità "
+                            "è sfumato solo per - di scegliere il tuo destino. In un’età in cui ogni decisione può "
+                            "cambiare i destini di"
+                            "una famiglia, o addirittura di uno Stato, dovrai ponderare adeguatamente ogni tua mossa. "
+                            "Sta a te, quindi, decidere che carriera intraprendere…"
+                            "\n")
 
-        Game.Utility.timeout()
+        Utility.timeout()
 
         while True:
             choice = input('Il tuo cuore è giovane, ma la vita ti chiede già di scegliere: quale strada '
@@ -277,10 +305,10 @@ class Game:
                            '\n2 - Soldato: Una vita forgiata nel ferro e nel sangue, al servizio del potere.'
                            '\n')
             if choice == "1":
-                print("Da giovane, hai dovuto scegliere una strada. Il destino ti ha posto davanti alla tonaca.")
+                Utility.fixed_print("Da giovane, hai dovuto scegliere una strada. Il destino ti ha posto davanti alla tonaca.")
                 self.player.ispriest = True
 
-                Game.Utility.timeout()
+                Utility.timeout()
 
                 Game.Priest(self.player).why_priest()
                 break
@@ -294,28 +322,11 @@ class Game:
                     Game.Soldier(self.player).milano_venezia_mantova()
 
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
                 break
             else:
-                Game.Utility.error()
-
-    class Utility:
-        @staticmethod
-        def error():
-            print("Errore. Inserisci una scelta valida.")
-
-        @staticmethod
-        def timeout():
-            time.sleep(5)
-            pass
-
-        def print_points(self):
-            print(self)
-
-        @staticmethod
-        def gameover():
-            sys.exit()
+                Utility.error()
 
     class Soldier:
         def __init__(self, player):
@@ -325,18 +336,18 @@ class Game:
             self.player.issoldier = True
 
             while True:
-                print("Nel 1494 viene installato il regime teocratico del savonarola, il profeta"
+                Utility.fixed_print("Nel 1494 viene installato il regime teocratico del savonarola, il profeta"
                       "disarmato. Applica una riforma dei costumi, però è criticato per svariati aspetti e,"
                       "e profetizza l'arrivo di un nemico che invaderà l'Italia dalle alpi. ")
 
-                Game.Utility.timeout()
+                Utility.timeout()
 
                 choice = input("Cosa fai?"
                                "\n1 - Lo difendi dalle accuse"
                                "\n2 - Limiti soltanto i disordini"
                                "\n")
                 if choice == "1":
-                    print("Decidi di difendere Savonarola, convinto che la sua visione ascetica rappresenti "
+                    Utility.fixed_print("Decidi di difendere Savonarola, convinto che la sua visione ascetica rappresenti "
                           "una vera rinascita spirituale per Firenze. Le sue parole incendiano le coscienze, "
                           "e sotto la tua influenza i suoi sermoni si fanno ancora più ascoltati. Il popolo lo "
                           "acclama, i corrotti tremano.Ma la tua alleanza ha un prezzo.I potenti ti guardano con "
@@ -348,18 +359,18 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.player.issoldier = False
                     self.player.ispriest = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     Game.Priest(self.player).why_priest()
                     break
                 elif choice == "2":
                     prob = random.randint(1, 100)
                     if prob <= 95:
-                        print("Non ti schieri del tutto. Lasci che Savonarola predichi, ma impedisci che la sua furia "
+                        Utility.fixed_print("Non ti schieri del tutto. Lasci che Savonarola predichi, ma impedisci che la sua furia "
                               "moralizzatrice travolga la città. Le sue “riforme dei costumi” vengono contenute, "
                               "le processioni del fuoco sono vietate, e i tribunali popolari sciolti.Firenze resta "
                               "inquieta, ma stabile. I nobili ti rispettano per la tua moderazione, e la Chiesa ti "
@@ -369,15 +380,15 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 2, 0, 0, 0, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
                         self.player.issoldier = False
                         self.player.ispriest = True
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         Game.Priest(self.player).why_priest()
                     elif prob > 95:
-                        print("Hai cercato l’equilibrio. Un compromesso.Controlli i roghi, smorzi gli eccessi di "
+                        Utility.fixed_print("Hai cercato l’equilibrio. Un compromesso.Controlli i roghi, smorzi gli eccessi di "
                               "Savonarola, plachi l’ira dei nobili e della Curia. Firenze rimane sospesa in un "
                               "silenzioso malcontento. Nessuno è del tutto contro di te… ma nessuno è veramente con "
                               "te.Poi accade l’inevitabile.L’invasore, che Savonarola aveva annunciato come punizione "
@@ -390,12 +401,12 @@ class Game:
                               "moderati."
                               "\n")
 
-                        Game.Utility.gameover()
+                        Utility.gameover()
                     else:
-                        Game.Utility.error()
+                        Utility.error()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def milano_venezia_mantova(self):
             self.player.issoldier = True
@@ -418,7 +429,7 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("La battaglia si risolve rapidamente, ma sanguinosamente ed essendoti fatto "
+                    Utility.fixed_print("La battaglia si risolve rapidamente, ma sanguinosamente ed essendoti fatto "
                           "valore combattendo in prima linea sei rimasto ferito gravemente. Dopo qualche "
                           "giorno ti viene fatta l'estrema unzione ma riesci alla fine a sopravvivere, e vedi "
                           "questo come un miracolo che ti è stato concesso dal signore; perciò lesionato "
@@ -432,32 +443,32 @@ class Game:
                         self.player.issoldier = False
                         self.player.ispriest = True
                         Player.add_points(self.player, 3, 0, 0, 0, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         Game.Priest(self.player).why_priest()
                         break
                     elif prob > 85:
-                        print("I tuoi sforzi in battaglia non sono bastati, la picac nemica trapassa il tuo torace. I "
+                        Utility.fixed_print("I tuoi sforzi in battaglia non sono bastati, la picac nemica trapassa il tuo torace. I "
                               "tuoi occhi si spengonoper sempre...")
-                        Game.Utility.gameover()
+                        Utility.gameover()
                 elif choice == "2":
-                    print("La battaglia si risolve rapidamente, ma sanguinosamente ed essendo tu soldato "
+                    Utility.fixed_print("La battaglia si risolve rapidamente, ma sanguinosamente ed essendo tu soldato "
                           "cadetto alla prima battaglia rimani scioccato dall'atrocità della guerra, pertanto "
                           "abbandoni la carriera militare per aiutare il prossimo e diventi prete."
                           "\n")
                     self.player.issoldier = False
                     self.player.ispriest = True
                     Player.add_points(self.player, 1, 0, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     Game.Priest(self.player).why_priest()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
     class Priest:
         def __init__(self, player):
@@ -473,7 +484,7 @@ class Game:
                                'sacre.'
                                '\n')
                 if choice == "1":
-                    print("“Sentivi il richiamo di Dio, limpido come una campana nel silenzio.”Fin da piccolo, "
+                    Utility.fixed_print("“Sentivi il richiamo di Dio, limpido come una campana nel silenzio.”Fin da piccolo, "
                           "tra le pietre fredde della chiesa del villaggio, sentivi qualcosa. Non era solo la "
                           "bellezza delle candele accese o il canto solenne del sacerdote: era una voce. Una "
                           "presenza. Come se Dio ti sussurrasse da dietro l’altare.Quando indossasti la tonaca per la "
@@ -482,13 +493,13 @@ class Game:
                           "del potere e le luci dell’ambizione, il ricordo di quella voce ti guida. Forse diventerai "
                           "Papa. Ma prima, eri solo un ragazzo che voleva servire qualcosa di eterno.")
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "2":
-                    print("“Era l’unica via per sfuggire alla miseria, un rifugio tra mura sacre.”La fame era una "
+                    Utility.fixed_print("“Era l’unica via per sfuggire alla miseria, un rifugio tra mura sacre.”La fame era una "
                           "compagna più fedele della speranza. Le strade erano dure, e nessuno tendeva una mano senza "
                           "pretesa. Ma la Chiesa… offriva pane, tetto, libri. Un mondo diverso.Diventare prete non fu "
                           "scelta di spirito, ma di sopravvivenza. Imparasti il latino per fame, non per fede. "
@@ -497,13 +508,13 @@ class Game:
                           "se il Signore ti ha davvero chiamato… forse, lo ha fatto con la voce della fame."
                           "\n")
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
-            Game.Utility.timeout()
+            Utility.timeout()
             self.sermon()
 
         def sermon(self):
@@ -516,7 +527,7 @@ class Game:
                                'piedi della società.'
                                '\n')
                 if choice == "1":
-                    print("“Parli del perdono, della pace, del dovere di aiutare chi soffre.”Le tue parole scendono "
+                    Utility.fixed_print("“Parli del perdono, della pace, del dovere di aiutare chi soffre.”Le tue parole scendono "
                           "leggere, come pioggia d’estate sulle coscienze assetate.Ogni domenica, dal pulpito, "
                           "inviti i fedeli a guardarsi negli occhi. A perdonare i debiti, a spezzare il pane con "
                           "l’affamato, a chinarsi sulle ferite del mondo. Non gridi: accarezzi. Non accusi: consoli.I "
@@ -527,13 +538,13 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 2, 3, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "2":
-                    print("“Denunci i peccati del tempo, l’abisso che cresce sotto i piedi della società.”Quando "
+                    Utility.fixed_print("“Denunci i peccati del tempo, l’abisso che cresce sotto i piedi della società.”Quando "
                           "parli, la tua voce è fuoco. Non edulcori. Non addolcisci.Denunci l’avidità dei mercanti, "
                           "la lussuria dei nobili, la corruzione del clero. I tuoi sermoni risuonano come tuoni tra "
                           "le navate. Alcuni si alzano e se ne vanno. Altri restano, rapiti, tremanti.Dici che Roma è "
@@ -544,15 +555,15 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 1, (-2), 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
-            Game.Utility.timeout()
+            Utility.timeout()
             self.present()
 
         def present(self):
@@ -567,7 +578,7 @@ class Game:
                                'tua famiglia.'
                                '\n')
                 if choice == "1":
-                    print("“Il denaro va ai poveri, ma il peccato resta nel silenzio.”Accetti la somma, ma con il "
+                    Utility.fixed_print("“Il denaro va ai poveri, ma il peccato resta nel silenzio.”Accetti la somma, ma con il "
                           "cuore stretto.Non per te. Mai per te. I denari sporchi diventano pane per gli orfani, "
                           "medicine per i malati, coperte per chi dorme tra le pietre. In pubblico, sei lodato come "
                           "un prete generoso. Le folle ti seguono. I tuoi gesti ispirano imitazione.Ma di notte, "
@@ -577,13 +588,13 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 1, 2, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "2":
-                    print("“Pensando che forse un giorno ti servirà per un bene più grande.”Accetti il denaro in "
+                    Utility.fixed_print("“Pensando che forse un giorno ti servirà per un bene più grande.”Accetti il denaro in "
                           "silenzio, e lo nascondi. Non per avidità, ti dici, ma per lungimiranza. Forse un giorno "
                           "potrai usarlo per comprare un libro proibito, finanziare un convento in segreto, "
                           "o corrompere il corrotto per fermare un male peggiore.Così inizia la discesa. Piccole "
@@ -597,11 +608,11 @@ class Game:
                           "che non si deve essere."
                           "\n")
 
-                    Game.Utility.gameover()
+                    Utility.gameover()
 
                     break
                 elif choice == "3":
-                    print("“Rifiuti, anche se ciò significa rovinare i rapporti con la tua famiglia.”Guardi tuo zio "
+                    Utility.fixed_print("“Rifiuti, anche se ciò significa rovinare i rapporti con la tua famiglia.”Guardi tuo zio "
                           "negli occhi. Senti il peso della storia familiare, dei pranzi d’infanzia, dei favori "
                           "ricevuti. Ma la tua fede – o forse solo il tuo orgoglio – è più forte.Rifiuti.La sua "
                           "espressione cambia: rispetto, poi gelo. Da quel giorno, vieni escluso. La tua famiglia ti "
@@ -611,15 +622,15 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 0, (-1), 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
-            Game.Utility.timeout()
+            Utility.timeout()
             self.become_parson()
 
         def become_parson(self):
@@ -630,7 +641,7 @@ class Game:
                                '\n2 - No: Temi che il passato ti segua troppo da vicino.'
                                '\n')
                 if choice == "1":
-                    print("“Accetti. Vuoi essere la guida dove un tempo eri solo un volto tra gli altri. ”Tornare a "
+                    Utility.fixed_print("“Accetti. Vuoi essere la guida dove un tempo eri solo un volto tra gli altri. ”Tornare a "
                           "casa non è facile, ma lo fai a testa alta. Cammini tra le stesse strade dove da bambino "
                           "correvi scalzo, ora con la tonaca addosso e il peso della guida sulle spalle. Alcuni ti "
                           "guardano con affetto sincero, altri con sospetto. Ti ricordano com’eri, e forse non "
@@ -642,15 +653,15 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 2, 2, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.player.isparson = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.cardinal_letter()
                     break
                 elif choice == "2":
-                    print("“Rinunci. Non per paura, ma per prudenza.” L’offerta ti tocca il cuore, ma sai che il "
+                    Utility.fixed_print("“Rinunci. Non per paura, ma per prudenza.” L’offerta ti tocca il cuore, ma sai che il "
                           "terreno lì è fragile. Ogni tua parola verrebbe pesata. Ogni tuo gesto confrontato con chi "
                           "eri, non con chi sei.Preferisci declinare.Lasci il posto a un altro, e ti allontani in "
                           "silenzio. Un distacco doloroso, ma necessario. In un luogo nuovo, potrai costruire senza "
@@ -659,14 +670,14 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.annul_marriage()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def cardinal_letter(self):
             while True:
@@ -679,7 +690,7 @@ class Game:
                                '\n3 - Ignori la lettera: Forse è meglio non farsi coinvolgere.'
                                '\n')
                 if choice == "1":
-                    print("“Ti unisci con entusiasmo, pronto a scalare la gerarchia.” Rispondi senza esitazioni. Le "
+                    Utility.fixed_print("“Ti unisci con entusiasmo, pronto a scalare la gerarchia.” Rispondi senza esitazioni. Le "
                           "tue parole sono decise, rispettose ma ambiziose. Ti metti al servizio del cardinale, "
                           "offri idee, ti rendi visibile. Incontri prelati, partecipi a concili riservati, "
                           "impari a muoverti tra silenzi e sguardi. Il progetto prende forma. Si parla di riforme, "
@@ -689,14 +700,14 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, (-1), 0, 2, 2, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.annul_marriage()
                     break
                 elif choice == "2":
-                    print("“Mostri interesse, ma resti prudente.” Scrivi una risposta cortese. Lusingato, "
+                    Utility.fixed_print("“Mostri interesse, ma resti prudente.” Scrivi una risposta cortese. Lusingato, "
                           "interessato, ma non ti sbilanci. Partecipi a qualche incontro, invii commenti riservati, "
                           "mantieni un profilo basso. Il tuo nome appare nei documenti, ma in fondo alle pagine. Se "
                           "il progetto fallisse, potresti sempre dire di non essere mai stato davvero coinvolto. Ma "
@@ -705,14 +716,14 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 1, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.annul_marriage()
                     break
                 elif choice == "3":
-                    print("“Forse è meglio non farsi coinvolgere.” La lasci sul tavolo per giorni, poi la riponi tra "
+                    Utility.fixed_print("“Forse è meglio non farsi coinvolgere.” La lasci sul tavolo per giorni, poi la riponi tra "
                           "le altre. Nessuna risposta. Forse è paura. O forse è saggezza. Hai visto troppi "
                           "rinnovatori bruciarsi, troppi sogni diventare eresie nel giro di un sinodo.  Continui il "
                           "tuo lavoro locale. Messe, confessioni, carità. Qualcuno dice che sei un uomo giusto, "
@@ -720,12 +731,12 @@ class Game:
                           "sigillato."
                           "\n")
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.annul_marriage()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def annul_marriage(self):
             while True:
@@ -737,7 +748,7 @@ class Game:
                                '\n4 - Non ne annulli nessuno: Il matrimonio è sacro.'
                                '\n')
                 if choice == "1":
-                    print("“La legge è la legge.” Esamini i casi con rigore. Studi documenti, ascolti testimonianze, "
+                    Utility.fixed_print("“La legge è la legge.” Esamini i casi con rigore. Studi documenti, ascolti testimonianze, "
                           "valuti secondo dottrina. Non importa il rango, non conta l’influenza: conta solo la verità "
                           "canonica.Annulli entrambi i matrimoni, suscitando stupore e scompiglio.Il nobile ti guarda "
                           "con rispetto freddo: non sei manipolabile. Il borghese ti abbraccia in lacrime: per lui, "
@@ -745,11 +756,11 @@ class Game:
                           "cerca un favore facile, da te non otterrà nulla."
                           "\n")
 
-                    Game.Utility.gameover()
+                    Utility.gameover()
 
                     break
                 elif choice == "2":
-                    print("Un favore strategico.”  Non esiti troppo. Sai che il nobile ha amici a Roma, appoggi "
+                    Utility.fixed_print("Un favore strategico.”  Non esiti troppo. Sai che il nobile ha amici a Roma, appoggi "
                           "potenti, voci che possono alzarti… o schiacciarti. L’annullamento è concesso. Rapido, "
                           "pulito, ben motivato.  Il borghese riceve una risposta fredda, formale. Soffre. Ma tu "
                           "guardi altrove.  Pochi mesi dopo, ricevi un invito a un banchetto. Poi una lettera "
@@ -758,33 +769,33 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, (-2), 0, 2, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
                     if not self.player.isparson:
-                        print("Tentare di annullare solo uno dei matrimoni è un azione mortale. La Curia lo scopre "
+                        Utility.fixed_print("Tentare di annullare solo uno dei matrimoni è un azione mortale. La Curia lo scopre "
                               "subito. L’abuso della tua autorità viene giudicato grave. Vieni scomunicato. I fedeli ti"
                               "voltano le spalle, la famiglia ti rinnega. La tua carriera ecclesiastica finisce qui."
                               "\n")
 
-                        Game.Utility.gameover()
+                        Utility.gameover()
                     else:
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_bishop()
                     break
                 elif choice == "3":
                     Player.add_points(self.player, (-2), 0, 1, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
                     if not self.player.isparson:
-                        print("Tentare di annullare solo uno dei matrimoni è un azione mortale. La Curia lo scopre "
+                        Utility.fixed_print("Tentare di annullare solo uno dei matrimoni è un azione mortale. La Curia lo scopre "
                               "subito. L’abuso della tua autorità viene giudicato grave. Vieni scomunicato. I fedeli ti"
                               "voltano le spalle, la famiglia ti rinnega. La tua carriera ecclesiastica finisce qui."
                               "\n")
 
-                        Game.Utility.gameover()
+                        Utility.gameover()
                     else:
-                        print("“Segui la tua coscienza.”La richiesta del nobile è politicamente utile, ma piena di "
+                        Utility.fixed_print("“Segui la tua coscienza.”La richiesta del nobile è politicamente utile, ma piena di "
                               "falsità. Il suo matrimonio è solo una pedina. Invece, il borghese viene con la moglie "
                               "al fianco, le mani tremanti e gli occhi pieni di dolore sincero.Ti prendi giorni per "
                               "pregare. E alla fine, scegli: annulli solo quel matrimonio.Il nobile è furioso. Fa "
@@ -792,12 +803,12 @@ class Game:
                               "difende. E qualcuno, in silenzio, inizia a credere che tu sia davvero diverso."
                               "\n")
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_bishop()
                     break
                 elif choice == "4":
-                    print("“Il matrimonio è sacro.”  Li ricevi entrambi. Ascolti. Ma resti fermo. La tua voce non "
+                    Utility.fixed_print("“Il matrimonio è sacro.”  Li ricevi entrambi. Ascolti. Ma resti fermo. La tua voce non "
                           "trema quando pronunci la sentenza: “Quello che Dio ha unito, l’uomo non separi.”  I due "
                           "uomini lasciano la sala con espressioni opposte: il nobile, offeso. Il borghese, "
                           "sconfitto. Ma tu non giudichi le emozioni — solo le anime.  Per molti sei inflessibile. "
@@ -806,18 +817,18 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 0, (-3), 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.try_become_bishop()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def try_become_bishop(self):
             if self.player.consensus >= 20:
-                print("Il giorno è grigio, come se il cielo stesso volesse trattenere il fiato."
+                Utility.fixed_print("Il giorno è grigio, come se il cielo stesso volesse trattenere il fiato."
                       "Nella tua stanza, silenziosa e austera, una lettera reca il sigillo della Santa Sede."
                       "Le mani tremano. Le labbra si muovono in una preghiera che non è solo di"
                       "gratitudine, ma anche di timore."
@@ -838,11 +849,11 @@ class Game:
                 self.player.ispriest = False
                 self.player.isbishop = True
 
-                Game.Utility.timeout()
+                Utility.timeout()
 
                 Game.Bishop(self.player).residence()
             elif self.player.consensus < 20:
-                print("Hai camminato lungo i corridoi del potere con passo incerto, indossando l’abito"
+                Utility.fixed_print("Hai camminato lungo i corridoi del potere con passo incerto, indossando l’abito"
                       "dell’umiltà ma senza mai ottenere il peso della grazia."
                       "Il Concistoro ha parlato. I tuoi sforzi, sebbene ferventi, non hanno convinto. I"
                       "tuoi sermoni sono stati ascoltati, ma non ricordati. Le tue opere hanno sollevato"
@@ -856,9 +867,9 @@ class Game:
                       "Non sei diventato Papa. Non sei nemmeno diventato Vescovo."
                       "Forse, in un’altra vita, con più fede… o più astuzia…"
                       "\n")
-                Game.Utility.gameover()
+                Utility.gameover()
             else:
-                Game.Utility.error()
+                Utility.error()
 
     class Bishop:
         def __init__(self, player):
@@ -889,32 +900,32 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Scegliendo di risedere nel tuo vescovato, ti sei guadagnato l’appoggio dei "
+                    Utility.fixed_print("Scegliendo di risedere nel tuo vescovato, ti sei guadagnato l’appoggio dei "
                           "cittadini, che ora ti vedono come figura di riferimento fondamentale della vita "
                           "del paese, il tuo consenso popolare aumenta di conseguenza."
                           "\n")
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.taxation()
                     break
                 elif choice == "2":
-                    print("Bene! Ti sei trasferito a Roma, adesso potrai gestire le grande questioni "
+                    Utility.fixed_print("Bene! Ti sei trasferito a Roma, adesso potrai gestire le grande questioni "
                           "teologiche da vicine conoscere i “pezzi grossi” e avere un rapporto diretto con le "
                           "decisioni prese dalla curia. A pagarne le spese però è la tua gente, che si sente "
                           "abbandonata e lasciata alla mercè delle importanti famiglie nobiliari della zona."
                           "\n")
                     Player.add_points(self.player, 0, (-2), 0, 3, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.help_cardinal()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def taxation(self):
             while True:
@@ -927,7 +938,7 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Le casse della diocesi si riempiono lentamente, e i tuoi progetti iniziano a prendere "
+                    Utility.fixed_print("Le casse della diocesi si riempiono lentamente, e i tuoi progetti iniziano a prendere "
                           "forma: nuove panche nella cattedrale, pergameni più pregiati, un coro che finalmente canta "
                           "all’unisono."
                           "Ma nelle strade, le voci si fanno più amare. I contadini sussurrano preghiere stanche, "
@@ -935,26 +946,26 @@ class Game:
                           "Hai rafforzato il trono… ma incrinato il pulpito."
                           "\n")
                     Player.add_points(self.player, 0, (-2), 0, 1, 2)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "2":
-                    print("Il popolo ti benedice nei mercati e nei campi. I bambini ti salutano correndo, e i vecchi "
+                    Utility.fixed_print("Il popolo ti benedice nei mercati e nei campi. I bambini ti salutano correndo, e i vecchi "
                           "ti chiamano “padre buono”. Ma il tetto della sacrestia continua a gocciolare, "
                           "e il tuo segretario scuote la testa mentre scorre i registri contabili. A Roma, "
                           "pochi notano i vescovi misericordiosi. Hai guadagnato i cuori del tuo gregge… ma forse "
                           "perso terreno sulla via per il soglio pontificio."
                           "\n")
                     Player.add_points(self.player, 0, 2, 0, (-1), 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
             self.lega_cambrai()
 
@@ -975,30 +986,30 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Il Cardinale Petrucci te ne è grato, se ne ricorderà, ora hai anche degli importanti "
+                    Utility.fixed_print("Il Cardinale Petrucci te ne è grato, se ne ricorderà, ora hai anche degli importanti "
                           "amici nello stato pontificio. Ma i cittadini del tuo vescovato non sono così "
                           "contenti di ciò, la voce si spande e un criminale in paese non è gradito, "
                           "specialmente se ciò può inasprire i rapporti con le altre signorie."
                           "\n")
                     Player.add_points(self.player, 0, (-1), (-1), 1, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "2":
-                    print("Hai tenuto una linea dura, hai negato l’aiuto ad un cardinale, egli riconosce il tuo "
+                    Utility.fixed_print("Hai tenuto una linea dura, hai negato l’aiuto ad un cardinale, egli riconosce il tuo "
                           "carattere, ma non ne sarà contento. Ciò è comunque apprezzato dai cittadini "
                           "che ti vedono come un importante figura per loro e per la tua città."
                           "\n")
                     Player.add_points(self.player, 3, 1, 0, (-2), 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
             self.lega_cambrai()
 
@@ -1017,7 +1028,7 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("“Preferisci non schierarti in questo conflitto.” Decidi che la Chiesa deve mantenere un "
+                    Utility.fixed_print("“Preferisci non schierarti in questo conflitto.” Decidi che la Chiesa deve mantenere un "
                           "ruolo di pace, evitando di farsi coinvolgere direttamente nelle guerre terrene. La "
                           "neutralità è un terreno sicuro, ma anche fragile: i potenti ti osservano con sospetto, "
                           "chiedendosi se tu sia coraggio o timore. Mentre Venezia cresce incontrollata, "
@@ -1026,12 +1037,12 @@ class Game:
                           "\n")
                     self.was_neutral = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 elif choice == "2":
-                    print("“Vedi nella Lega una minaccia per l’equilibrio e per l’Italia.”  Con fermezza, "
+                    Utility.fixed_print("“Vedi nella Lega una minaccia per l’equilibrio e per l’Italia.”  Con fermezza, "
                           "prendi posizione contro l’alleanza proposta da Giulio II. Metti in guardia i confratelli "
                           "sulle conseguenze di un potere eccessivo concentrato nelle mani straniere e sulla "
                           "devastazione che la guerra porterebbe.  La tua voce è un faro per chi teme la perdita "
@@ -1040,27 +1051,27 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, (-1), 0, (-2), 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.opposer()
                     break
                 elif choice == "3":
-                    print("“La fede si difende anche con la spada.”  Accetti di guidare o appoggiare le truppe della "
+                    Utility.fixed_print("“La fede si difende anche con la spada.”  Accetti di guidare o appoggiare le truppe della "
                           "Chiesa in questa guerra decisiva. Il tuo ruolo si fa concreto, fra le spade e i fumi della "
                           "battaglia.  Rischi la vita, ma anche la gloria. Il sangue versato per la fede può aprire "
                           "la strada a un futuro di potere e rispetto. Oppure a una fine prematura."
                           "\n")
 
                     Player.add_points(self.player, (-2), (-1), 0, 3, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     break
                 elif choice == "4":
-                    print("“Preferisci la diplomazia alla guerra.”  Accetti l’incarico di rappresentare il Papa "
+                    Utility.fixed_print("“Preferisci la diplomazia alla guerra.”  Accetti l’incarico di rappresentare il Papa "
                           "presso le corti straniere. Il tuo carisma e la tua intelligenza saranno armi decisive "
                           "nella complessa rete di alleanze e tradimenti.  Nel palazzo, tra banchetti e intrighi, "
                           "plasmerai il destino della Chiesa senza versare una goccia di sangue. Ma la diplomazia è "
@@ -1068,14 +1079,14 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 0, 3)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.ambassador()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def opposer(self):
             while True:
@@ -1089,7 +1100,7 @@ class Game:
                 if choice == "1":
                     prob = random.randint(1, 100)
                     if prob <= 70:
-                        print("Ti alzi in piedi, facendo scricchiolare il legno della sedia, e afferri la penna con "
+                        Utility.fixed_print("Ti alzi in piedi, facendo scricchiolare il legno della sedia, e afferri la penna con "
                               "mano ferma. La tua firma comparirà su lettere aperte, proclami e omelie: parole "
                               "pesanti come spade. Denuncerai l’avidità travestita da crociata, sfiderai apertamente "
                               "i principi della Lega e forse, persino, la volontà del Santo Padre. Sai che questo "
@@ -1098,15 +1109,15 @@ class Game:
                               "tu."
                               "\n")
                         Player.add_points(self.player, 0, 3, 0, 0, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
                         self.was_opposer = True
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.lega_santa()
                         break
                     elif prob > 70:
-                        print("Il decreto arriva all’alba, portato da un cavallo stremato e mani tremanti. Il "
+                        Utility.fixed_print("Il decreto arriva all’alba, portato da un cavallo stremato e mani tremanti. Il "
                               "messaggero non osa guardarti negli occhi mentre consegna la pergamena. Rompi il "
                               "sigillo con dita fredde. Le parole, vergate in latino solenne, ti colpiscono come un "
                               "giudizio eterno: anathema sit.Scomunicato.Le campane della cattedrale suonano a morto, "
@@ -1117,13 +1128,13 @@ class Game:
                               "dei rinnegati, senti ancora ardere la fiamma della giustizia. La Chiesa ti ha "
                               "cacciato."
                               "\n")
-                        Game.Utility.gameover()
+                        Utility.gameover()
                         break
                     else:
-                        Game.Utility.error()
+                        Utility.error()
 
                 elif choice == "2":
-                    print("Rimani seduto, lo sguardo fisso sul calice d’argento sullo scaffale. Sai che un solo passo "
+                    Utility.fixed_print("Rimani seduto, lo sguardo fisso sul calice d’argento sullo scaffale. Sai che un solo passo "
                           "falso potrebbe farti scomparire dal gioco sacro del potere. Ma il silenzio non è "
                           "complicità, se usato con astuzia. Agirai attraverso contatti fidati, favorirai i nemici "
                           "della Lega con discreti appoggi, sosterrai la pace dove puoi e indebolirai la guerra dove "
@@ -1131,14 +1142,14 @@ class Game:
                           "abile più che audace — e tu sarai pronto."
                           "\n")
                     Player.add_points(self.player, 0, 0, 0, (-1), 2)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def battle(self):
             while True:
@@ -1150,17 +1161,17 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Sali a cavallo, stringi la spada, e ti metti davanti ai tuoi uomini. Urli un salmo, "
+                    Utility.fixed_print("Sali a cavallo, stringi la spada, e ti metti davanti ai tuoi uomini. Urli un salmo, "
                           "e lanci la carica. Vuoi mostrare che la fede può essere anche fuoco e acciaio. "
                           "Guadagnandoti il ripetto del soglio pontificio"
                           "\n")
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.front_battle()
                     break
                 elif choice == "2":
-                    print("Ti fermi vicino alle retrovie. Le mani tremano, le preghiere si intrecciano con il panico. "
+                    Utility.fixed_print("Ti fermi vicino alle retrovie. Le mani tremano, le preghiere si intrecciano con il panico. "
                           "Non sei fatto per la guerra, lo capisci adesso. Guardi i tuoi uomini andare, e speri solo "
                           "che tornino. Ora però, l’attacco non è detto che vada bene, potresti fallire o riuscire in "
                           "una grande impresa."
@@ -1168,12 +1179,12 @@ class Game:
 
                     self.battle_neutral = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def front_battle(self):
             prob1 = random.randint(1, 100)
@@ -1182,7 +1193,7 @@ class Game:
                 prob2 = random.randint(1, 100)
 
                 if prob2 <= 75:
-                    print("Un colpo improvviso ti sbalza da cavallo. Le truppe si disperdono, i tamburi nemici "
+                    Utility.fixed_print("Un colpo improvviso ti sbalza da cavallo. Le truppe si disperdono, i tamburi nemici "
                           "battono forte. Il fango ti avvolge, il tuo elmo è rotto. Qualcuno ti salva, "
                           "forse un soldato fedele, forse solo il caso.  Le tue braccia sono lesionate, il tuo corpo "
                           "sanguina, ma tu ti tiene aggrappato alla vita con un filo di respiro, sei costretto a "
@@ -1190,20 +1201,20 @@ class Game:
                           "\n")
 
                     Player.add_points(self.player, 3, (-1), 0, (-2), 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.battle_injured = True
 
                     self.lega_santa()
                 elif prob2 > 75:
-                    print("Il sangue ormai scorre a fiumi, non senti più il tuo corpo, i tuoi occhi si spengono, "
+                    Utility.fixed_print("Il sangue ormai scorre a fiumi, non senti più il tuo corpo, i tuoi occhi si spengono, "
                           "la ferita ti ha portato alla morte. La tua ascesa al soglio di Pietro finisce qui."
                           "\n")
-                    Game.Utility.gameover()
+                    Utility.gameover()
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
             elif prob1 > 65:
-                print("Il sole sorgeva rosso sul campo di battaglia, tingendo il cielo del colore del sangue versato "
+                Utility.fixed_print("Il sole sorgeva rosso sul campo di battaglia, tingendo il cielo del colore del sangue versato "
                       "e di quello che ancora sarebbe stato sparso. Avevi ormai lasciato da tempo le aule silenziose "
                       "dei monasteri e i corridoi marmorei delle cattedrali: ora portavi la croce sul petto, "
                       "ma anche la spada al fianco.Vestivi ancora gli abiti da vescovo, ma sopra di essi, l'armatura "
@@ -1229,11 +1240,11 @@ class Game:
                 self.player.isbishop = False
                 self.player.iscardinal = True
 
-                Game.Utility.timeout()
+                Utility.timeout()
 
                 Game.Conclave(self.player)
             else:
-                Game.Utility.error()
+                Utility.error()
 
         def ambassador(self):
             while True:
@@ -1246,26 +1257,26 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Scegli di andare nel Regno di Francia, alla corte di Luigi XII, i rapporti sono ottimi. La "
+                    Utility.fixed_print("Scegli di andare nel Regno di Francia, alla corte di Luigi XII, i rapporti sono ottimi. La "
                           "Francia è alleata del Papa nella guerra contro Venezia. Il Re è potente e la sua corte è "
                           "piena di nobili e vescovi."
                           "\n")
                     Player.add_points(self.player, 0, 0, 2, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.was_france_ambassador = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 elif choice == "2":
                     Player.add_points(self.player, 0, (-2), 0, 0, 0)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
 
                     self.sri_ambassador()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def sri_ambassador(self):
             while True:
@@ -1277,31 +1288,31 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    print("Parli chiaro e forte. Rappresenti l’autorità del Papa. Pretendi obbedienza e minacci chi "
+                    Utility.fixed_print("Parli chiaro e forte. Rappresenti l’autorità del Papa. Pretendi obbedienza e minacci chi "
                           "si oppone."
                           "\n")
                     Player.add_points(self.player, 0, 0, 0, 2, (-1))
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.was_sri_strong = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 elif choice == "2":
-                    print("Cerchi il dialogo, ascolti, parli con tatto. Tratti con principi e città per mantenere "
+                    Utility.fixed_print("Cerchi il dialogo, ascolti, parli con tatto. Tratti con principi e città per mantenere "
                           "la pace e rafforzare la fede."
                           "\n")
                     Player.add_points(self.player, 0, 1, 2, 0, 1)
-                    Game.Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player.print_stats())
                     self.was_sri_calm = True
 
-                    Game.Utility.timeout()
+                    Utility.timeout()
 
                     self.lega_santa()
                     break
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def lega_santa(self):
             while True:
@@ -1318,7 +1329,7 @@ class Game:
 
                 if choice == "1":
                     if self.was_neutral:
-                        print("Dopo mesi di silenzio e riflessione, decidi che il tempo dell’inazione è finito. Ora "
+                        Utility.fixed_print("Dopo mesi di silenzio e riflessione, decidi che il tempo dell’inazione è finito. Ora "
                               "che la minaccia francese si fa più reale, schierarti con la Lega Santa significa "
                               "difendere la Chiesa e l’Italia da un pericolo imminente. I tuoi confratelli apprezzano "
                               "il coraggio, e tu entri con forza nella partita, pronto a sostenere il Papa nella "
@@ -1326,14 +1337,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), 0, 2, 2, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_france_ambassador:
-                        print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
+                        Utility.fixed_print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
                               "ogni sorriso per tessere alleanze e rafforzare la posizione del Papa. Il tuo ruolo è "
                               "decisivo per evitare che la guerra si trasformi in un disastro totale. Dietro le "
                               "quinte, però, sai che ogni trattativa nasconde compromessi dolorosi e tradimenti "
@@ -1341,14 +1352,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), (-2), (-1), 2, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_sri_strong:
-                        print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
+                        Utility.fixed_print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
                               "ogni sorriso per tessere alleanze e rafforzare la posizione del Papa. Il tuo ruolo è "
                               "decisivo per evitare che la guerra si trasformi in un disastro totale. Dietro le "
                               "quinte, però, sai che ogni trattativa nasconde compromessi dolorosi e tradimenti "
@@ -1356,14 +1367,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), 0, (-2), 1, (-2))
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_sri_calm:
-                        print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
+                        Utility.fixed_print("Come ambasciatore, la tua diplomazia ora sostiene la Lega Santa. Usi ogni parola, "
                               "ogni sorriso per tessere alleanze e rafforzare la posizione del Papa. Il tuo ruolo è "
                               "decisivo per evitare che la guerra si trasformi in un disastro totale. Dietro le "
                               "quinte, però, sai che ogni trattativa nasconde compromessi dolorosi e tradimenti "
@@ -1371,14 +1382,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 1, 1, 0, 1, 2)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_opposer:
-                        print("Nonostante la tua opposizione passata, la situazione ti costringe a un ripensamento. "
+                        Utility.fixed_print("Nonostante la tua opposizione passata, la situazione ti costringe a un ripensamento. "
                               "La Lega Santa è l’ultima speranza per fermare la Francia, un nemico troppo pericoloso "
                               "per essere ignorato. Il tuo sostegno arriva come un segnale di unità, un gesto che "
                               "mira a salvare ciò che resta della pace e dell’autorità papale. Ma i tuoi detrattori "
@@ -1387,14 +1398,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), (-2), 0, 1, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.battle_injured:
-                        print("Il sangue scorre, le ferite bruciano, ma non pieghi il ginocchio. La tua dedizione "
+                        Utility.fixed_print("Il sangue scorre, le ferite bruciano, ma non pieghi il ginocchio. La tua dedizione "
                               "alla Lega Santa ti ha portato a rischiare tutto, e il dolore fisico è solo un prezzo "
                               "da pagare per la fede e il potere. Il tuo coraggio ispira chi ti sta vicino, "
                               "la tua sofferenza diventa leggenda. Eppure, sai che le cicatrici porteranno un peso "
@@ -1402,14 +1413,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), 0, 0, 2, 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.battle_neutral:
-                        print("Il campo di battaglia è un teatro di fuoco e fiamme, ma la fortuna è stata dalla tua "
+                        Utility.fixed_print("Il campo di battaglia è un teatro di fuoco e fiamme, ma la fortuna è stata dalla tua "
                               "parte. Hai guidato le truppe con coraggio e astuzia, senza subire ferite. La tua "
                               "figura emerge come un simbolo di forza e resilienza, pronto a sostenere la causa della "
                               "Lega Santa con il vigore di chi ha dimostrato il proprio valore senza mai vacillare. I "
@@ -1417,15 +1428,15 @@ class Game:
                               "è solo all’inizio."
                               "\n")
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     else:
-                        Game.Utility.error()
+                        Utility.error()
                 elif choice == "2":
                     if self.was_neutral:
-                        print("Rimani coerente alla tua scelta di neutralità, ma questa volta la posta è più alta. La "
+                        Utility.fixed_print("Rimani coerente alla tua scelta di neutralità, ma questa volta la posta è più alta. La "
                               "Lega Santa, con la sua ferocia, ti sembra un’ulteriore fonte di devastazione. Critichi "
                               "apertamente l’alleanza, ma molti ti guardano con sospetto. Il Papa vede in te un "
                               "ostacolo, e i nobili iniziano a dubitare della tua fedeltà. Il tempo della neutralità "
@@ -1433,14 +1444,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 2, 2, 0, (-1), 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_france_ambassador:
-                        print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
+                        Utility.fixed_print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
                               "diplomatico. Denunci la Lega Santa come fonte di conflitto inutile, "
                               "proponi alternative pacifiche, anche se pochi ti ascoltano. La tua posizione è "
                               "rischiosa: metti in gioco la tua carriera e la tua stessa vita. Ma nella storia, "
@@ -1448,14 +1459,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 2, 1, 0, (-2), 2)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_sri_strong:
-                        print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
+                        Utility.fixed_print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
                               "diplomatico. Denunci la Lega Santa come fonte di conflitto inutile, "
                               "proponi alternative pacifiche, anche se pochi ti ascoltano. La tua posizione è "
                               "rischiosa: metti in gioco la tua carriera e la tua stessa vita. Ma nella storia, "
@@ -1463,14 +1474,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, (-1), 2, 0, (-2), 2)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_sri_calm:
-                        print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
+                        Utility.fixed_print("Mentre altri firmano patti e stringono mani, tu scegli la via del dissenso "
                               "diplomatico. Denunci la Lega Santa come fonte di conflitto inutile, "
                               "proponi alternative pacifiche, anche se pochi ti ascoltano. La tua posizione è "
                               "rischiosa: metti in gioco la tua carriera e la tua stessa vita. Ma nella storia, "
@@ -1478,14 +1489,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 3, 0, (-2), (-2), 1)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.was_opposer:
-                        print("Rimani saldo nelle tue convinzioni: la Lega Santa è solo un’altra forma di guerra e "
+                        Utility.fixed_print("Rimani saldo nelle tue convinzioni: la Lega Santa è solo un’altra forma di guerra e "
                               "oppressione. La tua opposizione si fa più dura, quasi un atto di ribellione. Molti ti "
                               "temono, alcuni ti evitano. Ma fra la gente comune e i nobili disillusi, "
                               "raccogli consensi silenziosi. Sei un faro per chi sogna un’Italia libera e una Chiesa "
@@ -1493,14 +1504,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 2, 3, 2, (-2), 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.battle_injured:
-                        print("Ferito in battaglia, la tua scelta di opporsi alla Lega Santa assume un significato "
+                        Utility.fixed_print("Ferito in battaglia, la tua scelta di opporsi alla Lega Santa assume un significato "
                               "ancor più profondo. Il tuo corpo segna il prezzo del conflitto, mentre la tua anima "
                               "resta fedele a ciò in cui credi. La tua sofferenza ti rende simbolo di resistenza, "
                               "un esempio per chi rifiuta la guerra imposta dalla Lega. Ma la strada è dura e la "
@@ -1508,14 +1519,14 @@ class Game:
                               "\n")
 
                         Player.add_points(self.player, 3, (-2), 0, (-2), 0)
-                        Game.Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player.print_stats())
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     elif self.battle_neutral:
-                        print("Hai scelto di combattere, ma non al fianco della Lega. Pur non subendo ferite, "
+                        Utility.fixed_print("Hai scelto di combattere, ma non al fianco della Lega. Pur non subendo ferite, "
                               "il peso della battaglia grava su di te: combatti per un ideale, sfidando i poteri "
                               "consolidati. La tua presenza sul campo è un segnale forte di dissenso, "
                               "eppure la mancanza di ferite ti permette di mantenere lucidità e strategia per guidare "
@@ -1523,18 +1534,18 @@ class Game:
                               "non si spegne."
                               "\n")
 
-                        Game.Utility.timeout()
+                        Utility.timeout()
 
                         self.try_become_cardinal()
                         break
                     else:
-                        Game.Utility.error()
+                        Utility.error()
                 else:
-                    Game.Utility.error()
+                    Utility.error()
 
         def try_become_cardinal(self):
             if self.player.isbishop and self.player.consensus >= 1:
-                print("Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
+                Utility.fixed_print("Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
                       "conferisce il prezioso anello rosso. Quel segno di fuoco non è solo un ornamento, "
                       "ma un simbolo di potere e responsabilità che ora porti con dignità sulle dita.Sei entrato "
                       "nell’élite della Chiesa, tra coloro che plasmano il destino della fede e delle nazioni. I tuoi "
@@ -1546,7 +1557,7 @@ class Game:
                 self.player.isbishop = False
                 self.player.iscardinal = True
 
-                Game.Utility.timeout()
+                Utility.timeout()
 
                 Game.Conclave(self.player).compare()
 
@@ -1568,7 +1579,7 @@ class Game:
             self.player.isbishop = False
             self.player.iscardinal = True
 
-            print("Le porte del Vaticano si chiudono con un tonfo secco, isolando i cardinali dal mondo esterno. La "
+            Utility.fixed_print("Le porte del Vaticano si chiudono con un tonfo secco, isolando i cardinali dal mondo esterno. La "
                   "Cappella Sistina si trasforma in un teatro di silenzi pesanti, dove ogni sguardo pesa come un "
                   "giudizio, e ogni sussurro può essere un segreto o una minaccia.Fuori, Roma attende con il fiato "
                   "sospeso, consapevole che lì dentro si sta decidendo il destino della Chiesa e forse del mondo "
@@ -1587,7 +1598,7 @@ class Game:
                   "tensione di un nuovo giorno di incertezza."
                   "\n")
 
-            Game.Utility.timeout()
+            Utility.timeout()
 
             if self.player.iscardinal:
                 for i in cardinals.values():
@@ -1617,7 +1628,7 @@ class Game:
 
         @staticmethod
         def popenomination():
-            print("Dopo anni di intrighi vaticani, manovre diplomatiche, preghiere segrete e miracoli sospetti… ci "
+            Utility.fixed_print("Dopo anni di intrighi vaticani, manovre diplomatiche, preghiere segrete e miracoli sospetti… ci "
                   "sei riuscito.La Cappella Sistina è silenziosa.La folla in Piazza San Pietro trattiene il respiro. "
                   "Un sottile filo di fumo bianco si alza lento nel cielo di Roma. È il segnale. È il momento.Sei "
                   "tu.I cardinali ti hanno scelto. Dopo lunghe votazioni e sussurri dietro stalli di legno antico, "
@@ -1633,7 +1644,7 @@ class Game:
                   "ti guidi… Santità."
                   "\n")
 
-            Game.Utility.gameover()
+            Utility.gameover()
 
 
 game = Game()
