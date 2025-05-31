@@ -1,1 +1,1 @@
-A game about becoming the Pope
+A game about becoming the Pope.
