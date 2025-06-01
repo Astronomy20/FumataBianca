@@ -233,36 +233,58 @@ class Dices:
             sys.stdout.write("\r" + line + " " * 10 + "\n")
         sys.stdout.flush()
 
-    def face_2(self):
-        input("Premi Invio per tirare il dado...")
+    @staticmethod
+    def face_2(point_type):
+        input("\nPremi Invio per tirare il dado...")
 
-        self.roll_animation(2)
-        result = self.roll_dice(2)
+        Dices.roll_animation(2)
+        result = Dices.roll_dice(2)
 
-        self.print_final_face(coin[result - 1], 2)
+        Dices.print_final_face(coin[result - 1], 2)
 
-        coin_result = "Testa" if result == 1 else "Croce"
-        print(f"\nÈ uscita {coin_result}!")
+        if result == 1:
+            print(f"\nÈ uscita Testa! Ottieni un punto {point_type}.")
 
-    def face_4(self):
-        input("Premi Invio per tirare il dado...")
+        else:
+            print(f"\nÈ uscita Croce! Perdi un punto {point_type}.")
 
-        self.roll_animation(4)
-        result = self.roll_dice(4)
+        return result
 
-        self.print_final_face(d4_faces[result - 1], 4)
+    @staticmethod
+    def face_4(point_type, val):
+        input("\nPremi Invio per tirare il dado...")
 
-        print(f"\nÈ uscito {result}!")
+        Dices.roll_animation(4)
+        result = Dices.roll_dice(4)
 
-    def face_6(self):
-        input("Premi Invio per tirare il dado...")
+        Dices.print_final_face(d4_faces[result - 1], 4)
 
-        self.roll_animation(6)
-        result = self.roll_dice(6)
+        if val == "+":
+            print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
+        elif val == "-":
+            print(f"\nÈ uscito {result}! Perdi {result} punti {point_type}.")
+        else:
+            Utility.error()
 
-        self.print_final_face(d6_faces[result - 1], 6)
+        return result
 
-        print(f"\nÈ uscito {result}!")
+    @staticmethod
+    def face_6(point_type, val):
+        input("\nPremi Invio per tirare il dado...")
+
+        Dices.roll_animation(6)
+        result = Dices.roll_dice(6)
+
+        Dices.print_final_face(d6_faces[result - 1], 6)
+
+        if val == "+":
+            print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
+        elif val == "-":
+            print(f"\nÈ uscito {result}! Perdi {result} punti {point_type}.")
+        else:
+            Utility.error()
+
+        return result
 
 
 class CardinalsValues:
@@ -571,6 +593,7 @@ class Game:
                                "\n1 - Lo difendi dalle accuse"
                                "\n2 - Limiti soltanto i disordini"
                                "\n")
+
                 if choice == "1":
                     Utility.fixed_print(
                         "Decidi di difendere Savonarola, convinto che la sua visione ascetica rappresenti "
@@ -584,7 +607,6 @@ class Game:
                         "del mondo."
                         "\n")
 
-                    Player.add_points(self.player, 2, 0, 0, 0, 0)
                     Utility.print_points(self.player)
                     self.player.issoldier = False
                     self.player.ispriest = True
@@ -592,6 +614,7 @@ class Game:
                     Utility.go_on()
 
                     Game.Priest(self.player).why_priest()
+
                     break
                 elif choice == "2":
                     prob = random.randint(1, 100)
@@ -606,7 +629,7 @@ class Game:
                             "evitato lo scontro, ma anche la gloria. Sei un mediatore, non un profeta."
                             "\n")
 
-                        Player.add_points(self.player, 2, 0, 0, 0, 0)
+                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 0, 0, 0, 0)
                         Utility.print_points(self.player)
                         self.player.issoldier = False
                         self.player.ispriest = True
@@ -692,7 +715,7 @@ class Game:
                                         "\n")
                     self.player.issoldier = False
                     self.player.ispriest = True
-                    Player.add_points(self.player, 1, 0, 0, 0, 0)
+                    Player.add_points(self.player, Dices.face_2("vocazione"), 0, 0, 0, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -715,34 +738,35 @@ class Game:
                                '\n2 - Per necessità: Era l’unica via per sfuggire alla miseria, un rifugio tra mura '
                                'sacre.'
                                '\n')
-                if choice == "1":
-                    Utility.fixed_print(
-                        "“Sentivi il richiamo di Dio, limpido come una campana nel silenzio.”Fin da piccolo, "
-                        "tra le pietre fredde della chiesa del villaggio, sentivi qualcosa. Non era solo la "
-                        "bellezza delle candele accese o il canto solenne del sacerdote: era una voce. Una "
-                        "presenza. Come se Dio ti sussurrasse da dietro l’altare.Quando indossasti la tonaca per la "
-                        "prima volta, non fu una maschera: fu pelle nuova. Ogni preghiera era un passo verso la "
-                        "verità. Ogni atto di carità, un tassello nella volontà divina.Ora che cammini tra le ombre "
-                        "del potere e le luci dell’ambizione, il ricordo di quella voce ti guida. Forse diventerai "
-                        "Papa. Ma prima, eri solo un ragazzo che voleva servire qualcosa di eterno.")
-                    Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Utility.print_points(self.player)
 
-                    Utility.go_on()
+                if choice == "1":
+                    Utility.fixed_print("“Sentivi il richiamo di Dio, limpido come una campana nel silenzio.” Fin da "
+                                        "piccolo, tra le pietre fredde della chiesa del villaggio, sentivi qualcosa. "
+                                        "Non era solo la bellezza delle candele accese o il canto solenne del "
+                                        "sacerdote: era una voce. Una presenza. Come se Dio ti sussurrasse da dietro "
+                                        "l’altare. Quando indossasti la tonaca per la prima volta, non fu una "
+                                        "maschera: fu pelle nuova. Ogni preghiera era un passo verso la verità. Ogni "
+                                        "atto di carità, un tassello nella volontà divina. Ora che cammini tra le "
+                                        "ombre del potere e le luci dell’ambizione, il ricordo di quella voce ti "
+                                        "guida. Forse diventerai Papa. Ma prima, eri solo un ragazzo che voleva "
+                                        "servire qualcosa di eterno."
+                                        "\n")
+
+                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), 0, 0, 0, 0)
+                    Utility.print_points(self.player)
 
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "“Era l’unica via per sfuggire alla miseria, un rifugio tra mura sacre.”La fame era una "
-                        "compagna più fedele della speranza. Le strade erano dure, e nessuno tendeva una mano senza "
-                        "pretesa. Ma la Chiesa… offriva pane, tetto, libri. Un mondo diverso.Diventare prete non fu "
-                        "scelta di spirito, ma di sopravvivenza. Imparasti il latino per fame, non per fede. "
-                        "Pregavi con occhi aperti, scrutando i meccanismi del potere sotto le vesti del sacro.Ora, "
-                        "salendo la scala ecclesiastica, non dimentichi chi eri. Non sei cieco: conosci il gioco. E "
-                        "se il Signore ti ha davvero chiamato… forse, lo ha fatto con la voce della fame."
-                        "\n")
-
-                    Utility.go_on()
+                    Utility.fixed_print("“Era l’unica via per sfuggire alla miseria, un rifugio tra mura sacre.” La "
+                                        "fame era una compagna più fedele della speranza. Le strade erano dure, "
+                                        "e nessuno tendeva una mano senza pretesa. Ma la Chiesa… offriva pane, tetto, "
+                                        "libri. Un mondo diverso. Diventare prete non fu scelta di spirito, "
+                                        "ma di sopravvivenza. Imparasti il latino per fame, non per fede. Pregavi con "
+                                        "occhi aperti, scrutando i meccanismi del potere sotto le vesti del sacro. "
+                                        "Ora, salendo la scala ecclesiastica, non dimentichi chi eri. Non sei cieco: "
+                                        "conosci il gioco. E se il Signore ti ha davvero chiamato… forse, lo ha fatto "
+                                        "con la voce della fame."
+                                        "\n")
 
                     break
                 else:
@@ -760,40 +784,38 @@ class Game:
                                '\n2 - Decadimento morale: Denunci i peccati del tempo, l’abisso che cresce sotto i'
                                'piedi della società.'
                                '\n')
+
                 if choice == "1":
-                    Utility.fixed_print(
-                        "“Parli del perdono, della pace, del dovere di aiutare chi soffre.”Le tue parole scendono "
-                        "leggere, come pioggia d’estate sulle coscienze assetate.Ogni domenica, dal pulpito, "
-                        "inviti i fedeli a guardarsi negli occhi. A perdonare i debiti, a spezzare il pane con "
-                        "l’affamato, a chinarsi sulle ferite del mondo. Non gridi: accarezzi. Non accusi: consoli.I "
-                        "poveri iniziano a venire solo per sentirti. I peccatori ti ascoltano in silenzio. Anche "
-                        "chi non crede trova in te qualcosa che manca altrove: un’eco di bontà autentica.I potenti "
-                        "storcono il naso, ma non possono ignorarti. La tua fama cresce come un seme nella terra "
-                        "buona.Forse la santità non è nel potere… ma tu, senza cercarlo, ti stai avvicinando."
-                        "\n")
+                    Utility.fixed_print("“Parli del perdono, della pace, del dovere di aiutare chi soffre.” Le tue "
+                                        "parole scendono leggere, come pioggia d’estate sulle coscienze assetate. "
+                                        "Ogni domenica, dal pulpito, inviti i fedeli a guardarsi negli occhi. A "
+                                        "perdonare i debiti, a spezzare il pane con l’affamato, a chinarsi sulle "
+                                        "ferite del mondo. Non gridi: accarezzi. Non accusi: consoli. I poveri "
+                                        "iniziano a venire solo per sentirti. I peccatori ti ascoltano in silenzio. "
+                                        "Anche chi non crede trova in te qualcosa che manca altrove: un’eco di bontà "
+                                        "autentica. I potenti storcono il naso, ma non possono ignorarti. La tua fama "
+                                        "cresce come un seme nella terra buona. Forse la santità non è nel potere… ma "
+                                        "tu, senza cercarlo, ti stai avvicinando."
+                                        "\n")
 
-                    Player.add_points(self.player, 2, 3, 0, 0, 0)
+                    Player.add_points(self.player, 2, Dices.face_4("consenso popolare", "+"), 0, 0, 0)
                     Utility.print_points(self.player)
-
-                    Utility.go_on()
 
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "“Denunci i peccati del tempo, l’abisso che cresce sotto i piedi della società.”Quando "
-                        "parli, la tua voce è fuoco. Non edulcori. Non addolcisci.Denunci l’avidità dei mercanti, "
-                        "la lussuria dei nobili, la corruzione del clero. I tuoi sermoni risuonano come tuoni tra "
-                        "le navate. Alcuni si alzano e se ne vanno. Altri restano, rapiti, tremanti.Dici che Roma è "
-                        "divenuta Babilonia. Che il mondo danza sul ciglio dell’inferno, e nessuno lo vuole vedere. "
-                        "Qualcuno ti chiama profeta. Qualcun altro, fanatico.Ma non ti importa.Non vuoi essere "
-                        "amato. Vuoi che si ravvedano.E così, sermone dopo sermone, diventi il volto di un tempo "
-                        "che cambia. O di una tempesta in arrivo."
-                        "\n")
+                    Utility.fixed_print("“Denunci i peccati del tempo, l’abisso che cresce sotto i piedi della "
+                                        "società.” Quando parli, la tua voce è fuoco. Non edulcori. Non addolcisci. "
+                                        "Denunci l’avidità dei mercanti, la lussuria dei nobili, la corruzione del "
+                                        "clero. I tuoi sermoni risuonano come tuoni tra le navate. Alcuni si alzano e "
+                                        "se ne vanno. Altri restano, rapiti, tremanti. Dici che Roma è divenuta "
+                                        "Babilonia. Che il mondo danza sul ciglio dell’inferno, e nessuno lo vuole "
+                                        "vedere. Qualcuno ti chiama profeta. Qualcun altro, fanatico. Ma non ti "
+                                        "importa. Non vuoi essere amato. Vuoi che si ravvedano. E così, sermone dopo "
+                                        "sermone, diventi il volto di un tempo che cambia. O di una tempesta in arrivo."
+                                        "\n")
 
-                    Player.add_points(self.player, 0, 1, (-2), 0, 0)
+                    Player.add_points(self.player, 0, 1, Dices.face_4("influenza politica", "-"), 0, 0)
                     Utility.print_points(self.player)
-
-                    Utility.go_on()
 
                     break
                 else:
@@ -813,57 +835,55 @@ class Game:
                                '\n3 - Non accetti il dono: Rifiuti, anche se ciò significa rovinare i rapporti con la '
                                'tua famiglia.'
                                '\n')
+
                 if choice == "1":
-                    Utility.fixed_print(
-                        "“Il denaro va ai poveri, ma il peccato resta nel silenzio.”Accetti la somma, ma con il "
-                        "cuore stretto.Non per te. Mai per te. I denari sporchi diventano pane per gli orfani, "
-                        "medicine per i malati, coperte per chi dorme tra le pietre. In pubblico, sei lodato come "
-                        "un prete generoso. Le folle ti seguono. I tuoi gesti ispirano imitazione.Ma di notte, "
-                        "quando preghi, la coscienza non tace. Sai cosa hai coperto. Il peccato dell’altro è "
-                        "diventato anche il tuo, vestito di carità.La tua fama cresce… ma anche l’ombra che la "
-                        "accompagna."
-                        "\n")
+                    Utility.fixed_print("“Il denaro va ai poveri, ma il peccato resta nel silenzio.” Accetti la "
+                                        "somma, ma con il cuore stretto. Non per te. Mai per te. I denari sporchi "
+                                        "diventano pane per gli orfani, medicine per i malati, coperte per chi dorme "
+                                        "tra le pietre. In pubblico, sei lodato come un prete generoso. Le folle ti "
+                                        "seguono. I tuoi gesti ispirano imitazione. Ma di notte, quando preghi, "
+                                        "la coscienza non tace. Sai cosa hai coperto. Il peccato dell’altro è "
+                                        "diventato anche il tuo, vestito di carità. La tua fama cresce… ma anche "
+                                        "l’ombra che la accompagna."
+                                        "\n")
 
                     Player.add_points(self.player, 1, 2, 0, 0, 0)
                     Utility.print_points(self.player)
 
-                    Utility.go_on()
-
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "“Pensando che forse un giorno ti servirà per un bene più grande.”Accetti il denaro in "
-                        "silenzio, e lo nascondi. Non per avidità, ti dici, ma per lungimiranza. Forse un giorno "
-                        "potrai usarlo per comprare un libro proibito, finanziare un convento in segreto, "
-                        "o corrompere il corrotto per fermare un male peggiore.Così inizia la discesa. Piccole "
-                        "bugie, discreti spostamenti di denaro. Ma nessun peccato resta nascosto per sempre.Un "
-                        "giovane chierico, troppo curioso, scopre le tue carte. Le voci corrono. E infine, "
-                        "arriva la tempesta: vieni convocato da un tribunale ecclesiastico. Non importa quanto ti "
-                        "giustifichi, quanto invochi “il bene futuro” — le monete che hai accettato pesano più "
-                        "delle tue parole.Vieni scomunicato.Il tuo nome è bandito dalle preghiere. I tuoi paramenti "
-                        "strappati. I fedeli ti voltano le spalle. Anche la tua famiglia, già complice, ti rinnega "
-                        "per salvare se stessa.Hai perso.Non sei diventato Papa.Sei diventato un esempio… di ciò "
-                        "che non si deve essere."
-                        "\n")
+                    Utility.fixed_print("“Pensando che forse un giorno ti servirà per un bene più grande.” Accetti il "
+                                        "denaro in silenzio, e lo nascondi. Non per avidità, ti dici, "
+                                        "ma per lungimiranza. Forse un giorno potrai usarlo per comprare un libro "
+                                        "proibito, finanziare un convento in segreto, o corrompere il corrotto per "
+                                        "fermare un male peggiore. Così inizia la discesa. Piccole bugie, "
+                                        "discreti spostamenti di denaro. Ma nessun peccato resta nascosto per sempre. "
+                                        "Un giovane chierico, troppo curioso, scopre le tue carte. Le voci corrono. E "
+                                        "infine, arriva la tempesta: vieni convocato da un tribunale ecclesiastico. "
+                                        "Non importa quanto ti giustifichi, quanto invochi “il bene futuro” — le "
+                                        "monete che hai accettato pesano più delle tue parole. Vieni scomunicato. Il "
+                                        "tuo nome è bandito dalle preghiere. I tuoi paramenti strappati. I fedeli ti "
+                                        "voltano le spalle. Anche la tua famiglia, già complice, ti rinnega per "
+                                        "salvare se stessa. Hai perso. Non sei diventato Papa. Sei diventato un "
+                                        "esempio… di ciò che non si deve essere."
+                                        "\n")
 
                     Utility.gameover()
 
                     break
                 elif choice == "3":
-                    Utility.fixed_print(
-                        "“Rifiuti, anche se ciò significa rovinare i rapporti con la tua famiglia.”Guardi tuo zio "
-                        "negli occhi. Senti il peso della storia familiare, dei pranzi d’infanzia, dei favori "
-                        "ricevuti. Ma la tua fede – o forse solo il tuo orgoglio – è più forte.Rifiuti.La sua "
-                        "espressione cambia: rispetto, poi gelo. Da quel giorno, vieni escluso. La tua famiglia ti "
-                        "chiude le porte. Sei un estraneo tra i tuoi. Ma dentro, una pace profonda.Hai scelto la "
-                        "verità. Anche se fa male. Anche se costa.Forse Dio ha visto. Forse no. Ma tu sai di non "
-                        "dover abbassare gli occhi davanti a nessuno."
-                        "\n")
+                    Utility.fixed_print("“Rifiuti, anche se ciò significa rovinare i rapporti con la tua famiglia.” "
+                                        "Guardi tuo zio negli occhi. Senti il peso della storia familiare, "
+                                        "dei pranzi d’infanzia, dei favori ricevuti. Ma la tua fede – o forse solo il "
+                                        "tuo orgoglio – è più forte. Rifiuti. La sua espressione cambia: rispetto, "
+                                        "poi gelo. Da quel giorno, vieni escluso. La tua famiglia ti chiude le porte. "
+                                        "Sei un estraneo tra i tuoi. Ma dentro, una pace profonda. Hai scelto la "
+                                        "verità. Anche se fa male. Anche se costa. Forse Dio ha visto. Forse no. Ma "
+                                        "tu sai di non dover abbassare gli occhi davanti a nessuno."
+                                        "\n")
 
                     Player.add_points(self.player, 0, 0, (-1), 0, 0)
                     Utility.print_points(self.player)
-
-                    Utility.go_on()
 
                     break
                 else:
@@ -879,20 +899,22 @@ class Game:
                                '\n1 - Sì: Vuoi guidare la tua gente.'
                                '\n2 - No: Temi che il passato ti segua troppo da vicino.'
                                '\n')
-                if choice == "1":
-                    Utility.fixed_print(
-                        "“Accetti. Vuoi essere la guida dove un tempo eri solo un volto tra gli altri. ”Tornare a "
-                        "casa non è facile, ma lo fai a testa alta. Cammini tra le stesse strade dove da bambino "
-                        "correvi scalzo, ora con la tonaca addosso e il peso della guida sulle spalle. Alcuni ti "
-                        "guardano con affetto sincero, altri con sospetto. Ti ricordano com’eri, e forse non "
-                        "credono a ciò che sei diventato. Ma tu non ti lasci frenare. Celebri messe con ardore, "
-                        "ascolti confessioni con pazienza, offri consiglio anche a chi ti aveva disprezzato.Giorno "
-                        "dopo giorno, il tuo esempio comincia a parlare più forte dei ricordi.Il passato ti "
-                        "accompagna, sì — ma non ti comanda.E forse è proprio lì, tra chi ti ha visto nascere, "
-                        "che inizia la tua vera ascesa."
-                        "\n")
 
-                    Player.add_points(self.player, 0, 2, 2, 0, 0)
+                if choice == "1":
+                    Utility.fixed_print("“Accetti. Vuoi essere la guida dove un tempo eri solo un volto tra gli "
+                                        "altri.” Tornare a casa non è facile, ma lo fai a testa alta. Cammini tra le "
+                                        "stesse strade dove da bambino correvi scalzo, ora con la tonaca addosso e il "
+                                        "peso della guida sulle spalle. Alcuni ti guardano con affetto sincero, "
+                                        "altri con sospetto. Ti ricordano com’eri, e forse non credono a ciò che sei "
+                                        "diventato. Ma tu non ti lasci frenare. Celebri messe con ardore, "
+                                        "ascolti confessioni con pazienza, offri consiglio anche a chi ti aveva "
+                                        "disprezzato. Giorno dopo giorno, il tuo esempio comincia a parlare più forte "
+                                        "dei ricordi. Il passato ti accompagna, sì — ma non ti comanda. E forse è "
+                                        "proprio lì, tra chi ti ha visto nascere, che inizia la tua vera ascesa."
+                                        "\n")
+
+                    Player.add_points(self.player, 0, Dices.face_4("consenso popolare", "+"),
+                                      Dices.face_4("influenza politica", "-"), 0, 0)
                     Utility.print_points(self.player)
                     self.player.isparson = True
 
@@ -901,16 +923,16 @@ class Game:
                     self.cardinal_letter()
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "“Rinunci. Non per paura, ma per prudenza.” L’offerta ti tocca il cuore, ma sai che il "
-                        "terreno lì è fragile. Ogni tua parola verrebbe pesata. Ogni tuo gesto confrontato con chi "
-                        "eri, non con chi sei.Preferisci declinare.Lasci il posto a un altro, e ti allontani in "
-                        "silenzio. Un distacco doloroso, ma necessario. In un luogo nuovo, potrai costruire senza "
-                        "ombre, senza vecchi sguardi che leggono il passato in ogni tuo sermone.Forse un giorno "
-                        "tornerai. Da vescovo, da cardinale… o da papa.Ma non ancora."
-                        "\n")
+                    Utility.fixed_print("“Rinunci. Non per paura, ma per prudenza.” L’offerta ti tocca il cuore, "
+                                        "ma sai che il terreno lì è fragile. Ogni tua parola verrebbe pesata. Ogni "
+                                        "tuo gesto confrontato con chi eri, non con chi sei. Preferisci declinare. "
+                                        "Lasci il posto a un altro, e ti allontani in silenzio. Un distacco doloroso, "
+                                        "ma necessario. In un luogo nuovo, potrai costruire senza ombre, senza vecchi "
+                                        "sguardi che leggono il passato in ogni tuo sermone. Forse un giorno "
+                                        "tornerai. Da vescovo, da cardinale… o da papa. Ma non ancora."
+                                        "\n")
 
-                    Player.add_points(self.player, 0, 0, 0, 0, 0)
+                    Player.add_points(self.player, 0, 1, 0, 0, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -930,6 +952,7 @@ class Game:
                                '\n2 - Appoggi in maniera informale: Mostri interesse, ma resti prudente.'
                                '\n3 - Ignori la lettera: Forse è meglio non farsi coinvolgere.'
                                '\n')
+
                 if choice == "1":
                     Utility.fixed_print(
                         "“Ti unisci con entusiasmo, pronto a scalare la gerarchia.” Rispondi senza esitazioni. Le "
@@ -941,7 +964,7 @@ class Game:
                         "strada verso Roma non è più un sogno. È una mappa, e tu hai appena ottenuto una guida."
                         "\n")
 
-                    Player.add_points(self.player, (-1), 0, 2, 2, 0)
+                    Player.add_points(self.player, Dices.face_2("vocazione"), 0, 2, 2, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -991,6 +1014,7 @@ class Game:
                                '\n3 - Annulli solo quello del borghese: Segui la tua coscienza.'
                                '\n4 - Non ne annulli nessuno: Il matrimonio è sacro.'
                                '\n')
+
                 if choice == "1":
                     Utility.fixed_print(
                         "“La legge è la legge.” Esamini i casi con rigore. Studi documenti, ascolti testimonianze, "
@@ -1066,7 +1090,7 @@ class Game:
                         "è fermezza… o semplice rigidità?"
                         "\n")
 
-                    Player.add_points(self.player, 0, 0, (-3), 0, 0)
+                    Player.add_points(self.player, 1, 0, (-3), 0, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1100,6 +1124,7 @@ class Game:
                                     "Quando il coro intona il Te Deum, tu guardi in alto. Ma pensi anche a ciò che si"
                                     "cela in basso: ambizione, compromesso, scelta."
                                     "\n")
+
                 self.player.ispriest = False
                 self.player.isbishop = True
 
@@ -1121,6 +1146,7 @@ class Game:
                                     "Non sei diventato Papa. Non sei nemmeno diventato Vescovo."
                                     "Forse, in un’altra vita, con più fede… o più astuzia…"
                                     "\n")
+
                 Utility.gameover()
             else:
                 Utility.error()
@@ -1204,7 +1230,7 @@ class Game:
                         "e qualcuno comincia a guardare verso i monasteri vicini, dove la vita pare più giusta."
                         "Hai rafforzato il trono… ma incrinato il pulpito."
                         "\n")
-                    Player.add_points(self.player, 0, (-2), 0, 1, 2)
+                    Player.add_points(self.player, 0, (-2), 2, 1, 1)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1218,7 +1244,7 @@ class Game:
                         "pochi notano i vescovi misericordiosi. Hai guadagnato i cuori del tuo gregge… ma forse "
                         "perso terreno sulla via per il soglio pontificio."
                         "\n")
-                    Player.add_points(self.player, 0, 2, 0, (-1), 0)
+                    Player.add_points(self.player, 0, 2, (-1), (-1), 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1246,25 +1272,24 @@ class Game:
                                "\n")
 
                 if choice == "1":
-                    Utility.fixed_print(
-                        "Il Cardinale Petrucci te ne è grato, se ne ricorderà, ora hai anche degli importanti "
-                        "amici nello stato pontificio. Ma i cittadini del tuo vescovato non sono così "
-                        "contenti di ciò, la voce si spande e un criminale in paese non è gradito, "
-                        "specialmente se ciò può inasprire i rapporti con le altre signorie."
-                        "\n")
-                    Player.add_points(self.player, 0, (-1), (-1), 1, 0)
+                    Utility.fixed_print("Il Cardinale Petrucci te ne è grato, se ne ricorderà, ora hai anche degli "
+                                        "importanti amici nello stato pontificio. Ma i cittadini del tuo vescovato "
+                                        "non sono così contenti di ciò, la voce si spande e un criminale in paese non "
+                                        "è gradito, specialmente se ciò può inasprire i rapporti con le altre signorie."
+                                        "\n")
+                    Player.add_points(self.player, 0, (-1), Dices.face_2("influenza politica"), 1, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
 
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "Hai tenuto una linea dura, hai negato l’aiuto ad un cardinale, egli riconosce il tuo "
-                        "carattere, ma non ne sarà contento. Ciò è comunque apprezzato dai cittadini "
-                        "che ti vedono come un importante figura per loro e per la tua città."
-                        "\n")
-                    Player.add_points(self.player, 3, 1, 0, (-2), 0)
+                    Utility.fixed_print("Hai tenuto una linea dura, hai negato l’aiuto ad un cardinale, "
+                                        "egli riconosce il tuo carattere, ma non ne sarà contento. Ciò è comunque "
+                                        "apprezzato dai cittadini che ti vedono come un importante figura per loro e "
+                                        "per la tua città."
+                                        "\n")
+                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), 1, 0, (-2), 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1314,7 +1339,8 @@ class Game:
                         "da rimuovere."
                         "\n")
 
-                    Player.add_points(self.player, 0, (-1), 0, (-2), 0)
+                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), Dices.face_2("consenso popolare"), 0,
+                                      (-2), 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1336,15 +1362,15 @@ class Game:
 
                     break
                 elif choice == "4":
-                    Utility.fixed_print(
-                        "“Preferisci la diplomazia alla guerra.”  Accetti l’incarico di rappresentare il Papa "
-                        "presso le corti straniere. Il tuo carisma e la tua intelligenza saranno armi decisive "
-                        "nella complessa rete di alleanze e tradimenti.  Nel palazzo, tra banchetti e intrighi, "
-                        "plasmerai il destino della Chiesa senza versare una goccia di sangue. Ma la diplomazia è "
-                        "un gioco sottile, dove un passo falso può costare tutto."
-                        "\n")
+                    Utility.fixed_print("“Preferisci la diplomazia alla guerra.”  Accetti l’incarico di rappresentare "
+                                        "il Papa presso le corti straniere. Il tuo carisma e la tua intelligenza "
+                                        "saranno armi decisive nella complessa rete di alleanze e tradimenti.  Nel "
+                                        "palazzo, tra banchetti e  intrighi, plasmerai il destino della Chiesa senza "
+                                        "versare una goccia di sangue. Ma la diplomazia è un gioco sottile, "
+                                        "dove un passo falso può costare tutto."
+                                        "\n")
 
-                    Player.add_points(self.player, 0, 0, 0, 0, 3)
+                    Player.add_points(self.player, 0, 0, 0, 0, Dices.face_6("abilità diplomatica", "+"))
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1375,6 +1401,7 @@ class Game:
                             "il tuo cuore è saldo, e la tua fede ti guida. Se la verità deve essere detta, la dirai "
                             "tu."
                             "\n")
+
                         Player.add_points(self.player, 0, 3, 0, 0, 0)
                         Utility.print_points(self.player)
                         self.was_opposer = True
@@ -1396,6 +1423,7 @@ class Game:
                             "dei rinnegati, senti ancora ardere la fiamma della giustizia. La Chiesa ti ha "
                             "cacciato."
                             "\n")
+
                         Utility.gameover()
                         break
                     else:
@@ -1410,6 +1438,7 @@ class Game:
                         "serve. Non sarai un martire, ma una mente nell’ombra. Un giorno, forse, servirà un papa "
                         "abile più che audace — e tu sarai pronto."
                         "\n")
+
                     Player.add_points(self.player, 0, 0, 0, (-1), 2)
                     Utility.print_points(self.player)
 
@@ -1463,6 +1492,8 @@ class Game:
             if prob1 <= 65:
                 prob2 = random.randint(1, 100)
 
+                Player.add_points(self.player, 0, (-1), 0, (-1), 0)
+
                 if prob2 <= 75:
                     Utility.fixed_print(
                         "Un colpo improvviso ti sbalza da cavallo. Le truppe si disperdono, i tamburi nemici "
@@ -1472,7 +1503,7 @@ class Game:
                         "ritiraru, ma nonostante ciò sipravvivo fino, dopo dei mesi, a riprenderti completamente."
                         "\n")
 
-                    Player.add_points(self.player, 3, (-1), 0, (-2), 0)
+                    Player.add_points(self.player, 3, 0, (-1), Dices.face_4("rilevanza curiale", "-"), 0)
                     Utility.print_points(self.player)
                     self.battle_injured = True
 
@@ -1482,6 +1513,7 @@ class Game:
                         "Il sangue ormai scorre a fiumi, non senti più il tuo corpo, i tuoi occhi si spengono, "
                         "la ferita ti ha portato alla morte. La tua ascesa al soglio di Pietro finisce qui."
                         "\n")
+
                     Utility.gameover()
                 else:
                     Utility.error()
@@ -1511,6 +1543,7 @@ class Game:
                     "giubilo. Tu chinasti il capo, in silenziosa preghiera. Ma sapevi, nel profondo, che questo era "
                     "solo un passo. Un passo sulla via per la Tiara. La Croce ora brillava più vicina."
                     "\n")
+
                 self.player.isbishop = False
                 self.player.iscardinal = True
 
@@ -1536,6 +1569,7 @@ class Game:
                         "Francia è alleata del Papa nella guerra contro Venezia. Il Re è potente e la sua corte è "
                         "piena di nobili e vescovi."
                         "\n")
+
                     Player.add_points(self.player, 0, 0, 2, 0, 0)
                     Utility.print_points(self.player)
                     self.was_france_ambassador = True
@@ -1567,7 +1601,8 @@ class Game:
                         "Parli chiaro e forte. Rappresenti l’autorità del Papa. Pretendi obbedienza e minacci chi "
                         "si oppone."
                         "\n")
-                    Player.add_points(self.player, 0, 0, 0, 2, (-1))
+
+                    Player.add_points(self.player, 0, 0, 0, 2, Dices.face_2("abilità diplomatica"))
                     Utility.print_points(self.player)
                     self.was_sri_strong = True
 
@@ -1576,11 +1611,11 @@ class Game:
                     self.lega_santa()
                     break
                 elif choice == "2":
-                    Utility.fixed_print(
-                        "Cerchi il dialogo, ascolti, parli con tatto. Tratti con principi e città per mantenere "
-                        "la pace e rafforzare la fede."
-                        "\n")
-                    Player.add_points(self.player, 0, 1, 2, 0, 1)
+                    Utility.fixed_print("Cerchi il dialogo, ascolti, parli con tatto. Tratti con principi e città per "
+                                        "mantenere la pace e rafforzare la fede."
+                                        "\n")
+
+                    Player.add_points(self.player, 0, Dices.face_2("consenso popolare"), 2, 0, 1)
                     Utility.print_points(self.player)
                     self.was_sri_calm = True
 
@@ -1630,7 +1665,7 @@ class Game:
                             "silenziosi."
                             "\n")
 
-                        Player.add_points(self.player, (-1), (-2), (-1), 2, 0)
+                        Player.add_points(self.player, (-1), (-2), (-1), 1, 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1646,7 +1681,7 @@ class Game:
                             "silenziosi."
                             "\n")
 
-                        Player.add_points(self.player, (-1), 0, (-2), 1, (-2))
+                        Player.add_points(self.player, (-1), 0, Dices.face_4("influenza politica", "-"), 1, (-2))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1662,7 +1697,7 @@ class Game:
                             "silenziosi."
                             "\n")
 
-                        Player.add_points(self.player, 1, 1, 0, 1, 2)
+                        Player.add_points(self.player, 1, 1, 0, Dices.face_2("rilevanza curiale"), 2)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1712,6 +1747,9 @@ class Game:
                             "è solo all’inizio."
                             "\n")
 
+                        Player.add_points(self.player, 0, (-1), 0, 1, 0)
+                        Utility.print_points(self.player)
+
                         Utility.go_on()
 
                         self.try_become_cardinal()
@@ -1728,7 +1766,7 @@ class Game:
                             "è passato. Ora ti giochi tutto."
                             "\n")
 
-                        Player.add_points(self.player, 2, 2, 0, (-1), 0)
+                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 2, 0, (-1), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1744,7 +1782,8 @@ class Game:
                             "forse sarai ricordato come colui che ha avuto il coraggio di dire no."
                             "\n")
 
-                        Player.add_points(self.player, 2, 1, 0, (-2), 2)
+                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 1, 0, (-2),
+                                          Dices.face_4("abilità diplomatica", "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1760,7 +1799,7 @@ class Game:
                             "forse sarai ricordato come colui che ha avuto il coraggio di dire no."
                             "\n")
 
-                        Player.add_points(self.player, (-1), 2, 0, (-2), 2)
+                        Player.add_points(self.player, 1, 2, 0, (-2), Dices.face_4("abilità diplomatica", "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1792,7 +1831,8 @@ class Game:
                             "meno guerriera."
                             "\n")
 
-                        Player.add_points(self.player, 2, 3, 2, (-2), 0)
+                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 3, 2,
+                                          Dices.face_4("rilevanza curiale", "-"), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1808,7 +1848,7 @@ class Game:
                             "ripresa incerta. Il rischio è grande, ma la tua causa vale ogni dolore."
                             "\n")
 
-                        Player.add_points(self.player, 3, (-2), 0, (-2), 0)
+                        Player.add_points(self.player, Dices.face_6("vocazione", "+"), 1, 0, (-2), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1825,6 +1865,9 @@ class Game:
                             "non si spegne."
                             "\n")
 
+                        Player.add_points(self.player, 1, Dices.face_2("consenso popolare"), (-1), (-1), 0)
+                        Utility.print_points(self.player)
+
                         Utility.go_on()
 
                         self.try_become_cardinal()
@@ -1835,7 +1878,7 @@ class Game:
                     Utility.error()
 
         def try_become_cardinal(self):
-            if self.player.isbishop and self.player.consensus >= 1:
+            if self.player.isbishop and self.player.consensus >= 40:
                 Utility.fixed_print(
                     "Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
                     "conferisce il prezioso anello rosso. Quel segno di fuoco non è solo un ornamento, "
@@ -1852,6 +1895,21 @@ class Game:
                 Utility.go_on()
 
                 Game.Conclave(self.player).compare()
+            elif self.player.isbishop and self.player.consensus < 40:
+                Utility.fixed_print("Hai varcato soglie sacre con cuore devoto, ma con passi esitanti. Hai indossato "
+                                    "l’abito dell’umiltà come una seconda pelle, ma non hai mai ricevuto il sigillo "
+                                    "della fiducia. La Curia ha osservato. Le tue preghiere sono salite al cielo, "
+                                    "ma non hanno scosso la terra. I tuoi insegnamenti hanno attraversato le navate, "
+                                    "ma non hanno lasciato traccia nell’anima del Collegio. Il Santo Padre ha scelto "
+                                    "di volgere lo sguardo altrove. Il cappello cardinalizio non ha mai sfiorato il "
+                                    "tuo capo. Il soglio pontificio, un miraggio che svanisce prima ancora di poterne "
+                                    "pronunciare il nome. Ora fai ritorno al silenzio del tuo chiostro, tra pergamene "
+                                    "ingiallite e pensieri non detti. La tua ascesa si è interrotta non per colpa, "
+                                    "ma per mancanza di destino. Non sei diventato Papa. Non sei stato nemmeno scelto "
+                                    "come Cardinale. Forse, in un altro tempo, con più carisma… o meno scrupoli…"
+                                    "\n")
+            else:
+                Utility.error()
 
     class Conclave:
         def __init__(self, player):
