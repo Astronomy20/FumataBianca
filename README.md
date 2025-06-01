@@ -13,4 +13,4 @@
 - Dice rolls and coin toss animations simulate uncertainty in key events.
 - Strategic and moral choices affect your ecclesiastical and political ascent.
 - Multiple narrative branches: priest or soldier? Saint or schemer?
-- Choices have consequences—wrong moves can end your journey.
+- Choices have consequences, wrong moves can end your journey.
