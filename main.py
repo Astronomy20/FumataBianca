@@ -228,7 +228,6 @@ class Dices:
 
         coin_result = "Testa" if result == 1 else "Croce"
         print(f"\nÈ uscita {coin_result}!")
-        sys.exit()
 
     def face_4(self):
         input("Premi Invio per tirare il dado...")
@@ -239,7 +238,6 @@ class Dices:
         self.print_final_face(d4_faces[result - 1], 4)
 
         print(f"\nÈ uscito {result}!")
-        sys.exit()
 
     def face_6(self):
         input("Premi Invio per tirare il dado...")
@@ -250,7 +248,6 @@ class Dices:
         self.print_final_face(d6_faces[result - 1], 6)
 
         print(f"\nÈ uscito {result}!")
-        sys.exit()
 
 
 class CardinalsValues:
