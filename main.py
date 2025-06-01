@@ -1,11 +1,18 @@
+import sys
+import keyboard
+import threading
+
 import random
 import time
 
-import sys
-import keyboard
-
 import shutil
 import textwrap
+
+escape_thread = threading.Thread
+game_thread = threading.Thread
+
+escape_thread.start()
+game_thread.start()
 
 
 class Utility:
