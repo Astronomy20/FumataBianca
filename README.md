@@ -1,7 +1,5 @@
-A game about becoming the Pope.
-
 # Become the Pope: A Renaissance Roleplaying Game
-**"Become the Pope"** is a text-based interactive narrative game set in the political and religious chaos of Renaissance Italy. Will you rise from humble beginnings to sit upon the throne of Saint Peter, or will ambition lead to your downfall?
+**"Become the Pope"** is an interactive narrative game set in the political and religious chaos of Renaissance Italy. Will you rise from humble beginnings to sit upon the throne of Saint Peter, or will ambition lead to your downfall?
 
 ## Gameplay
 - Choose your path as a young cadet from one of the powerful noble families.
