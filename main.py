@@ -30,9 +30,9 @@ class Utility:
 
     @staticmethod
     def go_on():
-        input("\n------------------------------"
-              "\nPREMI INVIO PER ANDARE AVANTI."
-              "\n------------------------------"
+        input("\n-----------------------------"
+              "\nPREMI INVIO PER ANDARE AVANTI"
+              "\n-----------------------------"
               "\n")
 
         for _ in range(4):
@@ -549,12 +549,11 @@ class Game:
                            '\n1 - Prete: Una vita dedicata a Dio, alla parola, al mistero.'
                            '\n2 - Soldato: Una vita forgiata nel ferro e nel sangue, al servizio del potere.'
                            '\n')
+
             if choice == "1":
                 Utility.fixed_print("Da giovane, hai dovuto scegliere una strada. Il destino ti ha posto davanti alla "
                                     "tonaca.")
                 self.player.ispriest = True
-
-                Utility.go_on()
 
                 Game.Priest(self.player).why_priest()
                 break
