@@ -1871,7 +1871,7 @@ class Game:
             self.cardinal_values = []
 
             # Cardinal Values
-            (self.card_voc, self.card_pop_agr, self.pol_infl,
+            (self.card_voc, self.card_pop_agr, self.card_pol_infl,
              self.card_cur_rel, self.card_dipl_skills) = [0, 0, 0, 0, 0]
 
             # Cardinal that will vote for you
@@ -1914,7 +1914,7 @@ class Game:
                         points += 1
                     if self.player.pop_agr >= self.card_pop_agr:
                         points += 1
-                    if self.player.pol_infl >= self.card_pol_infl:
+                    if self.player.card_pol_infl >= self.card_pol_infl:
                         points += 1
                     if self.player.cur_rel >= self.card_cur_rel:
                         points += 1
