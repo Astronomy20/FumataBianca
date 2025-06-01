@@ -1,8 +1,6 @@
-import sys
-import keyboard
-
 import random
 import time
+import sys
 
 import shutil
 import textwrap
@@ -65,11 +63,6 @@ class Utility:
     @staticmethod
     def gameover():
         sys.exit()
-
-    @staticmethod
-    def quitgame():
-        if keyboard.record(until='esc'):
-            sys.exit()
 
 
 coin = [
