@@ -1,18 +1,11 @@
 import sys
 import keyboard
-import threading
 
 import random
 import time
 
 import shutil
 import textwrap
-
-escape_thread = threading.Thread
-game_thread = threading.Thread
-
-escape_thread.start()
-game_thread.start()
 
 
 class Utility:
@@ -58,8 +51,16 @@ class Utility:
     def timeout():
         time.sleep(5)
 
-    def print_points(self):
-        print(self)
+    @staticmethod
+    def print_points(player):
+        print(f'\nStatistiche del giocatore:'
+              f'\nVocazione: {player.voc}'
+              f'\nConsenso popolare: {player.pop_agr}'
+              f'\nInfluenza politica: {player.pol_infl}'
+              f'\nRilevanza curiale: {player.cur_rel}'
+              f'\nAbilità diplomatica: {player.dipl_skills}'
+              f'\nConsenso totale: {player.consensus}'
+              '\n')
 
     @staticmethod
     def gameover():
@@ -493,17 +494,6 @@ class Player:
             self.consensus = round(
                 (self.voc + self.pop_agr + self.pol_infl) * self.fam_val[1])
 
-    def print_stats(self):
-        print(f'''Statistiche del giocatore:
-Famiglia: {self.fam_name}, {self.fam_val}
-Vocazione: {self.voc}
-Consenso popolare: {self.pop_agr}
-Influenza politica: {self.pol_infl}
-Rilevanza curiale: {self.cur_rel}
-Abilità diplomatica: {self.dipl_skills}
-Consenso totale: {self.consensus}
-''')
-
 
 class Game:
     username = Utility.check_valid_name()
@@ -602,7 +592,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.player.issoldier = False
                     self.player.ispriest = True
 
@@ -624,7 +614,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 2, 0, 0, 0, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
                         self.player.issoldier = False
                         self.player.ispriest = True
 
@@ -690,7 +680,7 @@ class Game:
                         self.player.issoldier = False
                         self.player.ispriest = True
                         Player.add_points(self.player, 3, 0, 0, 0, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -710,7 +700,7 @@ class Game:
                     self.player.issoldier = False
                     self.player.ispriest = True
                     Player.add_points(self.player, 1, 0, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -743,7 +733,7 @@ class Game:
                         "del potere e le luci dell’ambizione, il ricordo di quella voce ti guida. Forse diventerai "
                         "Papa. Ma prima, eri solo un ragazzo che voleva servire qualcosa di eterno.")
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -790,7 +780,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 2, 3, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -808,7 +798,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 1, (-2), 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -842,7 +832,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 1, 2, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -878,7 +868,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 0, (-1), 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -910,7 +900,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 2, 2, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.player.isparson = True
 
                     Utility.go_on()
@@ -928,7 +918,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -959,7 +949,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, (-1), 0, 2, 2, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -976,7 +966,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 1, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1032,7 +1022,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, (-2), 0, 2, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     if not self.player.isparson:
                         Utility.fixed_print(
@@ -1049,7 +1039,7 @@ class Game:
                     break
                 elif choice == "3":
                     Player.add_points(self.player, (-2), 0, 1, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     if not self.player.isparson:
                         Utility.fixed_print(
@@ -1084,7 +1074,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 0, (-3), 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1177,7 +1167,7 @@ class Game:
                                         "del paese, il tuo consenso popolare aumenta di conseguenza."
                                         "\n")
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1193,7 +1183,7 @@ class Game:
                                         "zona."
                                         "\n")
                     Player.add_points(self.player, 0, (-2), 0, 3, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1222,7 +1212,7 @@ class Game:
                         "Hai rafforzato il trono… ma incrinato il pulpito."
                         "\n")
                     Player.add_points(self.player, 0, (-2), 0, 1, 2)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1236,7 +1226,7 @@ class Game:
                         "perso terreno sulla via per il soglio pontificio."
                         "\n")
                     Player.add_points(self.player, 0, 2, 0, (-1), 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1270,7 +1260,7 @@ class Game:
                         "specialmente se ciò può inasprire i rapporti con le altre signorie."
                         "\n")
                     Player.add_points(self.player, 0, (-1), (-1), 1, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1282,7 +1272,7 @@ class Game:
                         "che ti vedono come un importante figura per loro e per la tua città."
                         "\n")
                     Player.add_points(self.player, 3, 1, 0, (-2), 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1332,7 +1322,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, (-1), 0, (-2), 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1347,7 +1337,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, (-2), (-1), 0, 3, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1362,7 +1352,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 0, 0, 0, 0, 3)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1393,7 +1383,7 @@ class Game:
                             "tu."
                             "\n")
                         Player.add_points(self.player, 0, 3, 0, 0, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
                         self.was_opposer = True
 
                         Utility.go_on()
@@ -1428,7 +1418,7 @@ class Game:
                         "abile più che audace — e tu sarai pronto."
                         "\n")
                     Player.add_points(self.player, 0, 0, 0, (-1), 2)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     Utility.go_on()
 
@@ -1490,7 +1480,7 @@ class Game:
                         "\n")
 
                     Player.add_points(self.player, 3, (-1), 0, (-2), 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.battle_injured = True
 
                     self.lega_santa()
@@ -1554,7 +1544,7 @@ class Game:
                         "piena di nobili e vescovi."
                         "\n")
                     Player.add_points(self.player, 0, 0, 2, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.was_france_ambassador = True
 
                     Utility.go_on()
@@ -1563,7 +1553,7 @@ class Game:
                     break
                 elif choice == "2":
                     Player.add_points(self.player, 0, (-2), 0, 0, 0)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
 
                     self.sri_ambassador()
                     break
@@ -1585,7 +1575,7 @@ class Game:
                         "si oppone."
                         "\n")
                     Player.add_points(self.player, 0, 0, 0, 2, (-1))
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.was_sri_strong = True
 
                     Utility.go_on()
@@ -1598,7 +1588,7 @@ class Game:
                         "la pace e rafforzare la fede."
                         "\n")
                     Player.add_points(self.player, 0, 1, 2, 0, 1)
-                    Utility.print_points(self.player.print_stats())
+                    Utility.print_points(self.player)
                     self.was_sri_calm = True
 
                     Utility.go_on()
@@ -1632,7 +1622,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), 0, 2, 2, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1648,7 +1638,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), (-2), (-1), 2, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1664,7 +1654,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), 0, (-2), 1, (-2))
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1680,7 +1670,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 1, 1, 0, 1, 2)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1697,7 +1687,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), (-2), 0, 1, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1713,7 +1703,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), 0, 0, 2, 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1746,7 +1736,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 2, 2, 0, (-1), 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1762,7 +1752,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 2, 1, 0, (-2), 2)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1778,7 +1768,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, (-1), 2, 0, (-2), 2)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1794,7 +1784,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 3, 0, (-2), (-2), 1)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1810,7 +1800,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 2, 3, 2, (-2), 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
@@ -1826,7 +1816,7 @@ class Game:
                             "\n")
 
                         Player.add_points(self.player, 3, (-2), 0, (-2), 0)
-                        Utility.print_points(self.player.print_stats())
+                        Utility.print_points(self.player)
 
                         Utility.go_on()
 
