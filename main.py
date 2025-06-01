@@ -1948,5 +1948,6 @@ class Game:
             Utility.gameover()
 
 
+# Game start
 game = Game()
 game.start()
