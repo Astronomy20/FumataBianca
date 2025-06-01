@@ -913,7 +913,7 @@ class Game:
                                         "\n")
 
                     Player.add_points(self.player, 0, Dices.face_4("consenso popolare", "+"),
-                                      Dices.face_4("influenza politica", "-"), 0, 0)
+                                      Dices.face_4("influenza politica", "+"), 0, 0)
                     Utility.print_points(self.player)
                     self.player.isparson = True
 
@@ -1256,11 +1256,7 @@ class Game:
 
         def help_cardinal(self):
             while True:
-                choice = input("Bene! Ti sei trasferito a Roma, adesso potrai gestire le grande questioni "
-                               "teologiche da vicine conoscere i “pezzi grossi” e avere un rapporto diretto con le "
-                               "decisioni prese dalla curia. A pagarne le spese però è la tua gente, che si sente "
-                               "abbandonata e lasciata alla mercè delle importanti famiglie nobiliari della zona. "
-                               "Nella tua nuova casa, fai conoscenza di un Cardinale molto importante, il "
+                choice = input("Nella tua nuova casa, fai conoscenza di un Cardinale molto importante, il "
                                "cardinale Petrucci, senese, che ti chiede un aiuto. Il fratello, funzionario fiscale a "
                                "Siena, è stato condannato per corruzione, e avrebbe bisogno di un luogo in cui "
                                "risiedere per nascondersi aspettando che venga ritirata l’accusa. Essendo tu "
