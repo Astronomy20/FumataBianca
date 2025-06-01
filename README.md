@@ -29,18 +29,12 @@
    ```bash
    git clone https://github.com/Astronomy20/FumataBianca.git
    cd FumataBianca
-   
-2. Create a virtual environment (optional but recommended):
-    
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3. Install the required libraries:
+2. Install the required libraries:
     
     ```bash
     pip install keyboard
 
-4. Run the game:
+3. Run the game:
     ```bash
     python main.py
