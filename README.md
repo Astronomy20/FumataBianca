@@ -33,7 +33,7 @@
 2. Install the required libraries:
     
     ```bash
-    pip install pynput
+    pip install keyboard
 
 3. Run the game:
     ```bash
