@@ -1,6 +1,8 @@
 import random
-import sys
 import time
+
+import sys
+import keyboard
 
 import shutil
 import textwrap
@@ -12,6 +14,10 @@ class Utility:
         Utility.fixed_print("Errore. Inserisci una scelta valida.")
 
     @staticmethod
+    def name_err():
+        print("Errore. Inserisci un nome valido.")
+
+    @staticmethod
     def fixed_print(text):
         width = shutil.get_terminal_size().columns
 
@@ -19,9 +25,17 @@ class Utility:
         print(formatted_text)
 
     @staticmethod
+    def go_on():
+        input("\n------------------------------"
+              "\nPREMI INVIO PER ANDARE AVANTI."
+              "\n------------------------------"
+              "\n")
+
+        print("\033[6A")
+
+    @staticmethod
     def timeout():
         time.sleep(5)
-        pass
 
     def print_points(self):
         print(self)
@@ -29,6 +43,11 @@ class Utility:
     @staticmethod
     def gameover():
         sys.exit()
+
+    @staticmethod
+    def quitgame():
+        if keyboard.record(until='esc'):
+            sys.exit()
 
 
 coin = [
@@ -469,7 +488,14 @@ Consenso totale: {self.consensus}
 
 
 class Game:
-    username = input("Scegli il tuo nome\n")
+    username = ""
+    while True:
+        check_username = input("Scegli il tuo nome\n")
+        if check_username != "":
+            username = check_username.capitalize()
+            break
+        else:
+            Utility.name_err()
 
     def __init__(self):
         self.player = Player(Game.username, PlayerValues.voc(), PlayerValues.pop_agr(), PlayerValues.pol_infl(),
@@ -499,7 +525,7 @@ class Game:
                             "Sta a te, quindi, decidere che carriera intraprendere…"
                             "\n")
 
-        Utility.timeout()
+        Utility.go_on()
 
         while True:
             choice = input('Il tuo cuore è giovane, ma la vita ti chiede già di scegliere: quale strada '
@@ -512,7 +538,7 @@ class Game:
                                     "tonaca.")
                 self.player.ispriest = True
 
-                Utility.timeout()
+                Utility.go_on()
 
                 Game.Priest(self.player).why_priest()
                 break
@@ -545,7 +571,7 @@ class Game:
                                     "aspetti e,"
                                     "e profetizza l'arrivo di un nemico che invaderà l'Italia dalle alpi. ")
 
-                Utility.timeout()
+                Utility.go_on()
 
                 choice = input("Cosa fai?"
                                "\n1 - Lo difendi dalle accuse"
@@ -569,7 +595,7 @@ class Game:
                     self.player.issoldier = False
                     self.player.ispriest = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     Game.Priest(self.player).why_priest()
                     break
@@ -591,7 +617,7 @@ class Game:
                         self.player.issoldier = False
                         self.player.ispriest = True
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         Game.Priest(self.player).why_priest()
                     elif prob > 95:
@@ -655,7 +681,7 @@ class Game:
                         Player.add_points(self.player, 3, 0, 0, 0, 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         Game.Priest(self.player).why_priest()
                         break
@@ -675,7 +701,7 @@ class Game:
                     Player.add_points(self.player, 1, 0, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     Game.Priest(self.player).why_priest()
                     break
@@ -708,7 +734,7 @@ class Game:
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "2":
@@ -722,13 +748,13 @@ class Game:
                         "se il Signore ti ha davvero chiamato… forse, lo ha fatto con la voce della fame."
                         "\n")
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 else:
                     Utility.error()
 
-            Utility.timeout()
+            Utility.go_on()
             self.sermon()
 
         def sermon(self):
@@ -755,7 +781,7 @@ class Game:
                     Player.add_points(self.player, 2, 3, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "2":
@@ -773,13 +799,13 @@ class Game:
                     Player.add_points(self.player, 0, 1, (-2), 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 else:
                     Utility.error()
 
-            Utility.timeout()
+            Utility.go_on()
             self.present()
 
         def present(self):
@@ -807,7 +833,7 @@ class Game:
                     Player.add_points(self.player, 1, 2, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "2":
@@ -843,13 +869,13 @@ class Game:
                     Player.add_points(self.player, 0, 0, (-1), 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 else:
                     Utility.error()
 
-            Utility.timeout()
+            Utility.go_on()
             self.become_parson()
 
         def become_parson(self):
@@ -876,7 +902,7 @@ class Game:
                     Utility.print_points(self.player.print_stats())
                     self.player.isparson = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.cardinal_letter()
                     break
@@ -893,7 +919,7 @@ class Game:
                     Player.add_points(self.player, 0, 0, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.annul_marriage()
                     break
@@ -924,7 +950,7 @@ class Game:
                     Player.add_points(self.player, (-1), 0, 2, 2, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.annul_marriage()
                     break
@@ -941,7 +967,7 @@ class Game:
                     Player.add_points(self.player, 0, 0, 0, 1, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.annul_marriage()
                     break
@@ -955,7 +981,7 @@ class Game:
                         "sigillato."
                         "\n")
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.annul_marriage()
                     break
@@ -1006,7 +1032,7 @@ class Game:
 
                         Utility.gameover()
                     else:
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_bishop()
                     break
@@ -1032,7 +1058,7 @@ class Game:
                             "difende. E qualcuno, in silenzio, inizia a credere che tu sia davvero diverso."
                             "\n")
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_bishop()
                     break
@@ -1049,7 +1075,7 @@ class Game:
                     Player.add_points(self.player, 0, 0, (-3), 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.try_become_bishop()
                     break
@@ -1083,7 +1109,7 @@ class Game:
                 self.player.ispriest = False
                 self.player.isbishop = True
 
-                Utility.timeout()
+                Utility.go_on()
 
                 Game.Bishop(self.player).residence()
             elif self.player.consensus < 20:
@@ -1142,7 +1168,7 @@ class Game:
                     Player.add_points(self.player, 2, 0, 0, 0, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.taxation()
                     break
@@ -1158,7 +1184,7 @@ class Game:
                     Player.add_points(self.player, 0, (-2), 0, 3, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.help_cardinal()
                     break
@@ -1187,7 +1213,7 @@ class Game:
                     Player.add_points(self.player, 0, (-2), 0, 1, 2)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "2":
@@ -1201,7 +1227,7 @@ class Game:
                     Player.add_points(self.player, 0, 2, 0, (-1), 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 else:
@@ -1235,7 +1261,7 @@ class Game:
                     Player.add_points(self.player, 0, (-1), (-1), 1, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "2":
@@ -1247,7 +1273,7 @@ class Game:
                     Player.add_points(self.player, 3, 1, 0, (-2), 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 else:
@@ -1280,7 +1306,7 @@ class Game:
                         "\n")
                     self.was_neutral = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1297,7 +1323,7 @@ class Game:
                     Player.add_points(self.player, 0, (-1), 0, (-2), 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.opposer()
                     break
@@ -1312,7 +1338,7 @@ class Game:
                     Player.add_points(self.player, (-2), (-1), 0, 3, 0)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     break
                 elif choice == "4":
@@ -1327,7 +1353,7 @@ class Game:
                     Player.add_points(self.player, 0, 0, 0, 0, 3)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.ambassador()
                     break
@@ -1359,7 +1385,7 @@ class Game:
                         Utility.print_points(self.player.print_stats())
                         self.was_opposer = True
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.lega_santa()
                         break
@@ -1393,7 +1419,7 @@ class Game:
                     Player.add_points(self.player, 0, 0, 0, (-1), 2)
                     Utility.print_points(self.player.print_stats())
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1416,7 +1442,7 @@ class Game:
                         "Guadagnandoti il ripetto del soglio pontificio"
                         "\n")
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.front_battle()
                     break
@@ -1430,7 +1456,7 @@ class Game:
 
                     self.battle_neutral = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1494,7 +1520,7 @@ class Game:
                 self.player.isbishop = False
                 self.player.iscardinal = True
 
-                Utility.timeout()
+                Utility.go_on()
 
                 Game.Conclave(self.player)
             else:
@@ -1520,7 +1546,7 @@ class Game:
                     Utility.print_points(self.player.print_stats())
                     self.was_france_ambassador = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1551,7 +1577,7 @@ class Game:
                     Utility.print_points(self.player.print_stats())
                     self.was_sri_strong = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1564,7 +1590,7 @@ class Game:
                     Utility.print_points(self.player.print_stats())
                     self.was_sri_calm = True
 
-                    Utility.timeout()
+                    Utility.go_on()
 
                     self.lega_santa()
                     break
@@ -1597,7 +1623,7 @@ class Game:
                         Player.add_points(self.player, (-1), 0, 2, 2, 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1613,7 +1639,7 @@ class Game:
                         Player.add_points(self.player, (-1), (-2), (-1), 2, 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1629,7 +1655,7 @@ class Game:
                         Player.add_points(self.player, (-1), 0, (-2), 1, (-2))
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1645,7 +1671,7 @@ class Game:
                         Player.add_points(self.player, 1, 1, 0, 1, 2)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1662,7 +1688,7 @@ class Game:
                         Player.add_points(self.player, (-1), (-2), 0, 1, 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1678,7 +1704,7 @@ class Game:
                         Player.add_points(self.player, (-1), 0, 0, 2, 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1692,7 +1718,7 @@ class Game:
                             "è solo all’inizio."
                             "\n")
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1711,7 +1737,7 @@ class Game:
                         Player.add_points(self.player, 2, 2, 0, (-1), 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1727,7 +1753,7 @@ class Game:
                         Player.add_points(self.player, 2, 1, 0, (-2), 2)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1743,7 +1769,7 @@ class Game:
                         Player.add_points(self.player, (-1), 2, 0, (-2), 2)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1759,7 +1785,7 @@ class Game:
                         Player.add_points(self.player, 3, 0, (-2), (-2), 1)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1775,7 +1801,7 @@ class Game:
                         Player.add_points(self.player, 2, 3, 2, (-2), 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1791,7 +1817,7 @@ class Game:
                         Player.add_points(self.player, 3, (-2), 0, (-2), 0)
                         Utility.print_points(self.player.print_stats())
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1805,7 +1831,7 @@ class Game:
                             "non si spegne."
                             "\n")
 
-                        Utility.timeout()
+                        Utility.go_on()
 
                         self.try_become_cardinal()
                         break
@@ -1829,7 +1855,7 @@ class Game:
                 self.player.isbishop = False
                 self.player.iscardinal = True
 
-                Utility.timeout()
+                Utility.go_on()
 
                 Game.Conclave(self.player).compare()
 
@@ -1871,7 +1897,7 @@ class Game:
                 "tensione di un nuovo giorno di incertezza."
                 "\n")
 
-            Utility.timeout()
+            Utility.go_on()
 
             if self.player.iscardinal:
                 for i in cardinals.values():
