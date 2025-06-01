@@ -14,3 +14,33 @@
 - Strategic and moral choices affect your ecclesiastical and political ascent.
 - Multiple narrative branches: priest or soldier? Saint or schemer?
 - Choices have consequences, wrong moves can end your journey.
+
+## Installation Guide
+
+### Prerequisites
+
+- Python 3.7 or higher installed on your system.
+- `pip` package manager.
+
+### Steps
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Astronomy20/FumataBianca.git
+   cd FumataBianca
+   
+2. Create a virtual environment (optional but recommended):
+    
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3. Install the required libraries:
+    
+    ```bash
+    pip install keyboard
+
+4. Run the game:
+    ```bash
+    python main.py
