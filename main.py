@@ -554,11 +554,13 @@ class Game:
                 Utility.fixed_print("Da giovane, hai dovuto scegliere una strada. Il destino ti ha posto davanti alla "
                                     "tonaca.")
                 self.player.ispriest = True
+                self.player.isnothing = False
 
                 Game.Priest(self.player).why_priest()
                 break
             elif choice == "2":
                 self.player.issoldier = True
+                self.player.isnothing = False
 
                 if city == "Firenze":
                     Game.Soldier(self.player).firenze()
@@ -1125,6 +1127,7 @@ class Game:
                                     "\n")
 
                 self.player.ispriest = False
+                self.player.isparson = False
                 self.player.isbishop = True
 
                 Utility.go_on()
@@ -1544,7 +1547,7 @@ class Game:
 
                 Utility.go_on()
 
-                Game.Conclave(self.player)
+                Game.Conclave.compare(self.player)
             else:
                 Utility.error()
 
@@ -1874,8 +1877,7 @@ class Game:
 
         def try_become_cardinal(self):
             if self.player.isbishop and self.player.consensus >= 40:
-                Utility.fixed_print(
-                    "Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
+                Utility.fixed_print("Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
                     "conferisce il prezioso anello rosso. Quel segno di fuoco non è solo un ornamento, "
                     "ma un simbolo di potere e responsabilità che ora porti con dignità sulle dita.Sei entrato "
                     "nell’élite della Chiesa, tra coloro che plasmano il destino della fede e delle nazioni. I tuoi "
@@ -1884,12 +1886,9 @@ class Game:
                     "lontana, e tu sei pronto a salire, un gradino alla volta, verso quel sogno."
                     "\n")
 
-                self.player.isbishop = False
-                self.player.iscardinal = True
-
                 Utility.go_on()
 
-                Game.Conclave(self.player).compare()
+                Game.Conclave.compare(self.player)
             elif self.player.isbishop and self.player.consensus < 40:
                 Utility.fixed_print("Hai varcato soglie sacre con cuore devoto, ma con passi esitanti. Hai indossato "
                                     "l’abito dell’umiltà come una seconda pelle, ma non hai mai ricevuto il sigillo "
@@ -1924,25 +1923,26 @@ class Game:
             self.player.isbishop = False
             self.player.iscardinal = True
 
-            Utility.fixed_print(
-                "Le porte del Vaticano si chiudono con un tonfo secco, isolando i cardinali dal mondo esterno. La "
-                "Cappella Sistina si trasforma in un teatro di silenzi pesanti, dove ogni sguardo pesa come un "
-                "giudizio, e ogni sussurro può essere un segreto o una minaccia.Fuori, Roma attende con il fiato "
-                "sospeso, consapevole che lì dentro si sta decidendo il destino della Chiesa e forse del mondo "
-                "intero. Le fumate bianche e nere si alternano, segnali misteriosi di speranza o di stallo.Ore e "
-                "giorni si susseguono, mentre le voci si intrecciano tra alleanze oscure e promesse non dette. Il "
-                "tuo cuore batte forte, sapendo che una sola parola, un solo voto, può cambiare tutto.Infine, "
-                "arriva il momento dello spoglio. I cardinali si raccolgono attorno al grande tavolo, "
-                "le mani tremano appena, gli occhi si incrociano con un misto di speranza e paura.Una pergamena "
-                "dopo l’altra, i nomi vengono letti ad alta voce. Ogni voto è un colpo che riecheggia nella "
-                "cappella: c’è chi trattiene il respiro, chi stringe i pugni, chi prega silenziosamente. Il tuo "
-                "nome potrebbe comparire da un momento all’altro.Il silenzio si fa quasi palpabile, rotto solo dal "
-                "fruscio dei fogli e dal sussurro delle promesse infrante. Il destino di secoli è nelle mani di "
-                "quel piccolo gruppo, e ogni voto pesa come un macigno.Il cuore ti batte forte, il respiro si fa "
-                "corto, mentre l’ultimo voto viene pronunciato.Un momento di attesa estenuante, poi la sentenza: "
-                "qualcuno è stato scelto. O forse no, e la fumata tornerà a salire, nera, portando con sé la "
-                "tensione di un nuovo giorno di incertezza."
-                "\n")
+            Utility.fixed_print("Le porte del Vaticano si chiudono con un tonfo secco, isolando i cardinali dal mondo "
+                                "esterno. La Cappella Sistina si trasforma in un teatro di silenzi pesanti, "
+                                "dove ogni sguardo pesa come un giudizio, e ogni sussurro può essere un segreto o una "
+                                "minaccia. Fuori, Roma attende con il fiato sospeso, consapevole che lì dentro si sta "
+                                "decidendo il destino della Chiesa e forse del mondo intero. Le fumate bianche e nere "
+                                "si alternano, segnali misteriosi di speranza o di stallo. Ore e giorni si "
+                                "susseguono, mentre le voci si intrecciano tra alleanze oscure e promesse non dette. "
+                                "Il tuo cuore batte forte, sapendo che una sola parola, un solo voto, può cambiare "
+                                "tutto. Infine, arriva il momento dello spoglio. I cardinali si raccolgono attorno al "
+                                "grande tavolo, le mani tremano appena, gli occhi si incrociano con un misto di "
+                                "speranza e paura. Una pergamena dopo l’altra, i nomi vengono letti ad alta voce. "
+                                "Ogni voto è un colpo che riecheggia nella cappella: c’è chi trattiene il respiro, "
+                                "chi stringe i pugni, chi prega silenziosamente. Il tuo nome potrebbe comparire da un "
+                                "momento all’altro. Il silenzio si fa quasi palpabile, rotto solo dal fruscio dei "
+                                "fogli e dal sussurro delle promesse infrante. Il destino di secoli è nelle mani di "
+                                "quel piccolo gruppo, e ogni voto pesa come un macigno. Il cuore ti batte forte, "
+                                "il respiro si fa corto, mentre l’ultimo voto viene pronunciato. Un momento di attesa "
+                                "estenuante, poi la sentenza: qualcuno è stato scelto. O forse no, e la fumata "
+                                "tornerà a salire, nera, portando con sé la tensione di un nuovo giorno di incertezza."
+                                "\n")
 
             Utility.go_on()
 
