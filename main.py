@@ -11,18 +11,24 @@ import textwrap
 class Utility:
     @staticmethod
     def error():
-        Utility.fixed_print("Errore. Inserisci una scelta valida.")
+        Utility.fixed_print("--ERRORE: Inserisci una scelta valida--\n")
 
     @staticmethod
     def name_err():
-        print("Errore. Inserisci un nome valido.")
+        print("--ERRORE: Inserisci un nome valido--")
 
     @staticmethod
-    def fixed_print(text):
-        width = shutil.get_terminal_size().columns
+    def check_valid_name():
+        while True:
+            check_username = input("Scegli il tuo nome\n").strip()
+            if any(char.isalpha() for char in check_username):
+                username = check_username.capitalize()
+                print("\n")
+                break
+            else:
+                Utility.name_err()
 
-        formatted_text = textwrap.fill(text, width=width)
-        print(formatted_text)
+        return username
 
     @staticmethod
     def go_on():
@@ -31,7 +37,15 @@ class Utility:
               "\n------------------------------"
               "\n")
 
-        print("\033[6A")
+        for _ in range(4):
+            print("\033[1A\033[2K", end="")
+
+    @staticmethod
+    def fixed_print(text):
+        width = shutil.get_terminal_size().columns
+
+        formatted_text = textwrap.fill(text, width=width)
+        print(formatted_text)
 
     @staticmethod
     def timeout():
@@ -169,7 +183,7 @@ class Dices:
 
             while time.time() < end_time:
                 for face in coin:
-                    sys.stdout.write("\033[5A")  # Move cursor up 4 lines
+                    sys.stdout.write("\033[5A")
                     for line in face:
                         sys.stdout.write("\r" + line + " " * 10 + "\n")
                     sys.stdout.flush()
@@ -485,14 +499,7 @@ Consenso totale: {self.consensus}
 
 
 class Game:
-    username = ""
-    while True:
-        check_username = input("Scegli il tuo nome\n")
-        if check_username != "":
-            username = check_username.capitalize()
-            break
-        else:
-            Utility.name_err()
+    username = Utility.check_valid_name()
 
     def __init__(self):
         self.player = Player(Game.username, PlayerValues.voc(), PlayerValues.pop_agr(), PlayerValues.pol_infl(),
