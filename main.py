@@ -290,23 +290,23 @@ class Dices:
 class CardinalsValues:
     @staticmethod
     def voc():
-        return random.randint(40, 60)
+        return random.randint(5, 10)
 
     @staticmethod
     def pop_agr():
-        return random.randint(40, 60)
+        return random.randint(5, 10)
 
     @staticmethod
     def pol_infl():
-        return random.randint(40, 60)
+        return random.randint(5, 10)
 
     @staticmethod
     def cur_rel():
-        return random.randint(40, 60)
+        return random.randint(5, 10)
 
     @staticmethod
     def dipl_skills():
-        return random.randint(40, 60)
+        return random.randint(5, 10)
 
 
 cardinals = {
@@ -513,6 +513,12 @@ class Player:
 class Game:
     username = Utility.check_valid_name()
 
+    dice_voc = "vocazione"
+    dice_pop_agr = "consenso popolare"
+    dice_pol_infl = "influenza politica"
+    dice_cur_rel = "rilevanza curiale"
+    dice_dipl_skills = "abilità diplomatica"
+
     def __init__(self):
         self.player = Player(Game.username, PlayerValues.voc(), PlayerValues.pop_agr(), PlayerValues.pol_infl(),
                              PlayerValues.cur_rel(), PlayerValues.dipl_skills())
@@ -630,7 +636,7 @@ class Game:
                             "evitato lo scontro, ma anche la gloria. Sei un mediatore, non un profeta."
                             "\n")
 
-                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 0, 0, 0, 0)
+                        Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0, 0)
                         Utility.print_points(self.player)
                         self.player.issoldier = False
                         self.player.ispriest = True
@@ -716,7 +722,7 @@ class Game:
                                         "\n")
                     self.player.issoldier = False
                     self.player.ispriest = True
-                    Player.add_points(self.player, Dices.face_2("vocazione"), 0, 0, 0, 0)
+                    Player.add_points(self.player, Dices.face_2(Game.dice_voc), 0, 0, 0, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -753,7 +759,7 @@ class Game:
                                         "servire qualcosa di eterno."
                                         "\n")
 
-                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), 0, 0, 0, 0)
+                    Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0, 0)
                     Utility.print_points(self.player)
 
                     break
@@ -799,7 +805,7 @@ class Game:
                                         "tu, senza cercarlo, ti stai avvicinando."
                                         "\n")
 
-                    Player.add_points(self.player, 2, Dices.face_4("consenso popolare", "+"), 0, 0, 0)
+                    Player.add_points(self.player, 2, Dices.face_4(Game.dice_pop_agr, "+"), 0, 0, 0)
                     Utility.print_points(self.player)
 
                     break
@@ -815,7 +821,7 @@ class Game:
                                         "sermone, diventi il volto di un tempo che cambia. O di una tempesta in arrivo."
                                         "\n")
 
-                    Player.add_points(self.player, 0, 1, Dices.face_4("influenza politica", "-"), 0, 0)
+                    Player.add_points(self.player, 0, 1, Dices.face_4(Game.dice_pol_infl, "-"), 0, 0)
                     Utility.print_points(self.player)
 
                     break
@@ -914,8 +920,8 @@ class Game:
                                         "proprio lì, tra chi ti ha visto nascere, che inizia la tua vera ascesa."
                                         "\n")
 
-                    Player.add_points(self.player, 0, Dices.face_4("consenso popolare", "+"),
-                                      Dices.face_4("influenza politica", "+"), 0, 0)
+                    Player.add_points(self.player, 0, Dices.face_4(Game.dice_pop_agr, "+"),
+                                      Dices.face_4(Game.dice_pol_infl, "+"), 0, 0)
                     Utility.print_points(self.player)
                     self.player.isparson = True
 
@@ -965,7 +971,7 @@ class Game:
                         "strada verso Roma non è più un sogno. È una mappa, e tu hai appena ottenuto una guida."
                         "\n")
 
-                    Player.add_points(self.player, Dices.face_2("vocazione"), 0, 2, 2, 0)
+                    Player.add_points(self.player, Dices.face_2(Game.dice_voc), 0, 2, 2, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1275,7 +1281,7 @@ class Game:
                                         "non sono così contenti di ciò, la voce si spande e un criminale in paese non "
                                         "è gradito, specialmente se ciò può inasprire i rapporti con le altre signorie."
                                         "\n")
-                    Player.add_points(self.player, 0, (-1), Dices.face_2("influenza politica"), 1, 0)
+                    Player.add_points(self.player, 0, (-1), Dices.face_2(Game.dice_pol_infl), 1, 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1287,7 +1293,7 @@ class Game:
                                         "apprezzato dai cittadini che ti vedono come un importante figura per loro e "
                                         "per la tua città."
                                         "\n")
-                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), 1, 0, (-2), 0)
+                    Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 1, 0, (-2), 0)
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1337,7 +1343,7 @@ class Game:
                         "da rimuovere."
                         "\n")
 
-                    Player.add_points(self.player, Dices.face_4("vocazione", "+"), Dices.face_2("consenso popolare"), 0,
+                    Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), Dices.face_2(Game.dice_pop_agr), 0,
                                       (-2), 0)
                     Utility.print_points(self.player)
 
@@ -1368,7 +1374,7 @@ class Game:
                                         "dove un passo falso può costare tutto."
                                         "\n")
 
-                    Player.add_points(self.player, 0, 0, 0, 0, Dices.face_6("abilità diplomatica", "+"))
+                    Player.add_points(self.player, 0, 0, 0, 0, Dices.face_6(Game.dice_dipl_skills, "+"))
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1387,6 +1393,8 @@ class Game:
                                "\n2 - Nell'ombra"
                                "\n")
 
+                self.was_opposer = True
+
                 if choice == "1":
                     prob = random.randint(1, 100)
                     if prob <= 70:
@@ -1402,7 +1410,6 @@ class Game:
 
                         Player.add_points(self.player, 0, 3, 0, 0, 0)
                         Utility.print_points(self.player)
-                        self.was_opposer = True
 
                         Utility.go_on()
 
@@ -1501,7 +1508,7 @@ class Game:
                         "ritiraru, ma nonostante ciò sipravvivo fino, dopo dei mesi, a riprenderti completamente."
                         "\n")
 
-                    Player.add_points(self.player, 3, 0, (-1), Dices.face_4("rilevanza curiale", "-"), 0)
+                    Player.add_points(self.player, 3, 0, (-1), Dices.face_4(Game.dice_cur_rel, "-"), 0)
                     Utility.print_points(self.player)
                     self.battle_injured = True
 
@@ -1547,7 +1554,7 @@ class Game:
 
                 Utility.go_on()
 
-                Game.Conclave.compare(self.player)
+                Game.Conclave(self.player).compare()
             else:
                 Utility.error()
 
@@ -1600,7 +1607,7 @@ class Game:
                         "si oppone."
                         "\n")
 
-                    Player.add_points(self.player, 0, 0, 0, 2, Dices.face_2("abilità diplomatica"))
+                    Player.add_points(self.player, 0, 0, 0, 2, Dices.face_2(Game.dice_dipl_skills))
                     Utility.print_points(self.player)
                     self.was_sri_strong = True
 
@@ -1613,7 +1620,7 @@ class Game:
                                         "mantenere la pace e rafforzare la fede."
                                         "\n")
 
-                    Player.add_points(self.player, 0, Dices.face_2("consenso popolare"), 2, 0, 1)
+                    Player.add_points(self.player, 0, Dices.face_2(Game.dice_pop_agr), 2, 0, 1)
                     Utility.print_points(self.player)
                     self.was_sri_calm = True
 
@@ -1679,7 +1686,7 @@ class Game:
                             "silenziosi."
                             "\n")
 
-                        Player.add_points(self.player, (-1), 0, Dices.face_4("influenza politica", "-"), 1, (-2))
+                        Player.add_points(self.player, (-1), 0, Dices.face_4(Game.dice_pol_infl, "-"), 1, (-2))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1695,7 +1702,7 @@ class Game:
                             "silenziosi."
                             "\n")
 
-                        Player.add_points(self.player, 1, 1, 0, Dices.face_2("rilevanza curiale"), 2)
+                        Player.add_points(self.player, 1, 1, 0, Dices.face_2(Game.dice_cur_rel), 2)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1764,7 +1771,7 @@ class Game:
                             "è passato. Ora ti giochi tutto."
                             "\n")
 
-                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 2, 0, (-1), 0)
+                        Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 2, 0, (-1), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1780,8 +1787,8 @@ class Game:
                             "forse sarai ricordato come colui che ha avuto il coraggio di dire no."
                             "\n")
 
-                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 1, 0, (-2),
-                                          Dices.face_4("abilità diplomatica", "+"))
+                        Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 1, 0, (-2),
+                                          Dices.face_4(Game.dice_dipl_skills, "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1797,7 +1804,7 @@ class Game:
                             "forse sarai ricordato come colui che ha avuto il coraggio di dire no."
                             "\n")
 
-                        Player.add_points(self.player, 1, 2, 0, (-2), Dices.face_4("abilità diplomatica", "+"))
+                        Player.add_points(self.player, 1, 2, 0, (-2), Dices.face_4(Game.dice_dipl_skills, "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1829,8 +1836,8 @@ class Game:
                             "meno guerriera."
                             "\n")
 
-                        Player.add_points(self.player, Dices.face_4("vocazione", "+"), 3, 2,
-                                          Dices.face_4("rilevanza curiale", "-"), 0)
+                        Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 3, 2,
+                                          Dices.face_4(Game.dice_cur_rel, "-"), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1846,7 +1853,7 @@ class Game:
                             "ripresa incerta. Il rischio è grande, ma la tua causa vale ogni dolore."
                             "\n")
 
-                        Player.add_points(self.player, Dices.face_6("vocazione", "+"), 1, 0, (-2), 0)
+                        Player.add_points(self.player, Dices.face_6(Game.dice_voc, "+"), 1, 0, (-2), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1863,7 +1870,7 @@ class Game:
                             "non si spegne."
                             "\n")
 
-                        Player.add_points(self.player, 1, Dices.face_2("consenso popolare"), (-1), (-1), 0)
+                        Player.add_points(self.player, 1, Dices.face_2(Game.dice_pop_agr), (-1), (-1), 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1877,7 +1884,8 @@ class Game:
 
         def try_become_cardinal(self):
             if self.player.isbishop and self.player.consensus >= 40:
-                Utility.fixed_print("Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
+                Utility.fixed_print(
+                    "Le campane di Roma risuonano con un’eco solenne e profonda, mentre il Papa stesso ti "
                     "conferisce il prezioso anello rosso. Quel segno di fuoco non è solo un ornamento, "
                     "ma un simbolo di potere e responsabilità che ora porti con dignità sulle dita.Sei entrato "
                     "nell’élite della Chiesa, tra coloro che plasmano il destino della fede e delle nazioni. I tuoi "
@@ -1888,7 +1896,7 @@ class Game:
 
                 Utility.go_on()
 
-                Game.Conclave.compare(self.player)
+                Game.Conclave(self.player).compare()
             elif self.player.isbishop and self.player.consensus < 40:
                 Utility.fixed_print("Hai varcato soglie sacre con cuore devoto, ma con passi esitanti. Hai indossato "
                                     "l’abito dell’umiltà come una seconda pelle, ma non hai mai ricevuto il sigillo "
@@ -1957,7 +1965,7 @@ class Game:
                         points += 1
                     if self.player.pop_agr >= self.card_pop_agr:
                         points += 1
-                    if self.player.card_pol_infl >= self.card_pol_infl:
+                    if self.player.pol_infl >= self.card_pol_infl:
                         points += 1
                     if self.player.cur_rel >= self.card_cur_rel:
                         points += 1
@@ -1987,9 +1995,11 @@ class Game:
                 "non sei più tu: è il Papa.Il Cardinale Protodiacono si affaccia al balcone centrale e "
                 "annuncia:“Habemus Papam!”La piazza esplode in un boato di giubilo.Campane. Lacrime. Fedi che si "
                 "rinnovano.Hai vinto.Non solo il gioco. Hai conquistato il cuore della Chiesa.Il mondo ora ti "
-                "guarda. Ogni parola, ogni gesto sarà storia.FINE DEL GIOCOMa solo l’inizio del pontificato.Che Dio "
+                "guarda. Ogni parola, ogni gesto sarà storia. Ma solo l’inizio del pontificato.Che Dio "
                 "ti guidi… Santità."
                 "\n")
+
+            Utility.fixed_print("HAI VINTO!")
 
             Utility.gameover()
 
