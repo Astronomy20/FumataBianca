@@ -1,3 +1,4 @@
+import json
 import random
 import time
 import sys
@@ -63,6 +64,29 @@ class Utility:
     @staticmethod
     def gameover():
         sys.exit()
+
+
+class LoadDialogs:
+    @staticmethod
+    def choose_language():
+        lang = input("Choose your language:"
+                     "\n1 - English"
+                     "\n2 - Italian"
+                     "\n")
+
+        if lang == "1":
+            LoadDialogs.load_dialogs("en")
+        elif lang == "2":
+            LoadDialogs.load_dialogs("it")
+        else:
+            print("--ERROR: Enter a valid choice--")
+
+    @staticmethod
+    def load_dialogs(lang):
+        with open(f'./lang/{lang}.json', 'r', encoding='utf_8') as lang:
+            dialogs = json.load(lang)
+
+        return dialogs
 
 
 coin = [
