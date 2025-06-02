@@ -1450,6 +1450,6 @@ class Game:
             Utility.gameover()
 
 
-# Game star
+# Game start
 game = Game()
 game.start()
