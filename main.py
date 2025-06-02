@@ -260,9 +260,15 @@ class Dices:
         Dices.print_final_face(d4_faces[result - 1], 4)
 
         if val == "+":
-            print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
+            if result == 1:
+                print(f"\nÈ uscito {result}! Guadagni {result} punto {point_type}.")
+            else:
+                print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
         elif val == "-":
-            print(f"\nÈ uscito {result}! Perdi {result} punti {point_type}.")
+            if result == 1:
+                print(f"\nÈ uscito {result}! Guadagni {result} punto {point_type}.")
+            else:
+                print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
         else:
             Utility.error()
 
@@ -278,9 +284,15 @@ class Dices:
         Dices.print_final_face(d6_faces[result - 1], 6)
 
         if val == "+":
-            print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
+            if result == 1:
+                print(f"\nÈ uscito {result}! Guadagni {result} punto {point_type}.")
+            else:
+                print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
         elif val == "-":
-            print(f"\nÈ uscito {result}! Perdi {result} punti {point_type}.")
+            if result == 1:
+                print(f"\nÈ uscito {result}! Guadagni {result} punto {point_type}.")
+            else:
+                print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
         else:
             Utility.error()
 
