@@ -33,7 +33,7 @@ class Dialogs:
 
     @staticmethod
     def load_dialogs(lang):
-        with open(f'./lang/{lang}.json', 'r', encoding='utf_8') as lang:
+        with open(f'./lang/{lang}].json', 'r', encoding='utf_8') as lang:
             dialogs = json.load(lang)
 
         return dialogs
@@ -48,18 +48,15 @@ class Utility:
         print(Dialogs.load_dialogs(choose_lang)["err"])
 
     @staticmethod
-    def name_err():
-        print(Dialogs.load_dialogs(choose_lang)["name_err"])
-
-    @staticmethod
     def check_valid_name(input_name):
+        check_username = input_name
         while True:
-            check_username = input_name.strip()
             if any(char.isalpha() for char in check_username):
                 username = check_username.capitalize()
                 break
             else:
-                Utility.name_err()
+                print(Dialogs.load_dialogs(choose_lang)["name_err"])
+                check_username = input(Dialogs.load_dialogs(choose_lang)["name"])
 
         return username
 
@@ -646,7 +643,7 @@ class Game:
 
                     Utility.go_on()
 
-                    Game.Priest(self.player).why_priest()
+                    Game.Priest(self.player).sermon()
 
                     break
                 elif choice == "2":
@@ -661,7 +658,7 @@ class Game:
 
                         Utility.go_on()
 
-                        Game.Priest(self.player).why_priest()
+                        Game.Priest(self.player).sermon()
                     elif prob > 95:
                         Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["firenze_2_neg"])
 
