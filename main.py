@@ -264,7 +264,9 @@ class Dices:
 
     @staticmethod
     def face_2(point_type):
-        input(Dialogs.load_dialogs(Game.lang)["coin_launch_input"])
+        input(Dialogs.load_dialogs(Game.lang)["coin_launch_input"].format(
+            point_type=point_type
+        ))
 
         Dices.roll_animation(2)
         result = Dices.roll_dice(2)
@@ -285,7 +287,16 @@ class Dices:
 
     @staticmethod
     def face_4(point_type, val):
-        input(Dialogs.load_dialogs(Game.lang)["dice_launch_input"])
+        if val == "+":
+            input(Dialogs.load_dialogs(Game.lang)["dice_launch_input_pos"].format(
+                point_type=point_type
+            ))
+        elif val == "-":
+            input(Dialogs.load_dialogs(Game.lang)["dice_launch_input_neg"].format(
+                point_type=point_type
+            ))
+        else:
+            Utility.error()
 
         Dices.roll_animation(4)
         result = Dices.roll_dice(4)
@@ -321,7 +332,16 @@ class Dices:
 
     @staticmethod
     def face_6(point_type, val):
-        input(Dialogs.load_dialogs(Game.lang)["dice_launch_input"])
+        if val == "+":
+            input(Dialogs.load_dialogs(Game.lang)["dice_launch_input_pos"].format(
+                point_type=point_type
+            ))
+        elif val == "-":
+            input(Dialogs.load_dialogs(Game.lang)["dice_launch_input_neg"].format(
+                point_type=point_type
+            ))
+        else:
+            Utility.error()
 
         Dices.roll_animation(6)
         result = Dices.roll_dice(6)

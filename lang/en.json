@@ -13,8 +13,9 @@
   "go_on": "\n-----------------------\nPRESS ENTER TO CONTINUE\n-----------------------\n",
 
 
-  "dice_launch_input": "\nPress Enter to roll the dice...",
-  "coin_launch_input": "\nPress Enter to flip the coin...",
+  "dice_launch_input_pos": "\nRoll the dice to see how many {point_type} points you get.\nPress Enter to roll the dice...",
+  "dice_launch_input_neg": "\nRoll the dice to see how many {point_type} points you lose.\nPress Enter to roll the dice...",
+  "coin_launch_input": "\nFlip the coin to see if you gain or lose a point {point_type}.\nPress Enter to flip the coin...",
 
   "dice_output_pos": "\nYou rolled {result}! You gain {result} {point_type} points.",
   "dice_output_pos_1": "\nYou rolled {result}! You gain {result} {point_type} point.",
