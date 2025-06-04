@@ -10,7 +10,10 @@ import textwrap
 class Dialogs:
     langs = {
         "Italian": "it",
-        "English": "en"
+        "English": "en",
+        "Spanish": "es",
+        "French": "fr",
+        "German": "de"
     }
 
     @staticmethod
