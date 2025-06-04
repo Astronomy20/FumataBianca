@@ -10,7 +10,7 @@ This document outlines planned features, improvements and ideas for future devel
 
 ## Planned Features
 
-- 🟨 Nothing to see for now
+- 🟨 Develop "Conclave" mechanics
 
 ## Ideas Under Consideration
 
