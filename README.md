@@ -15,6 +15,8 @@
 - Multiple narrative branches: priest or soldier? Saint or schemer?
 - Choices have consequences, wrong moves can end your journey.
 
+For future additions look at [Future Additions](https://github.com/Astronomy20/FumataBianca/blob/master/FUTURE_ADDITIONS.md)
+
 ## Installation Guide
 
 ### Prerequisites
