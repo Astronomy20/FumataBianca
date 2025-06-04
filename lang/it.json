@@ -31,6 +31,9 @@
   "dice_dipl_skills": "abilità diplomatica",
 
 
+  "point_print": "\nStatistiche del giocatore:\n  Vocazione: {voc}\n  Consenso popolare: {pop_agr}\n  Influenza politica: {pol_infl}\n  Rilevanza curiale: {cur_rel}\n  Abilità diplomatica: {dipl_skills}\n\n  Consenso totale: {consensus}\n",
+
+
   "start": "Ci troviamo a cavallo tra ‘400 e ‘500, nel cuore del Rinascimento italiano. Periodo in cui la penisola è ampiamente frammentata in una moltitudine di ducati, signorie, regni e repubbliche in costante competizione tra loro. A dominare la scena politica sono le grandi potenze di {context}, senza dimenticare la rilevanza dello Stato pontificio in centro Italia, che ha influenza in tutta Europa. Il Papato pur attraversando momenti di crisi, come lo scisma d’Occidente, è in grado di riacquistare e rafforzare il proprio potere temporale, sotto il pontificato di Sisto IV e di Alessandro VI; la politica ecclesiastica si fa sempre più attiva e ambiziosa, spesso intrecciata con gli interessi delle grandi famiglie italiane. È in questo scenario che, nel 1475, nasci tu {player_name} della famiglia {family_name}, tra le più antiche e influenti di {city}. Sei un figlio cadetto: il diritto di eredità è sfumato solo per poco. In un’età in cui ogni decisione può cambiare i destini di una famiglia, o addirittura di uno Stato, dovrai ponderare adeguatamente ogni tua mossa. Sta a te, quindi, decidere che carriera intraprendere...",
 
 

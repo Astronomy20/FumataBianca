@@ -25,10 +25,14 @@
   "coin_output_tails": "\nIt's Tails! You lose a {point_type} point.",
 
   "dice_voc": "vocation",
-  "dice_pop_agr": "popular consensus",
+  "dice_pop_agr": "popular approval",
   "dice_pol_infl": "political influence",
   "dice_cur_rel": "curial relevance",
-  "dice_dipl_skills": "diplomatic skills",
+  "dice_dipl_skills": "diplomatic skill",
+
+
+  "point_print": "\nPlayer Statistics:\n  Vocation: {voc}\n  Popular Approval: {pop_agr}\n  Political Influence: {pol_infl}\n  Curial Relevance: {cur_rel}\n  Diplomatic Skill: {dipl_skills}\n\n  Total Consensus: {consensus}\n",
+
 
 
   "start": "We find ourselves at the turn of the 15th and 16th centuries, in the heart of the Italian Renaissance. A period in which the peninsula is largely fragmented into a multitude of duchies, lordships, kingdoms and republics in constant competition with each other. Dominating the political scene are the great powers of {context}, not forgetting the relevance of the Papal States in central Italy, which has influence throughout Europe. The Papacy, despite going through moments of crisis, such as the Western Schism, is able to regain and strengthen its temporal power, under the pontificate of Sixtus IV and Alexander VI; ecclesiastical politics becomes increasingly active and ambitious, often intertwined with the interests of the great Italian families. It is in this scenario that, in 1475, you {player_name} of the {family_name} family are born, among the oldest and most influential of {city}. \nYou are a younger son: the right of inheritance has faded away only for a short time. In an age when every decision can change the destinies of a family, or even of a State, you will have to carefully weigh every move. It is up to you, therefore, to decide what career to undertake...",

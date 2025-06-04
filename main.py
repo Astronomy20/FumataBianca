@@ -81,15 +81,14 @@ class Utility:
 
     @staticmethod
     def print_points(player):
-        print(f'\nStatistiche del giocatore:'
-              f'\n  Vocazione: {player.voc}'
-              f'\n  Consenso popolare: {player.pop_agr}'
-              f'\n  Influenza politica: {player.pol_infl}'
-              f'\n  Rilevanza curiale: {player.cur_rel}'
-              f'\n  Abilità diplomatica: {player.dipl_skills}'
-              f'\n'
-              f'\n  Consenso totale: {player.consensus}'
-              '\n')
+        print(Dialogs.load_dialogs(choose_lang)["point_print"].format(
+            voc=player.voc,
+            pop_agr=player.pop_agr,
+            pol_infl=player.pol_infl,
+            cur_rel=player.cur_rel,
+            dipl_skills=player.dipl_skills,
+            consensus=player.consensus
+        ))
 
     @staticmethod
     def gameover():
@@ -292,14 +291,26 @@ class Dices:
 
         if val == "+":
             if result == 1:
-                print(f"\nÈ uscito {result}! Guadagni {result} punto {point_type}.")
+                print(Dialogs.load_dialogs(Game.lang)["dice_output_pos_1"].format(
+                    result=result,
+                    point_type=point_type
+                ))
             else:
-                print(f"\nÈ uscito {result}! Guadagni {result} punti {point_type}.")
+                print(Dialogs.load_dialogs(Game.lang)["dice_output_pos"].format(
+                    result=result,
+                    point_type=point_type
+                ))
         elif val == "-":
             if result == 1:
-                print(f"\nÈ uscito {result}! Perdi {result} punto {point_type}.")
+                print(Dialogs.load_dialogs(Game.lang)["dice_output_neg_1"].format(
+                    result=result,
+                    point_type=point_type
+                ))
             else:
-                print(f"\nÈ uscito {result}! Perdi {result} punti {point_type}.")
+                print(Dialogs.load_dialogs(Game.lang)["dice_output_neg"].format(
+                    result=result,
+                    point_type=point_type
+                ))
         else:
             Utility.error()
 
