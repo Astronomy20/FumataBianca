@@ -1,5 +1,6 @@
 import locale
 import json
+import os
 import random
 import time
 import sys
@@ -10,10 +11,7 @@ import textwrap
 class Dialogs:
     langs = {
         "Italian": "it",
-        "English": "en",
-        "Spanish": "es",
-        "French": "fr",
-        "German": "de"
+        "English": "en"
     }
 
     with open("./lang/langs.json") as file:
