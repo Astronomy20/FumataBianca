@@ -1,4 +1,4 @@
-import winreg
+import locale
 import json
 import random
 import time
@@ -8,17 +8,18 @@ import textwrap
 
 
 class Dialogs:
-    langs = [
-        "it",
-        "en"
-    ]
+    langs = {
+        "Italian": "it",
+        "English": "en"
+    }
 
     @staticmethod
     def choose_language():
-        get_def_language = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\International")
-        def_language = winreg.QueryValueEx(get_def_language, "LocaleName")[0].split('-')[0]
+        get_def_language = locale.getlocale()[0].split('_')[0]
 
-        if def_language not in Dialogs.langs:
+        if get_def_language in Dialogs.langs.keys():
+            def_language = Dialogs.langs.get(get_def_language)
+        else:
             return "en"
 
         while True:
