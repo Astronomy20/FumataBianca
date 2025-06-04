@@ -33,7 +33,6 @@ class Dialogs:
 
     @staticmethod
     def load_dialogs(lang):
-        lang = "it_updated"     # JUST FOR TEST HAS TO BE REMOVED!!!
         with open(f'./lang/{lang}.json', 'r', encoding='utf_8') as lang:
             dialogs = json.load(lang)
 
@@ -82,13 +81,13 @@ class Utility:
     @staticmethod
     def print_points(player):
         print(f'\nStatistiche del giocatore:'
-              f'\n  -Vocazione: {player.voc}'
-              f'\n  -Consenso popolare: {player.pop_agr}'
-              f'\n  -Influenza politica: {player.pol_infl}'
-              f'\n  -Rilevanza curiale: {player.cur_rel}'
-              f'\n  -Abilità diplomatica: {player.dipl_skills}'
+              f'\n  Vocazione: {player.voc}'
+              f'\n  Consenso popolare: {player.pop_agr}'
+              f'\n  Influenza politica: {player.pol_infl}'
+              f'\n  Rilevanza curiale: {player.cur_rel}'
+              f'\n  Abilità diplomatica: {player.dipl_skills}'
               f'\n'
-              f'\n  -Consenso totale: {player.consensus}'
+              f'\n  Consenso totale: {player.consensus}'
               '\n')
 
     @staticmethod
