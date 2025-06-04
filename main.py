@@ -26,7 +26,7 @@ class Dialogs:
             def_lang_code = all_dicts[get_def_lang]
         else:
             def_lang = "en"
-            def_lang_code = "English
+            def_lang_code = "English"
             return def_lang, def_lang_code
 
         while True:
