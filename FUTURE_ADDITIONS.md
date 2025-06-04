@@ -4,9 +4,13 @@ This document outlines planned features, improvements and ideas for future devel
 
 ---
 
+🟥 Not started
+🟨 In progress
+🟩 Feature complete
+
 ## Planned Features
 
-- [x] Nothing to see for now
+- 🟨 Nothing to see for now
 
 ## Ideas Under Consideration
 
