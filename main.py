@@ -16,24 +16,37 @@ class Dialogs:
         "German": "de"
     }
 
+    with open("./lang/langs.json") as file:
+        all_dicts = json.load(file)
+
     @staticmethod
     def choose_language():
-        get_def_language = locale.getlocale()[0].split('_')[0]
+        get_def_lang = locale.getlocale()[0].split('_')[0]
 
-        if get_def_language in Dialogs.langs.keys():
-            def_language = Dialogs.langs.get(get_def_language)
+        if get_def_lang in Dialogs.langs.keys():
+            def_lang = Dialogs.langs.get(get_def_lang)
+            def_lang_code = Dialogs.all_dicts[get_def_lang]
         else:
-            return "en"
+            def_lang = "en"
+            def_lang_code = "English"
+            return def_lang, def_lang_code
 
         while True:
-            lang = input(Dialogs.load_dialogs(def_language)["choose_lang"])
+            print(Dialogs.load_dialogs(def_lang)["choose_lang"])
 
-            if lang == "1":
-                return "en"
-            elif lang == "2":
-                return "it"
+            i = 0
+            lang_map = {}
+            for _ in Dialogs.langs.values():
+                i += 1
+                lang_map[str(i)] = _
+                print(f"{i} - {def_lang_code.get(_)}")
+
+            lang = input()
+
+            if lang in lang_map:
+                return lang_map[lang]
             else:
-                print(Dialogs.load_dialogs(def_language)["err"])
+                print(Dialogs.load_dialogs(def_lang)["err"])
 
     @staticmethod
     def load_dialogs(lang):
