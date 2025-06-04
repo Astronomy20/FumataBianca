@@ -14,16 +14,16 @@ class Dialogs:
         "English": "en"
     }
 
-    with open("./lang/langs.json") as file:
-        all_dicts = json.load(file)
-
     @staticmethod
     def choose_language():
+        with open("./lang/langs.json") as file:
+            all_dicts = json.load(file)
+
         get_def_lang = locale.getlocale()[0].split('_')[0]
 
         if get_def_lang in Dialogs.langs.keys():
             def_lang = Dialogs.langs.get(get_def_lang)
-            def_lang_code = Dialogs.all_dicts[get_def_lang]
+            def_lang_code = all_dicts[get_def_lang]
         else:
             def_lang = "en"
             def_lang_code = "English"
