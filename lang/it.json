@@ -13,7 +13,7 @@
   "go_on": "\n--------------------------\nPREMI INVIO PER CONTINUARE\n--------------------------\n",
 
 
-  "dice_launch_input_pos": "\nLancia il dado per vedere quanti punti {point_type} ottieni.\nPremi Invio per tirare il dado...",
+  "dice_launch_input_pos": "\nLancia il dado per vedere quanti punti {point_type} guadagni.\nPremi Invio per tirare il dado...",
   "dice_launch_input_neg": "\nLancia il dado per vedere quanti punti {point_type} perdi.\nPremi Invio per tirare il dado...",
   "coin_launch_input": "\nLancia la moneta per vedere se guadagni o perdi punti {point_type}.\nPremi Invio per lanciare la moneta...",
 
