@@ -82,12 +82,13 @@ class Utility:
     @staticmethod
     def print_points(player):
         print(f'\nStatistiche del giocatore:'
-              f'\nVocazione: {player.voc}'
-              f'\nConsenso popolare: {player.pop_agr}'
-              f'\nInfluenza politica: {player.pol_infl}'
-              f'\nRilevanza curiale: {player.cur_rel}'
-              f'\nAbilità diplomatica: {player.dipl_skills}'
-              f'\nConsenso totale: {player.consensus}'
+              f'\n  -Vocazione: {player.voc}'
+              f'\n  -Consenso popolare: {player.pop_agr}'
+              f'\n  -Influenza politica: {player.pol_infl}'
+              f'\n  -Rilevanza curiale: {player.cur_rel}'
+              f'\n  -Abilità diplomatica: {player.dipl_skills}'
+              f'\n'
+              f'\n  -Consenso totale: {player.consensus}'
               '\n')
 
     @staticmethod
@@ -638,7 +639,7 @@ class Game:
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["firenze_1"])
 
-                    Player.add_points(self.player, self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0)
+                    Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0, 0)
                     Utility.print_points(self.player)
 
                     self.player.issoldier = False
