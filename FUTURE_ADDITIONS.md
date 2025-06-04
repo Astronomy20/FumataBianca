@@ -1,30 +1,21 @@
 # Future Additions
 
-This document outlines planned features, improvements, and ideas for future development of this project.
+This document outlines planned features, improvements and ideas for future development of this project.
 
 ---
 
 ## 📌 Planned Features
 
-- [ ] Add dark mode support
-- [ ] Improve mobile responsiveness
-- [ ] Add user profile page
-- [ ] Implement search functionality
-- [ ] Add unit tests for authentication logic
+- [x] Nothing to see for now
 
 ## 🧪 Ideas Under Consideration
 
-- Real-time notifications
-- Integration with third-party APIs (e.g., Stripe, Slack)
-- Internationalization (i18n) support
-- Desktop app version via Electron
+- Nothing to see for now
 
 ## ⏳ Long-Term Goals
 
-- Support for plugins/extensions
-- Offline mode with service workers
-- Full accessibility (WCAG 2.1 compliance)
+- Switch from text-based to GUI-based
 
 ---
 
-> 📬 Feel free to suggest features via [issues](./issues) or [discussions](./discussions).
+> 📬 Feel free to suggest features via [issues](https://github.com/Astronomy20/FumataBianca/issues).
