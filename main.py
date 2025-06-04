@@ -33,7 +33,8 @@ class Dialogs:
 
     @staticmethod
     def load_dialogs(lang):
-        with open(f'./lang/{lang}].json', 'r', encoding='utf_8') as lang:
+        lang = "it_updated"     # JUST FOR TEST HAS TO BE REMOVED!!!
+        with open(f'./lang/{lang}.json', 'r', encoding='utf_8') as lang:
             dialogs = json.load(lang)
 
         return dialogs
@@ -611,7 +612,7 @@ class Game:
                     Game.Soldier(self.player).firenze()
 
                 elif city == "Milano" or "Mantova" or "Venezia":
-                    Game.Soldier(self.player).milano_venezia_mantova()
+                    Game.Soldier(self.player).venezia_milano_mantova()
 
                 else:
                     Utility.error()
@@ -637,7 +638,9 @@ class Game:
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["firenze_1"])
 
+                    Player.add_points(self.player, self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0)
                     Utility.print_points(self.player)
+
                     self.player.issoldier = False
                     self.player.ispriest = True
 
@@ -669,7 +672,7 @@ class Game:
                 else:
                     Utility.error()
 
-        def milano_venezia_mantova(self):
+        def venezia_milano_mantova(self):
             self.player.issoldier = True
 
             while True:
@@ -686,12 +689,12 @@ class Game:
                         self.player.issoldier = False
                         self.player.ispriest = True
 
-                        Player.add_points(self.player, 3, 0, 0, 0, 0)
+                        Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 0, 0, 0, 0)
                         Utility.print_points(self.player)
 
                         Utility.go_on()
 
-                        Game.Priest(self.player).why_priest()
+                        Game.Priest(self.player).sermon()
                         break
                     elif prob > 85:
                         Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ven_mil_mant_1_neg"])
@@ -708,7 +711,7 @@ class Game:
 
                     Utility.go_on()
 
-                    Game.Priest(self.player).why_priest()
+                    Game.Priest(self.player).sermon()
                     break
                 else:
                     Utility.error()
