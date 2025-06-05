@@ -12,6 +12,7 @@ This document outlines planned features, improvements and ideas for future devel
 
 - 🟨 Develop "Conclave" mechanics
 - 🟨 Add languages: Spanish, French, German
+- 🟥 Create a late game as the Pope
 
 ## Ideas Under Consideration
 
