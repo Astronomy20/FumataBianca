@@ -31,12 +31,7 @@ For future additions look at [Roadmap](https://github.com/Astronomy20/FumataBian
    ```bash
    git clone https://github.com/Astronomy20/FumataBianca.git
    cd FumataBianca
-
-2. Install the required libraries:
-    
-    ```bash
-    pip install keyboard
-
-3. Run the game:
+   
+2. Run the game:
     ```bash
     python main.py

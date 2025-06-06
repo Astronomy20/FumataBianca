@@ -1,33 +1,33 @@
 {
-  "Italian": {
+  "it": {
     "it": "Italiano",
     "en": "Inglese",
     "es": "Spagnolo",
     "fr": "Francese",
     "de": "Tedesco"
   },
-  "English": {
+  "en": {
     "it": "Italian",
     "en": "English",
     "es": "Spanish",
     "fr": "French",
     "de": "German"
   },
-  "Spanish": {
+  "es": {
     "it": "Italiano",
     "en": "Inglés",
     "es": "Español",
     "fr": "Francés",
     "de": "Alemán"
   },
-  "French": {
+  "fr": {
     "it": "Italien",
     "en": "Anglais",
     "es": "Espagnol",
     "fr": "Français",
     "de": "Allemand"
   },
-  "German": {
+  "de": {
     "it": "Italienisch",
     "en": "Englisch",
     "es": "Spanisch",

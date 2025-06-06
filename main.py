@@ -31,13 +31,13 @@ class Dialogs:
             if def_lang in Dialogs.available_langs:
                 pass
             else:
-                return "en"
+                def_lang = "en"
         else:
             def_lang = locale_encoding[0].split('_')[0]
             if def_lang in Dialogs.available_langs:
                 pass
             else:
-                return "en"
+                def_lang = "en"
 
         while True:
             print(Dialogs.load_dialogs(def_lang)["choose_lang"])
@@ -47,7 +47,7 @@ class Dialogs:
             for _ in Dialogs.normalize_encode.values():
                 i += 1
                 lang_map[str(i)] = _
-                print(f"{i} - {all_dicts[Dialogs.available_langs[def_lang]][_]}")
+                print(f"{i} - {all_dicts[def_lang][_]}")
 
             lang = input()
 
