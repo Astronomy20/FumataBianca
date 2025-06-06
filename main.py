@@ -8,9 +8,14 @@ import textwrap
 
 
 class Dialogs:
-    available_langs = {
+    normalize_encode = {
         "Italian": "it",
         "English": "en"
+    }
+
+    available_langs = {
+        "it": "Italian",
+        "en": "English"
     }
 
     @staticmethod
@@ -18,25 +23,31 @@ class Dialogs:
         with open("./lang/langs.json") as file:
             all_dicts = json.load(file)
 
-        get_def_lang = locale.getlocale()[0].split('_')[0]
+        locale_encoding = locale.getlocale()
 
-        if get_def_lang in Dialogs.available_langs.keys():
-            def_lang = Dialogs.available_langs.get(get_def_lang)
-            def_lang_code = all_dicts[get_def_lang]
+        if locale_encoding[1] == "1252":
+            def_lang = Dialogs.normalize_encode.get(locale_encoding[0].split('_')[0])
+
+            if def_lang in Dialogs.available_langs:
+                pass
+            else:
+                return "en"
         else:
-            def_lang = "en"
-            def_lang_code = "English"
-            return def_lang, def_lang_code
+            def_lang = locale_encoding[0].split('_')[0]
+            if def_lang in Dialogs.available_langs:
+                pass
+            else:
+                return "en"
 
         while True:
             print(Dialogs.load_dialogs(def_lang)["choose_lang"])
 
             i = 0
             lang_map = {}
-            for _ in Dialogs.available_langs.values():
+            for _ in Dialogs.normalize_encode.values():
                 i += 1
                 lang_map[str(i)] = _
-                print(f"{i} - {def_lang_code.get(_)}")
+                print(f"{i} - {all_dicts[Dialogs.available_langs[def_lang]][_]}")
 
             lang = input()
 
@@ -110,41 +121,41 @@ class Utility:
 
 coin = [
     [
-        " /‾‾‾‾‾\ ",
+        " /‾‾‾‾‾\\ ",
         "|       |",
         "|   ☺   |",
         "|       |",
-        " \_____/ "
+        " \\_____/ "
     ],
     [
-        " /‾‾‾‾‾\ ",
+        " /‾‾‾‾‾\\ ",
         "|       |",
         "|   €   |",
         "|       |",
-        " \_____/ "
+        " \\_____/ "
     ]
 ]
 
 d4_faces = [
     [
         "    ▲    ",
-        "  / 1 \  ",
-        " /_____\ "
+        "  / 1 \\  ",
+        " /_____\\ "
     ],
     [
         "    ▲    ",
-        "  / 2 \  ",
-        " /_____\ "
+        "  / 2 \\  ",
+        " /_____\\ "
     ],
     [
         "    ▲    ",
-        "  / 3 \  ",
-        " /_____\ "
+        "  / 3 \\  ",
+        " /_____\\ "
     ],
     [
         "    ▲    ",
-        "  / 4 \  ",
-        " /_____\ "
+        "  / 4 \\  ",
+        " /_____\\ "
     ]
 ]
 
