@@ -8,7 +8,7 @@ import textwrap
 
 
 class Dialogs:
-    langs = {
+    available_langs = {
         "Italian": "it",
         "English": "en"
     }
@@ -20,8 +20,8 @@ class Dialogs:
 
         get_def_lang = locale.getlocale()[0].split('_')[0]
 
-        if get_def_lang in Dialogs.langs.keys():
-            def_lang = Dialogs.langs.get(get_def_lang)
+        if get_def_lang in Dialogs.available_langs.keys():
+            def_lang = Dialogs.available_langs.get(get_def_lang)
             def_lang_code = all_dicts[get_def_lang]
         else:
             def_lang = "en"
@@ -33,7 +33,7 @@ class Dialogs:
 
             i = 0
             lang_map = {}
-            for _ in Dialogs.langs.values():
+            for _ in Dialogs.available_langs.values():
                 i += 1
                 lang_map[str(i)] = _
                 print(f"{i} - {def_lang_code.get(_)}")
