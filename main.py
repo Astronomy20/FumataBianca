@@ -95,9 +95,9 @@ class Utility:
     @staticmethod
     def fixed_print(text):
         width = shutil.get_terminal_size().columns
-
-        formatted_text = textwrap.fill(text, width=width)
-        print(formatted_text)
+        for paragraph in text.split("\n"):
+            formatted_text = textwrap.fill(paragraph, width=width)
+            print(formatted_text)
 
     @staticmethod
     def timeout():
@@ -110,7 +110,7 @@ class Utility:
             pop_agr=player.pop_agr,
             pol_infl=player.pol_infl,
             cur_rel=player.cur_rel,
-            dipl_skills=player.dipl_skills,
+            dipl_skills=player.dipl_skill,
             consensus=player.consensus
         ))
 
@@ -397,6 +397,175 @@ class Dices:
         return result
 
 
+class Test:
+    @staticmethod
+    def faith(voc):
+        random_cardinals = random.sample(list(cardinals.keys()), 3)
+        belief = 0
+
+        for name in random_cardinals:
+            belief += cardinals[name][0]
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["faith_test"].format(
+            faith=belief
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_1"])
+        input()
+        Dices.roll_dice(6)
+        result1 = Dices.roll_dice(6)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result1*2
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_2"])
+        input()
+        Dices.roll_dice(4)
+        result2 = Dices.roll_dice(4)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result2*3
+        ))
+
+        player_score = voc + result1 * 2 + result2 * 3
+
+        if player_score >= belief:
+            return "+"
+        else:
+            return "-"
+
+    @staticmethod
+    def secrets():
+        random_value = random.randint(10, 15)
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["secrets_test"].format(
+            secrets=random_value
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_3"])
+        input()
+        Dices.roll_dice(6)
+        result1 = Dices.roll_dice(6)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result1
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_4"])
+        input()
+        Dices.roll_dice(4)
+        result2 = Dices.roll_dice(4)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result2*2
+        ))
+
+        player_score = result1 + result2 * 2
+
+        if player_score >= random_value:
+            return "+"
+        else:
+            return "-"
+
+    @staticmethod
+    def inlfuence(influence):
+        random_cardinals = random.sample(list(cardinals.keys()), 3)
+        belief = 0
+
+        for name in random_cardinals:
+            belief += cardinals[name][1]
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["influence_test"].format(
+            belief=belief
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_1"])
+        input()
+        Dices.roll_dice(6)
+        result1 = Dices.roll_dice(6)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result1*2
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_2"])
+        input()
+        Dices.roll_dice(4)
+        result2 = Dices.roll_dice(4)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result2*3
+        ))
+
+        player_score = influence + result1 * 2 + result2 * 3
+
+        if player_score >= belief:
+            return "+"
+        else:
+            return "-"
+
+    @staticmethod
+    def strategy():
+        random_value = random.randint(10, 20)
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["strategy_test"].format(
+            strategy=random_value
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_1"])
+        input()
+        Dices.roll_dice(6)
+        result1 = Dices.roll_dice(6)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result1*2
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_2"])
+        input()
+        Dices.roll_dice(4)
+        result2 = Dices.roll_dice(4)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result2*3
+        ))
+
+        player_score = result1 * 2 + result2 * 3
+
+        if player_score >= random_value:
+            return "+"
+        else:
+            return "-"
+
+    @staticmethod
+    def charisma(dipl_skill):
+        random_cardinals = random.sample(list(cardinals.keys()), 2)
+        belief = 0
+
+        for name in random_cardinals:
+            belief += cardinals[name][4]
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["charisma_test"].format(
+            charisma=belief
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_3"])
+        input()
+        Dices.roll_dice(6)
+        result1 = Dices.roll_dice(6)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result1*1
+        ))
+
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_input_4"])
+        input()
+        Dices.roll_dice(4)
+        result2 = Dices.roll_dice(4)
+        Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["test_result"].format(
+            result=result2*2
+        ))
+
+        player_score = dipl_skill + result1 * 2 + result2 * 3
+
+        if player_score >= belief:
+            return "+"
+        else:
+            return "-"
+
+
 class CardinalsValues:
     @staticmethod
     def voc():
@@ -415,70 +584,70 @@ class CardinalsValues:
         return random.randint(5, 10)
 
     @staticmethod
-    def dipl_skills():
+    def dipl_skill():
         return random.randint(5, 10)
 
 
 cardinals = {
     "Giovanni de' Medici": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                            CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                            CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Bernardino López de Carvajal": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Francesco Alidosi": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Marco Cornaro": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Bandinello Sauli": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Francesco Soderini": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                           CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                           CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Alessandro Farnese": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                           CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                           CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Antonio Maria Ciocchi del Monte": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Raffaele Riario": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Leonardo Grosso della Rovere": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Gabriele de' Gabrielli": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                               CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                               CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Giovanni Battista Pallavicino": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Lorenzo Pucci": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Giulio de' Medici": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Matthäus Schiner": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Tamás Bakócz": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "René de Prie": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Robert Guibé": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                     CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Georges d'Amboise": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                          CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Jean-François de la Trémoille": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                      CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Luis de Borja-Lanzol": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                             CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                             CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Juan Castellar y de Borja": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                  CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                  CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Guillaume Briçonnet": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                            CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                            CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Pierre d'Ailly": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                       CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                       CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Jean de La Palud": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Fazio Giovanni Santori": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                               CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                               CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Galeotto Franciotti della Rovere": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                                         CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Niccolò Fieschi": [CardinalsValues.voc(), CardinalsValues.pop_agr(), CardinalsValues.pol_infl(),
-                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skills()],
+                        CardinalsValues.cur_rel(), CardinalsValues.dipl_skill()],
     "Francesco Armellini Pantalassi de' Medici": [CardinalsValues.voc(), CardinalsValues.pop_agr(),
                                                   CardinalsValues.pol_infl(), CardinalsValues.cur_rel(),
-                                                  CardinalsValues.dipl_skills()]
+                                                  CardinalsValues.dipl_skill()]
 }
 
 families_data = {
@@ -518,14 +687,14 @@ class Families:
         self.pop_agr = 0
         self.pol_infl = 0
         self.cur_rel = 0
-        self.dipl_skills = 0
+        self.dipl_skill = 0
 
     def family(self):
         self.fam_name, info = random.choice(list(families_data.items()))
         self.fam_multipliers = info["multiplier"]
         self.fam_city = info["city"]
         self.fam_context = info["context"]
-        self.voc, self.pop_agr, self.pol_infl, self.cur_rel, self.dipl_skills = self.fam_multipliers
+        self.voc, self.pop_agr, self.pol_infl, self.cur_rel, self.dipl_skill = self.fam_multipliers
         return self.fam_name, self.fam_city, self.fam_context, self.fam_multipliers
 
     def print_stats(self):
@@ -536,7 +705,7 @@ class Families:
               f'\nConsenso popolare: {self.pop_agr}'
               f'\nInfluenza politica: {self.pol_infl}'
               f'\nRilevanza curiale: {self.cur_rel}'
-              f'\nAbilità diplomatica: {self.dipl_skills}'
+              f'\nAbilità diplomatica: {self.dipl_skill}'
               '\n')
         print(f'Contesto: {self.fam_context}')
 
@@ -559,12 +728,12 @@ class PlayerValues:
         return random.randint(1, 5)
 
     @staticmethod
-    def dipl_skills():
+    def dipl_skill():
         return random.randint(1, 5)
 
 
 class Player:
-    def __init__(self, name, voc, pop_agr, pol_infl, cur_rel, dipl_skills):
+    def __init__(self, name, voc, pop_agr, pol_infl, cur_rel, dipl_skill):
         # Player Name
         self.player_name = name
 
@@ -577,16 +746,16 @@ class Player:
         self.fam_pop_agr = self.fam_val[1]
         self.fam_pol_infl = self.fam_val[2]
         self.fam_cur_rel = self.fam_val[3]
-        self.fam_dipl_skills = self.fam_val[4]
+        self.fam_dipl_skill = self.fam_val[4]
 
         # Player Attributes
         self.voc = round(random.randint(1, 5) * self.fam_voc) + voc
         self.pop_agr = round(random.randint(1, 5) * self.fam_pop_agr) + pop_agr
         self.pol_infl = round(random.randint(1, 5) * self.fam_pol_infl) + pol_infl
         self.cur_rel = round(random.randint(1, 5) * self.fam_cur_rel) + cur_rel
-        self.dipl_skills = round(random.randint(1, 5) * self.fam_dipl_skills) + dipl_skills
+        self.dipl_skill = round(random.randint(1, 5) * self.fam_dipl_skill) + dipl_skill
 
-        self.player_values = [self.voc, self.pop_agr, self.pol_infl, self.cur_rel, self.dipl_skills]
+        self.player_values = [self.voc, self.pop_agr, self.pol_infl, self.cur_rel, self.dipl_skill]
 
         # Status
         self.isnothing = True
@@ -599,22 +768,22 @@ class Player:
         # Calculation of consensus
         if self.isbishop or self.iscardinal:
             self.consensus = round(
-                (self.voc + self.pop_agr + self.pol_infl + self.cur_rel + self.dipl_skills) * self.fam_val[1])
+                (self.voc + self.pop_agr + self.pol_infl + self.cur_rel + self.dipl_skill) * self.fam_val[1])
         else:
             self.consensus = round(
                 (self.voc + self.pop_agr + self.pol_infl) * self.fam_val[1])
 
-    def add_points(self, voc, pop_agr, pol_infl, cur_rel, dipl_skills):
+    def add_points(self, voc, pop_agr, pol_infl, cur_rel, dipl_skill):
         self.voc += voc
         self.pop_agr += pop_agr
         self.pol_infl += pol_infl
         self.cur_rel += cur_rel
-        self.dipl_skills += dipl_skills
+        self.dipl_skill += dipl_skill
 
         # Calculation of new consensus
         if self.isbishop or self.iscardinal:
             self.consensus = round(
-                (self.voc + self.pop_agr + self.pol_infl + self.cur_rel + self.dipl_skills) * self.fam_val[1])
+                (self.voc + self.pop_agr + self.pol_infl + self.cur_rel + self.dipl_skill) * self.fam_val[1])
         else:
             self.consensus = round(
                 (self.voc + self.pop_agr + self.pol_infl) * self.fam_val[1])
@@ -628,11 +797,11 @@ class Game:
     dice_pop_agr = Dialogs.load_dialogs(lang)["dice_pop_agr"]
     dice_pol_infl = Dialogs.load_dialogs(lang)["dice_pol_infl"]
     dice_cur_rel = Dialogs.load_dialogs(lang)["dice_cur_rel"]
-    dice_dipl_skills = Dialogs.load_dialogs(lang)["dice_dipl_skills"]
+    dice_dipl_skill = Dialogs.load_dialogs(lang)["dice_dipl_skills"]
 
     def __init__(self):
         self.player = Player(Game.username, PlayerValues.voc(), PlayerValues.pop_agr(), PlayerValues.pol_infl(),
-                             PlayerValues.cur_rel(), PlayerValues.dipl_skills())
+                             PlayerValues.cur_rel(), PlayerValues.dipl_skill())
 
     def start(self):
         player_name = self.player.player_name
@@ -651,7 +820,8 @@ class Game:
         Utility.go_on()
 
         while True:
-            choice = input(Dialogs.load_dialogs(Game.lang)["career_choice"])
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["career_choice"])
+            choice = input()
 
             if choice == "1":
                 Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["priest"])
@@ -689,7 +859,8 @@ class Game:
 
                 Utility.go_on()
 
-                choice = input(Dialogs.load_dialogs(Game.lang)["firenze_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["firenze_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["firenze_1"])
@@ -732,9 +903,10 @@ class Game:
             self.player.issoldier = True
 
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["ven_mil_mant_input"].format(
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ven_mil_mant_input"].format(
                     fam_city=self.player.fam_city
                 ))
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ven_mil_mant_1_pos"])
@@ -780,7 +952,8 @@ class Game:
             self.player.ispriest = True
 
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["why_priest_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["why_priest_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["why_priest_1"])
@@ -801,7 +974,8 @@ class Game:
 
         def sermon(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["sermon_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["sermon_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["sermon_1"])
@@ -825,7 +999,8 @@ class Game:
 
         def present(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["present_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["present_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["present_1"])
@@ -855,7 +1030,8 @@ class Game:
 
         def become_parson(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["become_parson_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["become_parson_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["become_parson_1"])
@@ -884,7 +1060,8 @@ class Game:
 
         def cardinal_letter(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["cardinal_letter_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["cardinal_letter_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["cardinal_letter_1"])
@@ -918,7 +1095,8 @@ class Game:
 
         def annul_marriage(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["annul_marriage_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["annul_marriage_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["annul_marriage_1"])
@@ -1004,9 +1182,10 @@ class Game:
             self.player.isbishop = True
 
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["residence_input"].format(
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["residence_input"].format(
                     fam_city=self.player.fam_city
                 ))
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["residence_1"])
@@ -1033,7 +1212,8 @@ class Game:
 
         def taxation(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["taxation_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["taxation_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["taxation_1"])
@@ -1060,7 +1240,8 @@ class Game:
 
         def help_cardinal(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["help_cardinal_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["help_cardinal_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["help_cardinal_1"])
@@ -1087,7 +1268,8 @@ class Game:
 
         def lega_cambrai(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["lega_cambrai_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_cambrai_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_cambrai_1"])
@@ -1121,7 +1303,7 @@ class Game:
                 elif choice == "4":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_cambrai_4"])
 
-                    Player.add_points(self.player, 0, 0, 0, 0, Dices.face_6(Game.dice_dipl_skills, "+"))
+                    Player.add_points(self.player, 0, 0, 0, 0, Dices.face_6(Game.dice_dipl_skill, "+"))
                     Utility.print_points(self.player)
 
                     Utility.go_on()
@@ -1133,7 +1315,8 @@ class Game:
 
         def opposer(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["opposer_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["opposer_input"])
+                choice = input()
 
                 self.was_opposer = True
 
@@ -1172,7 +1355,8 @@ class Game:
 
         def battle(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["battle_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["battle_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["battle_1"])
@@ -1224,13 +1408,14 @@ class Game:
 
                 Utility.go_on()
 
-                Game.Conclave(self.player).compare()
+                Game.Conclave(self.player).conclave_start()
             else:
                 Utility.error()
 
         def ambassador(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["ambassador_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ambassador_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ambassador_france"])
@@ -1254,12 +1439,13 @@ class Game:
 
         def sri_ambassador(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["ambassador_sri_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ambassador_sri_input"])
+                choice = input()
 
                 if choice == "1":
                     Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["ambassador_sri_strong"])
 
-                    Player.add_points(self.player, 0, 0, 0, 2, Dices.face_2(Game.dice_dipl_skills))
+                    Player.add_points(self.player, 0, 0, 0, 2, Dices.face_2(Game.dice_dipl_skill))
                     Utility.print_points(self.player)
                     self.was_sri_strong = True
 
@@ -1283,7 +1469,8 @@ class Game:
 
         def lega_santa(self):
             while True:
-                choice = input(Dialogs.load_dialogs(Game.lang)["lega_santa_input"])
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_santa_input"])
+                choice = input()
 
                 if choice == "1":
                     if self.was_neutral:
@@ -1373,7 +1560,7 @@ class Game:
                         Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_santa_contro_2"])
 
                         Player.add_points(self.player, Dices.face_4(Game.dice_voc, "+"), 1, 0, (-2),
-                                          Dices.face_4(Game.dice_dipl_skills, "+"))
+                                          Dices.face_4(Game.dice_dipl_skill, "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1383,7 +1570,7 @@ class Game:
                     elif self.was_sri_strong:
                         Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["lega_santa_contro_3"])
 
-                        Player.add_points(self.player, 1, 2, 0, (-2), Dices.face_4(Game.dice_dipl_skills, "+"))
+                        Player.add_points(self.player, 1, 2, 0, (-2), Dices.face_4(Game.dice_dipl_skill, "+"))
                         Utility.print_points(self.player)
 
                         Utility.go_on()
@@ -1442,7 +1629,7 @@ class Game:
 
                 Utility.go_on()
 
-                Game.Conclave(self.player).compare()
+                Game.Conclave(self.player).conclave_start()
             elif self.player.isbishop and self.player.consensus < 40:
                 Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["become_cardinal_neg"])
             else:
@@ -1457,44 +1644,181 @@ class Game:
 
             # Cardinal Values
             (self.card_voc, self.card_pop_agr, self.card_pol_infl,
-             self.card_cur_rel, self.card_dipl_skills) = [0, 0, 0, 0, 0]
+             self.card_cur_rel, self.card_dipl_skill) = [0, 0, 0, 0, 0]
 
             # Cardinal that will vote for you
             self.infavor = 0
 
-        def compare(self):
-            self.player.isbishop = False
-            self.player.iscardinal = True
+        def conclave_start(self):
+            while True:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["conclave_start_input"])
+                choice = input()
 
-            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["conclave_compare"])
+                if choice == "1":
+                    Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["conclave_start_1"])
+
+                    Utility.go_on()
+
+                    Utility.gameover()
+                    break
+                elif choice == "2":
+                    Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["conclave_start_2"])
+
+                    Utility.go_on()
+
+                    Game.Conclave(self.player).spanish_alliance()
+                    break
+                elif choice == "3":
+                    Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["conclave_start_3"])
+
+                    Utility.go_on()
+
+                    Game.Conclave(self.player).personal_alliance()
+                    break
+                else:
+                    Utility.error()
+
+        def spanish_alliance(self):
+            missions_completed = 0
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance"])
 
             Utility.go_on()
 
-            if self.player.iscardinal:
-                for i in cardinals.values():
-                    points = 0
+            # MISSION 1
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_1_input"])
 
-                    (self.card_voc, self.card_pop_agr, self.card_pol_infl,
-                     self.card_cur_rel, self.card_dipl_skills) = i
+            Utility.go_on()
 
-                    if self.player.voc >= self.card_voc:
-                        points += 1
-                    if self.player.pop_agr >= self.card_pop_agr:
-                        points += 1
-                    if self.player.pol_infl >= self.card_pol_infl:
-                        points += 1
-                    if self.player.cur_rel >= self.card_cur_rel:
-                        points += 1
-                    if self.player.dipl_skills >= self.card_dipl_skills:
-                        points += 1
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_1"])
 
-                    # Check for cardinal favor
-                    if points >= 3:
-                        self.infavor += 1
+            if Test.faith(self.player.voc) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_1_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_1_neg"])
 
-                # Check if sufficient cardinals are in favor
-                if self.infavor >= 20:
-                    self.pope_nomination()
+            Utility.go_on()
+
+            # MISSION 2
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_2"])
+
+            if Test.secrets() == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_2_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_2_neg"])
+
+            Utility.go_on()
+
+            # MISSION 3
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_3"])
+
+            if Test.inlfuence(self.player.pol_infl) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_3_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_mission_3_neg"])
+
+            if missions_completed >= 2:
+                Game.Conclave.pope_nomination()
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["spanish_alliance_gameover"])
+                Utility.gameover()
+
+        def personal_alliance(self):
+            missions_completed = 0
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance"])
+
+            Utility.go_on()
+
+            # MISSION 1
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_1_input"])
+
+            Utility.go_on()
+
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_1"])
+
+            if Test.faith(self.player.voc) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_1_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_1_neg"])
+
+            Utility.go_on()
+
+            # MISSION 2
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_2"])
+
+            if Test.inlfuence(self.player.pol_infl) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_2_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_2_neg"])
+
+            Utility.go_on()
+
+            # MISSION 3
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_3"])
+
+            if Test.charisma(self.player.dipl_skill) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_3_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_mission_3_neg"])
+
+            if missions_completed >= 2:
+                Game.Conclave(self.player).alliance_consensus()
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["personal_alliance_gameover"])
+                Utility.gameover()
+
+        def alliance_consensus(self):
+            missions_completed = 0
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus"])
+
+            Utility.go_on()
+
+            # MISSION 1
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_1_input"])
+
+            Utility.go_on()
+
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_1"])
+
+            if Test.secrets() == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_1_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_1_neg"])
+
+            Utility.go_on()
+
+            # MISSION 2
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_2"])
+
+            if Test.inlfuence(self.player.pol_infl) == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_2_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_2_neg"])
+
+            Utility.go_on()
+
+            # MISSION 3
+            Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_3"])
+
+            if Test.strategy() == "+":
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_3_pos"])
+                missions_completed += 1
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_mission_3_neg"])
+
+            if missions_completed >= 2:
+                Game.Conclave(self.player).alliance_consensus()
+                Game.Conclave.pope_nomination()
+            else:
+                Utility.fixed_print(Dialogs.load_dialogs(Game.lang)["alliance_consensus_gameover"])
+                Utility.gameover()
 
         @staticmethod
         def pope_nomination():
