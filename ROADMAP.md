@@ -20,7 +20,7 @@ This document outlines planned features, improvements and ideas for future devel
 
 ## Long-Term Goals
 
-- Switch from text-based to GUI-based
+- Switch from text-based to UI-based
 
 ---
 
