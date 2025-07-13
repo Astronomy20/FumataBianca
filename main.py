@@ -10,12 +10,18 @@ import textwrap
 class Dialogs:
     normalize_encode = {
         "Italian": "it",
-        "English": "en"
+        "English": "en",
+        "Spanish": "es",
+        "French": "fr",
+        "German": "de"
     }
 
     available_langs = {
         "it": "Italian",
-        "en": "English"
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "de": "German"
     }
 
     @staticmethod
@@ -1832,4 +1838,3 @@ class Game:
 # Game start
 game = Game()
 game.start()
-
