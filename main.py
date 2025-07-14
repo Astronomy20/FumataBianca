@@ -406,7 +406,7 @@ class Dices:
 class Test:
     @staticmethod
     def faith(voc):
-        random_cardinals = random.sample(list(cardinals.keys()), 3)
+        random_cardinals = random.sample(list(cardinals.keys()), random.randint(2, 3))
         belief = 0
 
         for name in random_cardinals:
@@ -472,7 +472,7 @@ class Test:
 
     @staticmethod
     def inlfuence(influence):
-        random_cardinals = random.sample(list(cardinals.keys()), 3)
+        random_cardinals = random.sample(list(cardinals.keys()), random.randint(2, 3))
         belief = 0
 
         for name in random_cardinals:
