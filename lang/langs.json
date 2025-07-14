@@ -1,0 +1,37 @@
+{
+  "it": {
+    "it": "Italiano",
+    "en": "Inglese",
+    "es": "Spagnolo",
+    "fr": "Francese",
+    "de": "Tedesco"
+  },
+  "en": {
+    "it": "Italian",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German"
+  },
+  "es": {
+    "it": "Italiano",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "de": "Alemán"
+  },
+  "fr": {
+    "it": "Italien",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "fr": "Français",
+    "de": "Allemand"
+  },
+  "de": {
+    "it": "Italienisch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "fr": "Französisch",
+    "de": "Deutsch"
+  }
+}
