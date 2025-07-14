@@ -1,5 +1,5 @@
-# Become the Pope: A Renaissance Roleplaying Game
-**"Become the Pope"** is a text-based interactive narrative game set in the political and religious chaos of Renaissance Italy. Will you rise from humble beginnings to sit upon the throne of Saint Peter, or will ambition lead to your downfall?
+# Fumata Bianca: A Renaissance Roleplaying Game
+**"Fumata Bianca"** is a text-based interactive narrative game set in the political and religious chaos of Renaissance Italy. Will you rise from humble beginnings to sit upon the throne of Saint Peter, or will ambition lead to your downfall?
 
 ## Gameplay
 - Choose your path as a young cadet from one of the powerful noble italian families.
@@ -16,6 +16,14 @@
 - Choices have consequences, wrong moves can end your journey.
 
 For future additions look at [Roadmap](https://github.com/Astronomy20/FumataBianca/blob/master/ROADMAP.md).
+
+## Supported Languages
+Fumata Bianca is available in the following languages:
+- English
+- Italian
+- Spanish
+- French
+- German
 
 ## Installation Guide
 
