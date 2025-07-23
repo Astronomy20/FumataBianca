@@ -2,9 +2,20 @@ import locale
 import json
 import random
 import time
+import os
 import sys
 import shutil
 import textwrap
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 
 class Dialogs:
@@ -26,8 +37,8 @@ class Dialogs:
 
     @staticmethod
     def choose_language():
-        with open("./lang/langs.json") as file:
-            all_dicts = json.load(file)
+        with open(resource_path("lang/langs.json")) as f:
+            all_dicts = json.load(f)
 
         locale_encoding = locale.getlocale()
 
@@ -64,7 +75,7 @@ class Dialogs:
 
     @staticmethod
     def load_dialogs(lang):
-        with open(f'./lang/{lang}.json', 'r', encoding='utf_8') as lang:
+        with open(resource_path(f'lang/{lang}.json'), 'r', encoding='utf_8') as lang:
             dialogs = json.load(lang)
 
         return dialogs
