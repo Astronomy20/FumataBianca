@@ -1,0 +1,22 @@
+{
+  "Gonzaga": {
+    "multiplier": [1, 1.1, 1.3, 0.8, 1.2],
+    "context": "Milano sotto gli Sforza, Firenze sotto i Medici, la Repubblica di Venezia e la tua Mantova sotto il controllo gonzaghese",
+    "city": "Mantova"
+  },
+  "Orseolo": {
+    "multiplier": [1, 1.4, 1.2, 0.75, 1.5],
+    "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, Firenze e la tua Repubblica di Venezia",
+    "city": "Venezia"
+  },
+  "Scotti": {
+    "multiplier": [1.1, 1, 1.4, 1, 1.1],
+    "context": "Firenze sotto i Medici, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Milano sotto il controllo sforzesco",
+    "city": "Milano"
+  },
+  "Strozzi": {
+    "multiplier": [1, 0.85, 1.3, 1.1, 1],
+    "context": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Firenze sotto il controllo mediceo",
+    "city": "Firenze"
+  }
+}
