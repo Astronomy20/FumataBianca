@@ -11,7 +11,6 @@ This document outlines planned features, improvements and ideas for future devel
 ## Planned Features
 
 - 🟩 Develop "Conclave" mechanics
-- 🟩 Add languages: Spanish, French and German
 
 ## Ideas Under Consideration
 
