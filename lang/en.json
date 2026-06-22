@@ -9,6 +9,8 @@
 
   "go_on": "\n--------------------------\nPRESS ENTER TO CONTINUE\n--------------------------\n",
 
+  "credits_exit": "\n-----PRESS ENTER TO EXIT-----\n",
+
   "dice_launch_input_pos": "\nRoll the dice to see how many {point_type} points you gain.\nPress Enter to roll the dice...",
   "dice_launch_input_neg": "\nRoll the dice to see how many {point_type} points you lose.\nPress Enter to roll the dice...",
   "coin_launch_input": "\nFlip the coin to see if you gain or lose {point_type} points.\nPress Enter to flip the coin...",
@@ -102,7 +104,7 @@
 
   "help_cardinal_input": "In your new home, you get to know a very important Cardinal, Cardinal Petrucci, from Siena, who asks you for help. His brother, a tax official in Siena, has been convicted of corruption, and would need a place to reside to hide while waiting for the charges to be dropped. Since you have just arrived, Cardinal Petrucci believes it will be easier to get a yes from you, but you must decide what to do.\n1 - Accept and help Cardinal Petrucci\n2 - Do not accept and remain faithful to your principles\n",
   "help_cardinal_1": "Cardinal Petrucci is grateful to you; he will remember it. Now you also have important friends in the Papal States. But the citizens of your bishopric are not so happy about this; the word spreads, and a criminal in town is not welcome, especially if it can worsen relations with other lordships.\n",
-  "help_card_2": "You took a hard line, you denied help to a cardinal; he recognizes your character, but he will not be happy about it. This is nevertheless appreciated by the citizens who see you as an important figure for them and for your city.\n",
+  "help_cardinal_2": "You took a hard line, you denied help to a cardinal; he recognizes your character, but he will not be happy about it. This is nevertheless appreciated by the citizens who see you as an important figure for them and for your city.\n",
 
   "lega_cambrai_input": "It is now 1508, the conflicts in Italy, which have not particularly affected you, have made Venice a great power, perhaps too great, in Italy. At this point, Pope Julius II proposes the creation of the League of Cambrai, uniting France, the Empire, and Spain to counter the Italian question. As a bishop, you are called upon to decide how to act, you now have enough importance to fill various roles.\n1 - Remain neutral\n2 - Oppose the League\n3 - Go to battle\n4 - Become an ambassador for the Papal States\n",
   "lega_cambrai_1": "You prefer not to take sides in this conflict. You decide that the Church must maintain a role of peace, avoiding direct involvement in earthly wars. Neutrality is safe ground, but also fragile: the powerful watch you with suspicion, wondering if you are courageous or fearful. As Venice grows unchecked, you pray for wisdom and peace, aware that silence is sometimes more eloquent than arms.\n",

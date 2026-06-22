@@ -1,7 +1,7 @@
 import shutil
 import sys
 import textwrap
-from core.localization import loc
+from core.localization import loc, resource_path
 from models.domain import Player
 
 
@@ -19,7 +19,18 @@ class ConsoleUI:
     def error(self) -> None:
         print(loc.get("err"))
 
+    def show_credits(self) -> None:
+        input(loc.get("go_on"))
+        print("\033[2J\033[H", end="")
+        try:
+            with open(resource_path("content/CREDITS.md"), encoding="utf-8") as f:
+                print(f.read())
+        except OSError:
+            pass
+        input(loc.get("credits_exit"))
+
     def gameover(self) -> None:
+        self.show_credits()
         sys.exit()
 
     def print_points(self, player: Player) -> None:

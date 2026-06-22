@@ -9,6 +9,8 @@
 
   "go_on": "\n--------------------------\nDRÜCKE ENTER ZUM FORTFAHREN\n--------------------------\n",
 
+  "credits_exit": "\n-----DRÜCKE ENTER ZUM BEENDEN-----\n",
+
   "dice_launch_input_pos": "\nWirf den Würfel, um zu sehen, wie viele {point_type} Punkte du gewinnst.\nDrücke Enter, um zu würfeln...",
   "dice_launch_input_neg": "\nWirf den Würfel, um zu sehen, wie viele {point_type} Punkte du verlierst.\nDrücke Enter, um zu würfeln...",
   "coin_launch_input": "\nWirf die Münze, um zu sehen, ob du {point_type} Punkte gewinnst oder verlierst.\nDrücke Enter, um die Münze zu werfen...",

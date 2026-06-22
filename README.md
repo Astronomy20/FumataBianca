@@ -43,3 +43,6 @@ Fumata Bianca is available in the following languages:
 2. Run the game:
     ```bash
     python main.py
+
+## Credits
+See [Credits](https://github.com/Astronomy20/FumataBianca/blob/master/content/CREDITS.md) for the full list of contributors.
