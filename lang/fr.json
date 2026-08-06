@@ -51,6 +51,16 @@
   "stat_name_dipl_skill": "Compétences diplomatiques",
   "consensus_scope_all": "Toutes",
 
+  "city_mantova": "Mantoue",
+  "city_venezia": "Venise",
+  "city_milano": "Milan",
+  "city_firenze": "Florence",
+
+  "context_gonzaga": "Milan sous les Sforza, Florence sous les Médicis, la République de Venise et ta Mantoue sous la domination des Gonzague",
+  "context_orseolo": "Milan sous les Sforza, Mantoue sous les Gonzague, Florence et ta République de Venise",
+  "context_scotti": "Florence sous les Médicis, Mantoue sous les Gonzague, la République de Venise et ton Milan sous la domination des Sforza",
+  "context_strozzi": "Milan sous les Sforza, Mantoue sous les Gonzague, la République de Venise et ta Florence sous la domination des Médicis",
+
   "start": "Nous sommes à cheval entre le XVe et le XVIe siècle, au cœur de la Renaissance italienne. Une période où la péninsule est largement fragmentée en une multitude de duchés, de seigneuries, de royaumes et de républiques en constante compétition. Les grandes puissances de {context} dominent la scène politique, sans oublier l'importance de l'État pontifical en Italie centrale, qui a une influence dans toute l'Europe. La Papauté, bien que traversant des moments de crise, comme le schisme d'Occident, est capable de retrouver et de renforcer son pouvoir temporel, sous les pontificats de Sixte IV et d'Alexandre VI ; la politique ecclésiastique devient de plus en plus active et ambitieuse, souvent mêlée aux intérêts des grandes familles italiennes. C'est dans ce scénario qu'en 1475, vous naissez, {player_name} de la famille {family_name}, l'une des plus anciennes et des plus influentes de {city}. Vous êtes un fils cadet : le droit d'héritage vous a échappé de peu. À un âge où chaque décision peut changer le destin d'une famille, voire d'un État, vous devrez bien peser chacun de vos mouvements. C'est donc à vous de décider quelle carrière entreprendre...",
 
   "career_choice": "Votre cœur est jeune, mais la vie vous demande déjà de choisir : quel chemin prendrez-vous pour laisser une trace dans le monde ? Le destin vous place devant deux voies.\n1 - Prêtre : Une vie dédiée à Dieu, à la parole, au mystère.\n2 - Soldat : Une vie forgée dans le fer et le sang, au service du pouvoir.\n",

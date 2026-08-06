@@ -51,6 +51,16 @@
   "stat_name_dipl_skill": "Habilidad diplomática",
   "consensus_scope_all": "Todas",
 
+  "city_mantova": "Mantua",
+  "city_venezia": "Venecia",
+  "city_milano": "Milán",
+  "city_firenze": "Florencia",
+
+  "context_gonzaga": "Milán bajo los Sforza, Florencia bajo los Médici, la República de Venecia y tu Mantua bajo el dominio de los Gonzaga",
+  "context_orseolo": "Milán bajo los Sforza, Mantua bajo los Gonzaga, Florencia y tu República de Venecia",
+  "context_scotti": "Florencia bajo los Médici, Mantua bajo los Gonzaga, la República de Venecia y tu Milán bajo el dominio de los Sforza",
+  "context_strozzi": "Milán bajo los Sforza, Mantua bajo los Gonzaga, la República de Venecia y tu Florencia bajo el dominio de los Médici",
+
   "start": "Nos encontramos a caballo entre los siglos XV y XVI, en el corazón del Renacimiento italiano. Un período en el que la península está ampliamente fragmentada en una multitud de ducados, señoríos, reinos y repúblicas en constante competencia entre sí. Las grandes potencias de {context} dominan la escena política, sin olvidar la relevancia del Estado Pontificio en el centro de Italia, que tiene influencia en toda Europa. El Papado, a pesar de atravesar momentos de crisis, como el cisma de Occidente, logra recuperar y fortalecer su poder temporal, bajo el pontificado de Sixto IV y Alejandro VI; la política eclesiástica se vuelve cada vez más activa y ambiciosa, a menudo entrelazada con los intereses de las grandes familias italianas. En este escenario, en 1475, naces tú, {player_name} de la familia {family_name}, una de las más antiguas e influyentes de {city}. Eres un hijo cadete: el derecho de herencia se esfumó por poco. En una época en la que cada decisión puede cambiar los destinos de una familia, o incluso de un Estado, deberás sopesar adecuadamente cada uno de tus movimientos. Depende de ti, por lo tanto, decidir qué carrera emprender...",
 
   "career_choice": "Tu corazón es joven, pero la vida ya te pide que elijas: ¿qué camino seguirás para dejar una huella en el mundo? El destino te pone ante dos caminos.\n1 - Sacerdote: Una vida dedicada a Dios, a la palabra, al misterio.\n2 - Soldado: Una vida forjada en hierro y sangre, al servicio del poder.\n",

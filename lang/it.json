@@ -51,6 +51,16 @@
   "stat_name_dipl_skill": "Abilità diplomatica",
   "consensus_scope_all": "Tutte",
 
+  "city_mantova": "Mantova",
+  "city_venezia": "Venezia",
+  "city_milano": "Milano",
+  "city_firenze": "Firenze",
+
+  "context_gonzaga": "Milano sotto gli Sforza, Firenze sotto i Medici, la Repubblica di Venezia e la tua Mantova sotto il controllo gonzaghese",
+  "context_orseolo": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, Firenze e la tua Repubblica di Venezia",
+  "context_scotti": "Firenze sotto i Medici, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Milano sotto il controllo sforzesco",
+  "context_strozzi": "Milano sotto gli Sforza, Mantova sotto i Gonzaga, la Repubblica di Venezia e la tua Firenze sotto il controllo mediceo",
+
   "start": "Ci troviamo a cavallo tra ‘400 e ‘500, nel cuore del Rinascimento italiano. Periodo in cui la penisola è ampiamente frammentata in una moltitudine di ducati, signorie, regni e repubbliche in costante competizione tra loro. A dominare la scena politica sono le grandi potenze di {context}, senza dimenticare la rilevanza dello Stato pontificio in centro Italia, che ha influenza in tutta Europa. Il Papato pur attraversando momenti di crisi, come lo scisma d’Occidente, è in grado di riacquistare e rafforzare il proprio potere temporale, sotto il pontificato di Sisto IV e di Alessandro VI; la politica ecclesiastica si fa sempre più attiva e ambiziosa, spesso intrecciata con gli interessi delle grandi famiglie italiane. È in questo scenario che, nel 1475, nasci tu {player_name} della famiglia {family_name}, tra le più antiche e influenti di {city}. Sei un figlio cadetto: il diritto di eredità è sfumato solo per poco. In un’età in cui ogni decisione può cambiare i destini di una famiglia, o addirittura di uno Stato, dovrai ponderare adeguatamente ogni tua mossa. Sta a te, quindi, decidere che carriera intraprendere...",
 
   "career_choice": "Il tuo cuore è giovane, ma la vita ti chiede già di scegliere: quale strada percorrerai per lasciare un segno nel mondo? Il destino ti pone davanti due vie.\n1 - Prete: Una vita dedicata a Dio, alla parola, al mistero.\n2 - Soldato: Una vita forgiata nel ferro e nel sangue, al servizio del potere.\n",

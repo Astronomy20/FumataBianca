@@ -51,6 +51,16 @@
   "stat_name_dipl_skill": "Diplomatic Skill",
   "consensus_scope_all": "All",
 
+  "city_mantova": "Mantua",
+  "city_venezia": "Venice",
+  "city_milano": "Milan",
+  "city_firenze": "Florence",
+
+  "context_gonzaga": "Milan under the Sforza, Florence under the Medici, the Republic of Venice, and your Mantua under Gonzaga rule",
+  "context_orseolo": "Milan under the Sforza, Mantua under the Gonzaga, Florence, and your Republic of Venice",
+  "context_scotti": "Florence under the Medici, Mantua under the Gonzaga, the Republic of Venice, and your Milan under Sforza rule",
+  "context_strozzi": "Milan under the Sforza, Mantua under the Gonzaga, the Republic of Venice, and your Florence under Medici rule",
+
   "start": "We are at the turn of the 15th and 16th centuries, in the heart of the Italian Renaissance. A period in which the peninsula is widely fragmented into a multitude of constantly competing duchies, lordships, kingdoms, and republics. The political scene is dominated by the great powers of {context}, without forgetting the relevance of the Papal States in central Italy, which has influence throughout Europe. The Papacy, despite going through moments of crisis, such as the Western Schism, was able to regain and strengthen its temporal power under the pontificates of Sixtus IV and Alexander VI; ecclesiastical politics became increasingly active and ambitious, often intertwined with the interests of the great Italian families. It is in this scenario that, in 1475, you {player_name} are born into the {family_name} family, one of the oldest and most influential in {city}. You are a younger son: the right to inheritance slipped away by just a little. In an age where every decision can change the destinies of a family, or even a state, you will have to carefully weigh every move. It is up to you, therefore, to decide what career to pursue...",
 
   "career_choice": "Your heart is young, but life already demands you choose: which path will you take to leave your mark on the world? Destiny places two paths before you.\n1 - Priest: A life dedicated to God, to the word, to mystery.\n2 - Soldier: A life forged in iron and blood, in service of power.\n",

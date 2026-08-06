@@ -51,6 +51,16 @@
   "stat_name_dipl_skill": "Diplomatische Fähigkeiten",
   "consensus_scope_all": "Alle",
 
+  "city_mantova": "Mantua",
+  "city_venezia": "Venedig",
+  "city_milano": "Mailand",
+  "city_firenze": "Florenz",
+
+  "context_gonzaga": "Mailand unter den Sforza, Florenz unter den Medici, die Republik Venedig und dein Mantua unter der Herrschaft der Gonzaga",
+  "context_orseolo": "Mailand unter den Sforza, Mantua unter den Gonzaga, Florenz und deine Republik Venedig",
+  "context_scotti": "Florenz unter den Medici, Mantua unter den Gonzaga, die Republik Venedig und dein Mailand unter der Herrschaft der Sforza",
+  "context_strozzi": "Mailand unter den Sforza, Mantua unter den Gonzaga, die Republik Venedig und dein Florenz unter der Herrschaft der Medici",
+
   "start": "Wir befinden uns an der Wende vom 15. zum 16. Jahrhundert, im Herzen der italienischen Renaissance. Eine Zeit, in der die Halbinsel in eine Vielzahl von Herzogtümern, Herrschaften, Königreichen und Republiken zersplittert ist, die ständig miteinander konkurrieren. Die politische Szene wird von den Großmächten {context} dominiert, nicht zu vergessen die Bedeutung des Kirchenstaates in Mittelitalien, der Einfluss in ganz Europa hat. Das Papsttum, obwohl es Krisenzeiten wie das Abendländische Schisma durchläuft, ist unter dem Pontifikat von Sixtus IV. und Alexander VI. in der Lage, seine weltliche Macht zurückzugewinnen und zu stärken; die Kirchenpolitik wird immer aktiver und ehrgeiziger, oft verknüpft mit den Interessen der großen italienischen Familien. In diesem Szenario wirst du, {player_name} aus der Familie {family_name}, eine der ältesten und einflussreichsten in {city}, im Jahr 1475 geboren. Du bist ein jüngerer Sohn: Das Erbrecht ist dir nur knapp entgangen. In einem Zeitalter, in dem jede Entscheidung das Schicksal einer Familie oder sogar eines Staates verändern kann, musst du jeden deiner Schritte sorgfältig abwägen. Es liegt also an dir, zu entscheiden, welche Karriere du einschlagen möchtest...",
 
   "career_choice": "Dein Herz ist jung, aber das Leben verlangt bereits eine Entscheidung: Welchen Weg wirst du gehen, um ein Zeichen in der Welt zu hinterlassen? Das Schicksal stellt dich vor zwei Wege.\n1 - Priester: Ein Leben, das Gott, dem Wort, dem Geheimnis gewidmet ist.\n2 - Soldat: Ein Leben, das in Eisen und Blut geschmiedet ist, im Dienste der Macht.\n",
