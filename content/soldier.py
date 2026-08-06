@@ -47,7 +47,10 @@ def run_firenze(player: Player) -> None:
 
 def run_venezia_milano_mantova(player: Player) -> None:
     while True:
-        ui.print_text(loc.get("ven_mil_mant_input", fam_city=player.family.city))
+        ui.print_text(loc.get(
+            "ven_mil_mant_input",
+            fam_city=loc.get(f"city_{player.family.city.lower()}"),
+        ))
         choice = input()
 
         if choice == "1":

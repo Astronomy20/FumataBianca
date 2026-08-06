@@ -2,7 +2,7 @@ import json
 import locale
 import random
 
-from core import loc, resource_path
+from core import loc, resource_path, terminal
 from data.repositories import family_repo
 from models import Player, Rank
 
@@ -29,15 +29,20 @@ def _choose_language() -> str:
     with open(resource_path("lang/langs.json"), encoding="utf-8") as f:
         all_dicts = json.load(f)
 
+    lang_map = {str(i + 1): code for i, code in enumerate(_LANG_CODES)}
+    invalid = False
+
     while True:
+        terminal.clear_screen()
+        if invalid:
+            print(loc.get("err"))
         print(loc.get("choose_lang"))
-        lang_map = {str(i + 1): code for i, code in enumerate(_LANG_CODES)}
         for num, code in lang_map.items():
             print(f"{num} - {all_dicts.get(def_lang, {}).get(code, code)}")
         choice = input()
         if choice in lang_map:
             return lang_map[choice]
-        print(loc.get("err"))
+        invalid = True
 
 
 def _check_valid_name(prompt: str) -> str:
@@ -63,21 +68,29 @@ def _create_player(name: str) -> Player:
 
 
 def main() -> None:
+    terminal.init()
+
     lang = _choose_language()
     loc.load(lang)
 
+    print()
     name = _check_valid_name(loc.get("name"))
     player = _create_player(name)
 
     from ui import ui
 
+    terminal.clear_screen()
     ui.print_text(loc.get(
         "start",
-        context=player.family.context,
+        context=loc.get(f"context_{player.family.name.lower()}"),
         player_name=player.name,
         family_name=player.family.name,
-        city=player.family.city,
+        city=loc.get(f"city_{player.family.city.lower()}"),
     ))
+    ui.go_on()
+
+    ui.print_family_multipliers(player.family)
+    ui.print_points(player)
     ui.go_on()
 
     while True:

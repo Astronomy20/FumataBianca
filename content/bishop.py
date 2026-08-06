@@ -24,7 +24,10 @@ def run_bishop(player: Player) -> None:
 
 def run_residence(player: Player, state: BishopState) -> None:
     while True:
-        ui.print_text(loc.get("residence_input", fam_city=player.family.city))
+        ui.print_text(loc.get(
+            "residence_input",
+            fam_city=loc.get(f"city_{player.family.city.lower()}"),
+        ))
         choice = input()
 
         if choice == "1":
