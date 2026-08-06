@@ -19,7 +19,6 @@ class FamilyRepository:
         return Family(
             name=name,
             city=info["city"],
-            context=info["context"],
             multipliers=info["multiplier"],
         )
 

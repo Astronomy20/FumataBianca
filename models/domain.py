@@ -1,6 +1,6 @@
 from enum import Enum, auto
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Tuple
 
 
 class Rank(Enum):
@@ -28,8 +28,8 @@ class CheckResult(Enum):
 @dataclass
 class Family:
     name: str
-    city: str
-    context: str
+    city: str  # canonical Italian city id, e.g. "Firenze" — used for game logic;
+    # for display, localize it via loc.get(f"city_{city.lower()}")
     multipliers: List[float]  # [voc, pop_agr, pol_infl, cur_rel, dipl_skill]
 
 
@@ -53,15 +53,17 @@ class Player:
     cur_rel: int
     dipl_skill: int
     rank: Rank = field(default_factory=lambda: Rank.NOTHING)
+    # The delta (already weighted by the family multiplier) from the last
+    # add_points call, in order [voc, pop_agr, pol_infl, cur_rel, dipl_skill].
+    # Used by the UI to show "+X"/"-X" next to stats that just changed.
+    last_gain: Tuple[int, int, int, int, int] = field(default_factory=lambda: (0, 0, 0, 0, 0))
 
     @property
     def consensus(self) -> int:
+        total = self.voc + self.pop_agr + self.pol_infl
         if self.rank in (Rank.BISHOP, Rank.CARDINAL):
-            return round(
-                (self.voc + self.pop_agr + self.pol_infl + self.cur_rel + self.dipl_skill)
-                * self.family.multipliers[1]
-            )
-        return round((self.voc + self.pop_agr + self.pol_infl) * self.family.multipliers[1])
+            total += self.cur_rel + self.dipl_skill
+        return total
 
     def add_points(
         self,
@@ -71,8 +73,19 @@ class Player:
         cur_rel: int = 0,
         dipl_skill: int = 0,
     ) -> None:
-        self.voc += voc
-        self.pop_agr += pop_agr
-        self.pol_infl += pol_infl
-        self.cur_rel += cur_rel
-        self.dipl_skill += dipl_skill
+        mult = self.family.multipliers
+        weighted = (
+            round(voc * mult[0]),
+            round(pop_agr * mult[1]),
+            round(pol_infl * mult[2]),
+            round(cur_rel * mult[3]),
+            round(dipl_skill * mult[4]),
+        )
+
+        self.voc += weighted[0]
+        self.pop_agr += weighted[1]
+        self.pol_infl += weighted[2]
+        self.cur_rel += weighted[3]
+        self.dipl_skill += weighted[4]
+
+        self.last_gain = weighted
