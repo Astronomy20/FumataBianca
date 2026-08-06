@@ -1,35 +1,21 @@
 
 ───────────────────────────────────────────────────────────────
 
-                       F U M A T A   B I A N C A
+                   F U M A T A   B I A N C A
 
-                  A Narrative Roleplaying Game of the Renaissance
-
-───────────────────────────────────────────────────────────────
-
-
-
-
-                          ─── CREATED BY ───
-
-                            Matteo Dabbene
-
-                        Concept · Design · Development
-                       Project Lead · Group Coordination
-
-
-
+        A Narrative Roleplaying Game of the Renaissance
 
 ───────────────────────────────────────────────────────────────
 
 
 
 
-                    ─── HISTORICAL RESEARCH ───
+                      ─── CREATED BY ───
 
-                           Giorgio Benatti
+                        Matteo Dabbene
 
-                 Source Research · Analysis & Verification
+                Concept · Design · Development
+               Project Lead · Group Coordination
 
 
 
@@ -39,46 +25,11 @@
 
 
 
-               ─── STORY STRUCTURE & CHOICE SYSTEM ───
+                  ─── HISTORICAL RESEARCH ───
 
-                      Manuel Esu · Lorenzo Rossi
+                        Giorgio Benatti
 
-                    Branching Logic · Choice Design
-
-
-
-
-───────────────────────────────────────────────────────────────
-
-
-
-
-                        ─── WRITTEN BY ───
-
-
-                    Opening Act & Character Origins
-
-                           Lorenzo Rossi
-
-
-                       The Soldier's Path
-
-                    Lorenzo Rossi · Matteo Dabbene
-
-
-                        The Priest's Path
-
-                            Manuel Esu
-
-
-                        The Bishop's Path
-
-                  Giorgio Benatti · Curial Intrigues
-
-
-                          The Conclave
-
-                           Matteo Dabbene
+           Source Research · Analysis & Verification
 
 
 
@@ -88,28 +39,77 @@
 
 
 
-                       ─── SPECIAL THANKS ───
+            ─── STORY STRUCTURE & CHOICE SYSTEM ───
 
-                          Istituto Parri
+                  Manuel Esu · Lorenzo Rossi
 
-           For guiding the team through the foundations
+                Branching Logic · Choice Design
+
+
+
+
+───────────────────────────────────────────────────────────────
+
+
+
+
+                      ─── WRITTEN BY ───
+
+
+                Opening Act & Character Origins
+
+                         Lorenzo Rossi
+
+
+                      The Soldier's Path
+
+                Lorenzo Rossi · Matteo Dabbene
+
+
+                       The Priest's Path
+
+                          Manuel Esu
+
+
+                       The Bishop's Path
+
+                 Giorgio Benatti · Manuel Esu
+
+
+                         The Conclave
+
+                        Matteo Dabbene
+
+
+
+
+───────────────────────────────────────────────────────────────
+
+
+
+
+                    ─── SPECIAL THANKS ───
+
+                        Istituto Parri
+
+         For guiding the team through the foundations
            of game design and supporting the project
-                    from concept to completion.
+                  from concept to completion.
 
 
-                  *  *  *  *  *  *  *  *  *  *  *  *
+              *  *  *  *  *  *  *  *  *  *  *  *
 
-             "The smoke rises white above the Sistine Chapel.
-              A new shepherd has been chosen for the flock."
+       "The smoke rises white above the Sistine Chapel.
+        A new shepherd has been chosen for the flock."
 
-                  *  *  *  *  *  *  *  *  *  *  *  *
+              *  *  *  *  *  *  *  *  *  *  *  *
 
 
 
 
 ───────────────────────────────────────────────────────────────
 
-                    Released under the MIT License
-                    Copyright (c) 2026 Astronomy
+                Released under the MIT License
+                Copyright (c) 2026 Astronomy20
 
 ───────────────────────────────────────────────────────────────
